@@ -141,3 +141,131 @@ Fixed-size speedup (Escalado fijo): Evalúa cómo cambia el tiempo de ejecución
 Scaled speedup (Escalado por tamaño): Aumenta el tamaño del problema proporcionalmente al número de procesadores. Esto refleja escenarios donde la cantidad de trabajo crece con los recursos disponibles, manteniendo constante la carga de trabajo por procesador. Su característica principal es medir la capacidad de un sistema para manejar eficientemente problemas más grandes a medida que se dispone de más procesadores.
 
 Fixed-time speedup (Tiempo fijo): Consiste en ajustar el tamaño del problema de manera que el tiempo de ejecución se mantenga constante mientras se aumenta el número de procesadores. Este modelo es menos común pero útil para evaluar cómo diferentes configuraciones de procesadores pueden resolver problemas de mayor tamaño en el mismo tiempo.
+
+
+El "linear speedup" se refiere al ideal en la computación paralela donde duplicar el número de procesadores (o unidades de procesamiento) resulta en una reducción a la mitad del tiempo de ejecución del programa. Es decir, si un programa se ejecuta en un tiempo 
+�
+T usando 
+�
+N procesadores, el objetivo sería que se ejecute en un tiempo 
+�
+/
+2
+T/2 usando 
+2
+�
+2N procesadores, logrando así un speedup lineal.
+
+¿Por qué se cree que es alcanzable?
+Independencia de tareas: En problemas donde las tareas son completamente independientes y no requieren comunicación entre ellas, teóricamente es posible asignar una tarea por procesador, resultando en un speedup lineal. Esto se aplica bien a problemas "embarazosamente paralelos".
+
+Eficiencia de la paralelización: Para ciertos problemas y algoritmos, especialmente aquellos diseñados con el paralelismo en mente desde el principio, se pueden minimizar los cuellos de botella y la necesidad de sincronización o comunicación, acercándose al speedup lineal.
+
+Uso óptimo de recursos: Con una gestión eficaz de los recursos de hardware y una planificación de tareas que minimice el tiempo de inactividad de los procesadores, algunos creen que el speedup lineal es un objetivo alcanzable.
+
+¿Por qué se cree que no es alcanzable?
+Ley de Amdahl: La ley de Amdahl establece que el speedup de un programa está limitado por la porción del programa que debe ejecutarse secuencialmente. Incluso una pequeña parte del código que no se puede paralelizar puede limitar significativamente el speedup total alcanzable, haciendo que el speedup lineal sea prácticamente imposible para muchos programas.
+
+Sobrecostos de paralelización: La paralelización introduce sobrecostos adicionales, como la comunicación entre procesadores, sincronización, y el manejo de datos compartidos. Estos sobrecostos pueden aumentar con el número de procesadores, reduciendo el speedup efectivo.
+
+Problemas de escalabilidad: A medida que aumenta el número de procesadores, la gestión eficiente de la comunicación y la distribución de tareas se vuelve más compleja. Problemas como el desbalance de carga, donde algunos procesadores están inactivos mientras otros están sobrecargados, pueden impedir el speedup lineal.
+
+Limitaciones de hardware y software: Las arquitecturas de hardware y los sistemas operativos tienen limitaciones prácticas en cuanto al paralelismo que pueden gestionar eficazmente. Los cuellos de botella en el acceso a memoria, la latencia de la red en sistemas distribuidos, y la coherencia de caché son factores que pueden limitar el speedup.
+
+Conclusión
+El speedup lineal es un ideal hacia el cual se esfuerzan los diseñadores de sistemas paralelos, pero en la práctica, es difícil de alcanzar para muchos problemas debido a las limitaciones inherentes de la computación paralela y la ley de Amdahl. Sin embargo, para problemas específicos altamente paralelizables y con una adecuada optimización, se puede aproximar a este ideal. La búsqueda del speedup lineal impulsa la innovación en el diseño de algoritmos paralelos y la arquitectura de sistemas computacionales.
+
+Speedup medido con la Ley de Amdahl
+La Ley de Amdahl se utiliza para predecir el speedup teórico máximo de un proceso al paralelizarlo, enfocándose en la porción del programa que no se puede paralelizar. La fórmula básica es:
+
+S(p)=  1/ [(1−P)+ P/p]
+donde:
+
+S(p) es el speedup teórico máximo al usar 
+p procesadores.
+
+P es la proporción del programa que se puede paralelizar.
+
+1−P es la proporción que debe ejecutarse secuencialmente.
+
+Ejemplo con la Ley de Amdahl:
+
+Problema: Consideremos el caso de un algoritmo de ordenamiento que necesita ordenar una gran cantidad de datos. Supongamos que el 95% del algoritmo se puede paralelizar (por ejemplo, usando ordenamiento por mezcla paralelo), mientras que el 5% restante (como la combinación final de subconjuntos ordenados) debe ejecutarse secuencialmente.
+
+Si aplicamos la Ley de Amdahl para calcular el speedup teórico al usar 16 procesadores (p=16), tenemos:
+
+S(16) = 1 / [(1−0.95)+0.95/16] ≈ 5.263
+
+Esto significa que, bajo las condiciones ideales descritas por la Ley de Amdahl, podríamos esperar un speedup máximo de aproximadamente 5.26 veces más rápido que la versión secuencial, sin importar cuántos procesadores adicionales utilicemos.
+
+Speedup medido con la Ley de Gustafson
+La Ley de Gustafson propone una perspectiva diferente, sugiriendo que el tamaño del problema puede escalar con el número de procesadores, ofreciendo un enfoque más realista para muchas aplicaciones prácticas. La fórmula de Gustafson es:
+
+S′(p)=p−α(p−1)
+
+donde:
+
+S′(p) es el speedup teórico según Gustafson al usar p procesadores.
+
+α es la fracción del tiempo que se dedica a las secciones secuenciales del algoritmo.
+
+p es el número de procesadores.
+
+Ejemplo con la Ley de Gustafson:
+
+Problema: Supongamos que tenemos una aplicación de simulación de clima que puede adaptarse para utilizar más recursos computacionales efectivamente al aumentar el número de procesadores, permitiéndonos hacer simulaciones más detalladas o cubrir áreas geográficas más amplias.
+
+Si consideramos que el 10% del tiempo de ejecución es inherente a tareas secuenciales (α=0.10) y decidimos ejecutar nuestra simulación usando 100 procesadores (p=100), aplicando la Ley de Gustafson obtenemos:
+
+S′(100) = 100 − 0.10*(100 − 1) = 100 − 9.9 = 90.1
+
+Esto sugiere que, ajustando el tamaño del problema al número de procesadores disponibles, podemos esperar que la aplicación se ejecute hasta 90.1 veces más rápido que en un solo procesador, según la Ley de Gustafson.
+
+Ambos ejemplos ilustran cómo las leyes de Amdahl y Gustafson ofrecen perspectivas valiosas sobre el speedup teórico en la computación paralela, cada una desde un ángulo diferente, reflejando la importancia de considerar tanto la capacidad de paralelización del problema como la escalabilidad del tamaño del problema con respecto a los recursos computacionales disponibles.
+
+
+Las arquitecturas de GPU (Unidad de Procesamiento Gráfico) están diseñadas para procesar grandes cantidades de datos en paralelo, lo que las hace excepcionalmente buenas para gráficos y cálculos científicos que pueden ser paralelizados. Sin embargo, maximizar el rendimiento de la memoria en una GPU puede ser más desafiante que en una CPU (Unidad de Procesamiento Central) por varias razones:
+
+Dependencia del Problema
+El rendimiento de la memoria en las GPUs es altamente dependiente del problema específico y de cómo se organizan y acceden los datos. Para obtener el máximo rendimiento, es crucial que las estructuras de datos estén alineadas con las características de la memoria de la GPU, permitiendo que se lean o escriban grandes bloques de datos simultáneamente.
+
+Accesos a Memoria
+Los accesos irregulares a la memoria, donde los patrones de lectura y escritura no siguen una secuencia predecible, pueden disminuir significativamente el rendimiento. Esto se debe a que las GPUs prefieren patrones de acceso a memoria coalescidos, donde múltiples hilos de ejecución leen o escriben en direcciones de memoria contiguas en un solo ciclo de reloj.
+
+Alineación de Datos
+La alineación de datos se refiere a la organización de los datos en memoria de manera que coincidan con los límites naturales de la misma. En GPUs, esto puede significar asegurarse de que las estructuras de datos comiencen en direcciones que sean múltiplos de ciertos tamaños (por ejemplo, 32 bytes), lo que facilita el acceso coalescido a la memoria.
+
+Tamaño de los Datos
+Los tamaños de los bloques de datos que se procesan también juegan un papel importante. Bloques de tamaño inadecuado pueden llevar a un desperdicio de recursos de memoria y a una disminución en el rendimiento debido a la necesidad de realizar más accesos a memoria de lo necesario.
+
+Caché L2 en Arquitecturas Fermi y Kepler
+Las arquitecturas Fermi y Kepler de Nvidia introdujeron mejoras significativas en la gestión de la memoria, incluyendo una caché L2 para la memoria global. La caché L2 ayuda a mitigar los problemas de accesos irregulares a la memoria y la desalineación de datos, actuando como un buffer que puede almacenar datos temporalmente y servir múltiples accesos a datos cercanos sin requerir accesos adicionales a la memoria global, que es más lenta.
+
+Arquitecturas de GPU
+Las arquitecturas de GPU, como Fermi, Kepler, y sus sucesoras Maxwell, Pascal, Volta, Turing, y Ampere, han sido diseñadas por Nvidia, cada una con mejoras en el rendimiento, eficiencia energética, y capacidades de procesamiento en paralelo. Estas arquitecturas han evolucionado para soportar no solo gráficos computacionales sino también cálculos científicos y de inteligencia artificial, ofreciendo una amplia gama de aplicaciones. Cada nueva generación ha traído mejoras en la jerarquía de memoria, la cantidad de núcleos de procesamiento, y características específicas como unidades de tensor para cálculos de IA, todos diseñados para mejorar el rendimiento y la eficiencia en una amplia gama de cargas de trabajo.
+
+
+
+############### MODELOS DE COMPUTACION #################
+El modelo PRAM (Parallel Random Access Machine) es un modelo teórico utilizado para el diseño y análisis de algoritmos paralelos. Tiene varias variantes que se diferencian en cómo manejan el acceso concurrente a la memoria:
+
+EREW (Exclusive Read Exclusive Write): En esta variante, ningún procesador puede leer o escribir simultáneamente en la misma ubicación de memoria. Garantiza la exclusividad tanto en lecturas como en escrituras.
+
+CREW (Concurrent Read Exclusive Write): Permite que múltiples procesadores lean de la misma ubicación de memoria simultáneamente, pero solo un procesador puede escribir en una ubicación de memoria en un momento dado.
+
+ERCW (Exclusive Read Concurrent Write): Los procesadores pueden leer exclusivamente, pero varios procesadores pueden escribir en la misma ubicación de memoria al mismo tiempo. Esta variante es menos común debido a los desafíos que presenta la escritura concurrente.
+
+CRCW (Concurrent Read Concurrent Write): Permite lecturas y escrituras concurrentes en la misma ubicación de memoria. Esta es la variante más poderosa pero también la más compleja de manejar debido a los conflictos potenciales de escritura.
+
+Ejemplos para Variantes del Modelo PRAM
+CREW - Búsqueda Binaria Paralela: Un buen ejemplo de uso para el modelo CREW es la búsqueda binaria en un arreglo ordenado. Dado que la búsqueda binaria divide el espacio de búsqueda a la mitad en cada paso, se puede asignar a cada procesador un segmento único del arreglo para leer y determinar en qué segmento se debe continuar la búsqueda en el siguiente paso. Aquí, múltiples procesadores leen de diferentes partes del arreglo (lectura concurrente), pero solo uno actualizará el índice de búsqueda (escritura exclusiva).
+
+Entrada: Un arreglo ordenado A de tamaño n y un valor objetivo x.
+Proceso: Divide el espacio de búsqueda entre todos los procesadores disponibles. Cada procesador lee su segmento asignado para determinar si contiene el valor objetivo. Se actualiza el rango de búsqueda basado en los resultados de todos los procesadores.
+Salida: La posición de x en A o una indicación de que x no está presente.
+CRCW - Suma de Prefijos: La suma de prefijos es un algoritmo que puede implementarse eficientemente bajo el modelo CRCW. El objetivo es calcular un nuevo arreglo donde cada elemento en la posición i es la suma de todos los elementos desde la posición 0 hasta i en el arreglo original. En el modelo CRCW, múltiples procesadores pueden trabajar en calcular sumas parciales simultáneamente y escribir sus resultados en el mismo momento, utilizando técnicas como la suma en árbol paralelo.
+
+Entrada: Un arreglo A de n elementos.
+Proceso: Cada procesador calcula sumas parciales basadas en la posición y los resultados de otros procesadores, aprovechando el acceso concurrente para lectura y escritura, facilitando la combinación de resultados.
+Salida: Un nuevo arreglo donde cada posición i contiene la suma de los elementos de A[0] a A[i].
+Estos ejemplos ilustran cómo las distintas variantes del modelo PRAM pueden ser utilizadas para implementar algoritmos paralelos de manera eficiente, tomando en cuenta las restricciones específicas de acceso a la memoria de cada variante.
