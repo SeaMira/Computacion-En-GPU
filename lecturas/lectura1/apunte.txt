@@ -1,0 +1,143 @@
+CPU: no son suficientemente rápidos, ni siquiera los multicore
+Necesidad de resolver grandes problemas, con mucha info en una cantidad razonable de tiempo, con un hardware moderado y de computación paralela dio paso a la
+GPU. 
+Capaz de manejar miles de hilos en paralelo,  cada uno de ellos no de gran poder como los de un core en la CPU. Se consigue un gran speedup en GPU al compararla con la CPU.
+speedup:an increase in speed, especially in a person's or machine's rate of working
+
+Sin embargo, no todos los problemas son paralelizables, ej, los time
+-dependent, que necesitan de resultados previamente calculados (recursión, el cálculo de sqrt(x) usando el método de newton rhapson). Este tipo de problemas es mejor resolverlos en CPU.
+
+Problemas no paralelizables:
+--Algoritmos secuenciales: Un ejemplo concreto sería el algoritmo de cifrado RSA. En este algoritmo, cada paso de cifrado o descifrado depende del resultado del paso anterior, lo que lo hace intrínsecamente secuencial. Dado que cada operación depende de los resultados anteriores, no es posible paralelizar eficientemente este proceso.
+
+--Procesamiento de datos en serie: Imagina un sistema de control de inventario en una tienda. Para realizar un seguimiento preciso de los productos, es necesario procesar las ventas y las reposiciones de manera secuencial, ya que el estado actual del inventario depende de transacciones pasadas. Si se intentara paralelizar este proceso, podría haber problemas de coherencia de datos y pérdida de precisión en el inventario.
+
+--Problemas que involucran dependencias de datos complejas: Un ejemplo sería el proceso de planificación de rutas logísticas para una empresa de entrega. En este caso, hay una red de rutas, puntos de entrega y restricciones de tiempo que están altamente interconectados. Cada decisión sobre una ruta puede afectar a múltiples rutas futuras, lo que hace que sea difícil dividir el proceso en tareas independientes y paralelizarlo de manera efectiva sin comprometer la calidad de la planificación.
+
+Embarrassingly parallel problems:
+--Análisis de datos en paralelo: Muchas aplicaciones de análisis de datos, como la clasificación de grandes conjuntos de datos o el procesamiento de imágenes, pueden dividirse fácilmente en tareas independientes que pueden ejecutarse simultáneamente en múltiples núcleos o procesadores.
+
+--Renderizado de imágenes: Generar imágenes a partir de modelos tridimensionales o realizar operaciones gráficas complejas, como el renderizado de efectos especiales en películas, es un ejemplo clásico de un problema "embarrassingly parallel", ya que cada píxel de la imagen final puede ser calculado de forma independiente.
+
+--Simulaciones Monte Carlo: Muchas simulaciones numéricas, como las utilizadas en finanzas, física o biología, pueden dividirse en numerosas iteraciones independientes que pueden ejecutarse en paralelo, lo que hace que sean altamente paralelizables y, por lo tanto, aptas para ejecutar en GPUs.
+
+--simulación de eventos, integración numérica, transformada de fourier donde cada armónico se calcula por separado, ataques de fuerza bruta en criptografía, entre otros.
+
+
+Una relación cercana a la computación en paralelo es la que existe con el hardware que la sostiene y el modelo de programacón. 
+
+
+
+##################### CONCEPTOS BÁSICOS ########################
+Concurrency is a property of a program (at design level) where two or
+more tasks can be in progress simultaneously. Se enfoca en la estructura de un programa como un conjunto de tareas que pueden ejecutarse en un orden no predeterminado, sin asumir nada sobre la ejecución simultánea.
+
+Parallelism is a run-time property where two or more tasks are being
+executed simultaneously. múltiples tareas o partes de una tarea en múltiples procesadores o núcleos dentro de un sistema de computación.
+
+El paralelismo se considera incluido en concurrencia porque, para que múltiples tareas se ejecuten en paralelo, primero deben ser concurrentes; es decir, deben ser independientes o capaces de progresar simultáneamente. El paralelismo es un caso específico de concurrencia donde la ejecución simultánea es una realidad física, aprovechando los recursos de hardware disponibles.
+
+jemplo de problema resoluble de manera concurrente:
+Problema eficiente para la concurrencia: Servidor web que maneja múltiples solicitudes de usuarios.
+
+Concurrencia: Un servidor web maneja solicitudes entrantes de diferentes usuarios. Cada solicitud puede ser atendida por un proceso o hilo separado, permitiendo que el servidor trabaje en múltiples solicitudes "al mismo tiempo" sin necesariamente procesarlas en paralelo. Este enfoque es eficiente porque mejora la capacidad de respuesta del servidor, permitiendo que maneje solicitudes de forma asincrónica.
+Ejemplo de problema no eficiente para concurrencia o paralelismo:
+Problema ineficiente: Cálculo de Fibonacci utilizando recursión directa.
+
+Ineficiencia: La naturaleza secuencial y dependiente de este cálculo, especialmente en su implementación recursiva simple, lo hace inadecuado para la concurrencia y el paralelismo, ya que cada término depende del cálculo del término anterior.
+Kernel para el problema del servidor web:
+Dado que el problema del servidor web es más un escenario de sistema que un algoritmo específico, un "kernel" en este contexto podría referirse a un pseudocódigo básico para manejar solicitudes de manera asincrónica. Sin embargo, para un ejemplo más concreto, consideremos un problema computacional paralelo: el procesamiento de una imagen para convertirla a escala de grises.
+
+Parámetros de entrada:
+
+ImagenColor: Una matriz 3D representando los píxeles de la imagen en color, donde las dimensiones son altura, anchura, y canales de color (RGB).
+Pseudocódigo:
+
+plaintext
+Copy code
+kernel ConvertirAEscalaDeGrises(ImagenColor):
+    i, j = IdentificarPosicionDelHiloEnLaImagen()
+    pixelRGB = ImagenColor[i][j]
+    gris = 0.299*pixelRGB[0] + 0.587*pixelRGB[1] + 0.114*pixelRGB[2]
+    ImagenGris[i][j] = gris
+Salida:
+
+ImagenGris: Una matriz 2D donde cada elemento representa un píxel en escala de grises de la imagen original.
+Este kernel puede ejecutarse en paralelo para cada píxel de la imagen, aprovechando la capacidad de procesamiento de un GPU, donde cada hilo calcula la conversión de un píxel RGB a escala de grises de forma independiente.
+
+
+################ COMPUTACIÓN PARALELA #####################
+Acto de resolver un problema de tamaño n al dividir el dominio en k >2  partes y resolviendolas con p procesadores físicos simultáneamente. 
+
+Problema de Paralelismo de Datos
+En un problema de paralelismo de datos, el mismo conjunto de operaciones (o kernel) se aplica a diferentes elementos de un conjunto de datos. La clave aquí es que las operaciones son independientes entre sí y pueden ejecutarse simultáneamente sin necesidad de comunicación o sincronización entre ellas.
+
+Ejemplo: Multiplicación de Matrices. La multiplicación de dos matrices es un ejemplo clásico de un problema de paralelismo de datos. Para calcular un elemento en la matriz resultante, se realiza una operación que implica solo una fila de la primera matriz y una columna de la segunda matriz. Estas operaciones son independientes unas de otras y pueden realizarse en paralelo para todos los elementos de la matriz resultante.
+
+Parámetros de entrada: Dos matrices, A y B.
+Operación: Para cada elemento C[i][j]
+C[i][j] en la matriz resultante C, calcula la suma de los productos de los elementos correspondientes en la fila i de la matriz A y la columna j de la matriz B.
+Salida: Una nueva matriz C que es el producto de A y B.
+Problema de Paralelismo de Tareas
+En un problema de paralelismo de tareas, diferentes tareas (o procesos), que pueden ser diferentes operaciones, se ejecutan en paralelo. Cada tarea puede trabajar en una parte diferente del problema o en un problema completamente diferente, y pueden requerir comunicación o sincronización entre ellas.
+
+Ejemplo: Procesamiento de Transacciones en un Sistema Bancario. Considera un sistema bancario en línea donde las transacciones de los clientes se procesan en paralelo. Cada transacción (retiro, depósito, transferencia, etc.) es una tarea independiente y puede requerir acceso a diferentes cuentas o servicios. Aunque las transacciones son independientes, pueden requerir sincronización para garantizar la coherencia de los datos (por ejemplo, asegurando que los balances de las cuentas se actualicen de manera atómica).
+
+Parámetros de entrada: Un conjunto de transacciones bancarias, cada una con su tipo y los datos necesarios para su procesamiento.
+Operaciones: Cada transacción se procesa de acuerdo a su tipo; por ejemplo, actualizar el balance de una cuenta, transferir fondos entre cuentas, etc.
+Salida: Actualización de los balances de las cuentas y registros de las transacciones procesadas.
+
+Data-parallel problems are ideal candidates for the GPU. The reason is because the
+GPU architecture works best when all threads execute the same instructions but on different data. On the other hand, task-parallel problems are best suited for the CPU. The reason is because the CPU architecture allows different tasks to be executed on each thread.
+This classification scheme is critical for achieving the best partition of the problem domain, which is in fact the first step when designing a parallel algorithm. It also provides
+useful information when choosing the best hardware for the implementation (CPU or
+GPU). Computational physics problems often classify as data-parallel, therefore they are
+good candidates for a massive parallelization on GPU. Since the aim of this work is to
+provide a survey on parallel computing for computational physics, most of the explanations will be in the context of data-parallel problems.
+
+################### MEDIDAS DE RENDIMIENTO #####################
+Set de métricas para cuantificar la calidad de un algoritmo. Para algortmos secuenciales tiempo y espacio eran suficientes. En caso de algoritmos paralelos el speedup y la eficiencia también son necesarias para estudiar su calidad y la mejoría. En el lado experimental además se tienen medidas como el ancho de banda de memoria y los FLOPS (floating point operations per second).
+
+Dado un problema de tamaño n, el tiempo de ejecución de un algoritmo paralelo usando p procesadores se denomina:
+T(n,p)
+
+El work y el span son la base para las métricas de eficiencia y speedup. Ambas mediciones son importantes porque dan límites a la computación en paralelo.
+work: T(n,1) es el tiempo total necesitado para ejecutar un algoritmo paralelo usando solo un procesador, denominado T(n,1). Es decir, el tiempo que se demora el algortimo secuencial.
+
+span: T(n,00)la mayor cantidad de tiempo que se necesita para ejecutar el algoritmo usando infinitos procesadores
+
+Ley del trabajo T(n,p)>= T(n,1)/p : se demorará por lo menos 1/8 del trabajo. Algoritmos paralelos corren mejor cuando el trabajo por procesador está balanceado
+
+Ley del span T(n,p) >= T(n, 00) un algoritmo paralelo no se demorará menos de lo que se demora la mínima cantidad de tiempo en que un procesador termine su trabajo en una máquina de ifninitos procesadores.
+
+El speedup: mide cuán rápido es el algoritmo paralelo vs el mejor algoritmo secuencial con una cantidad de procesadores p S_p = T_s(n,1)/T(n,p)
+
+
+
+Work y Span son conceptos fundamentales en la teoría de la computación paralela para analizar el rendimiento de algoritmos paralelos.
+
+Work (W): Representa el total de tiempo o cantidad de esfuerzo computacional requerido para completar una tarea si se ejecutara en un solo procesador. Es la suma de todos los pasos de computación realizados por el algoritmo. En otras palabras, es el tiempo de ejecución del algoritmo en un entorno secuencial sin paralelismo.
+
+Span (S), también conocido como profundidad crítica, es el tiempo que toma ejecutar el algoritmo en un número infinito de procesadores, es decir, el tiempo que toma completar la tarea más larga desde el inicio hasta el fin, considerando que todas las tareas paralelas se ejecutan instantáneamente. Representa el camino más largo de dependencias en la ejecución del algoritmo.
+
+Utilidad: Estos conceptos se utilizan para calcular la eficiencia, el speedup y la escalabilidad de algoritmos paralelos. Ayudan a identificar cuánto puede mejorarse el rendimiento mediante paralelización y cuál es el límite teórico de esta mejora. Work y Span permiten calcular el speedup teórico máximo usando la Ley de Brent, que afirma que el tiempo de ejecución T_p con p procesadores es al menos 
+W/p+S, dando una medida de cuán bien un algoritmo puede ser paralelizado.
+
+Diferencia/Relación entre 
+T(n,1) y T_s(n,1)
+
+T(n,1) representa el tiempo que toma ejecutar un algoritmo paralelo en un solo procesador, es decir, sin aprovechar el paralelismo. Este tiempo incluye todo el overhead introducido por el diseño paralelo del algoritmo, incluso cuando se ejecuta secuencialmente.
+
+T_s(n,1), por otro lado, es el tiempo de ejecución del mejor algoritmo secuencial conocido para el mismo problema. Este tiempo es típicamente el más optimizado posible para una ejecución en un solo procesador, sin considerar estructuras de paralelismo.
+
+Diferencia/Relación: La principal diferencia entre 
+T(n,1) y T_s(n,1) radica en que T(n,1) puede ser mayor que T_s(n,1) debido al overhead adicional de paralelización que se presenta incluso en la ejecución en un solo núcleo. T_s(n,1) es una medida de eficiencia para el algoritmo secuencial óptimo, mientras que T(n,1) refleja la eficiencia de un algoritmo paralelo cuando se ve forzado a operar en un entorno secuencial.
+
+Modelos de Speedup y sus Características Principales
+Los tres modelos de speedup (escalado fijo, escalado por tamaño, y tiempo fijo) reflejan diferentes maneras de entender y medir cómo el paralelismo afecta el rendimiento.
+
+Fixed-size speedup (Escalado fijo): Evalúa cómo cambia el tiempo de ejecución cuando se aumenta el número de procesadores mientras se mantiene fijo el tamaño del problema. Su característica principal es medir directamente el efecto del paralelismo en la velocidad de ejecución para un problema de tamaño constante.
+
+Scaled speedup (Escalado por tamaño): Aumenta el tamaño del problema proporcionalmente al número de procesadores. Esto refleja escenarios donde la cantidad de trabajo crece con los recursos disponibles, manteniendo constante la carga de trabajo por procesador. Su característica principal es medir la capacidad de un sistema para manejar eficientemente problemas más grandes a medida que se dispone de más procesadores.
+
+Fixed-time speedup (Tiempo fijo): Consiste en ajustar el tamaño del problema de manera que el tiempo de ejecución se mantenga constante mientras se aumenta el número de procesadores. Este modelo es menos común pero útil para evaluar cómo diferentes configuraciones de procesadores pueden resolver problemas de mayor tamaño en el mismo tiempo.
