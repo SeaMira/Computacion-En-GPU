@@ -1,24 +1,25 @@
 #include <cstddef>
 #include <memory>
 #include <ostream>
+#include <fstream>
 #include <string>
 #include <tuple>
 
 
 class Matrix {
     private:
-        std::unique_ptr<double> mat; // Store the matrix
+        std::unique_ptr<double[]> mat; // Store the matrix
         int n = 0; // Number of rows
         int m = 0; // Number of columns
     public:
         Matrix(); // Empty constructor
-
         Matrix(int n); // Constructor, vector like [1xn]
         Matrix(int n, int m); // Constructor [nxm], n:rows, m: columns
-        Matrix(const std::string &filename); // Constructor that reads from a file, any format is valid
-
-        Matrix(const Matrix &matrix); // Copy constructor, https://www.geeksforgeeks.org/copy-constructor-in-cpp/
-
+        Matrix(const std::string &filename); // Constructor that reads from a file,
+        // any format is valid
+        Matrix(const Matrix &
+        matrix); // Copy constructor,
+        // https::/www.geeksforgeeks.org/copy-constructor-in-cpp/
         ~Matrix(); // Destructor
 
         // Setters and getters
@@ -48,9 +49,9 @@ class Matrix {
 
         // Mathematical operation
         Matrix &operator=(const Matrix &matrix); // Assignment operator
-        Matrix &transpose() const; // Transpose the matrix
         Matrix &operator*=(const Matrix &matrix); // Multiplication
         Matrix &operator*=(double a); // Multiply by a constant
         Matrix &operator+=(const Matrix &matrix); // Add
         Matrix &operator-=(const Matrix &matrix); // Substract
+        Matrix &transpose() ; // Transpose the matrix
 };
