@@ -269,3 +269,32 @@ Entrada: Un arreglo A de n elementos.
 Proceso: Cada procesador calcula sumas parciales basadas en la posición y los resultados de otros procesadores, aprovechando el acceso concurrente para lectura y escritura, facilitando la combinación de resultados.
 Salida: Un nuevo arreglo donde cada posición i contiene la suma de los elementos de A[0] a A[i].
 Estos ejemplos ilustran cómo las distintas variantes del modelo PRAM pueden ser utilizadas para implementar algoritmos paralelos de manera eficiente, tomando en cuenta las restricciones específicas de acceso a la memoria de cada variante.
+
+############ modelos de computación paralela ##########
+. PRAM (Parallel Random Access Machine)
+Descripción: El modelo PRAM asume un número ilimitado de procesadores con acceso instantáneo a una memoria compartida común. Se distingue por cómo maneja los accesos concurrentes a la misma ubicación de memoria, con variantes como EREW, CREW, ERCW y CRCW.
+
+Ejemplo de Problema: Algoritmo de Suma de Prefijos. Dado un arreglo de números, el objetivo es calcular un nuevo arreglo donde cada elemento en la posición 
+�
+i es la suma de todos los elementos desde la posición 
+0
+0 hasta 
+�
+i en el arreglo original. En el modelo CRCW PRAM, múltiples procesadores pueden simultáneamente leer de la misma ubicación de memoria y escribir en distintas ubicaciones, permitiendo que el cálculo de cada elemento del arreglo de salida se realice en paralelo.
+
+2. PMH (Parallel Memory Hierarchy)
+Descripción: PMH considera la jerarquía de memoria en el diseño de algoritmos paralelos, reflejando la estructura real de computadoras modernas. Enfatiza en cómo la disposición de la memoria afecta el rendimiento del algoritmo paralelo.
+
+Ejemplo de Problema: Multiplicación de Matrices utilizando bloques. Este problema se beneficia de la jerarquía de memoria al dividir las matrices en bloques que se ajustan en los niveles más rápidos de la memoria (como la caché), reduciendo el número de accesos a la memoria principal. La idea es cargar bloques de las matrices en la caché, realizar el cálculo necesario, y luego proceder al siguiente bloque.
+
+3. BSP (Bulk Synchronous Parallel)
+Descripción: El modelo BSP organiza el cálculo en superpasos, cada uno consistiendo en un período de cálculo local, una fase de comunicación y una barrera de sincronización. Es útil para diseñar algoritmos en arquitecturas distribuidas, equilibrando carga y comunicación.
+
+Ejemplo de Problema: Resolución de Sistemas Lineales distribuidos. Se puede usar BSP para distribuir las filas de la matriz del sistema lineal entre diferentes procesadores. Cada procesador realiza operaciones en sus filas durante la fase de cálculo, luego durante la fase de comunicación, los procesadores pueden intercambiar resultados necesarios para las operaciones de las siguientes etapas, como en métodos iterativos (Jacobi, Gauss-Seidel).
+
+4. LogP
+Descripción: LogP se centra en la latencia (L), el overhead de procesamiento (o), el gap (g) que es el tiempo mínimo entre envíos de mensajes, y el número de procesadores (P), ofreciendo una manera de considerar los costos de comunicación y sincronización en algoritmos distribuidos.
+
+Ejemplo de Problema: Ordenamiento Paralelo. En un escenario de ordenamiento distribuido, donde diferentes segmentos de un gran arreglo se asignan a distintos nodos en una red, LogP puede guiar el diseño del algoritmo para minimizar el tiempo de comunicación y el overhead al coordinar la fusión de segmentos ordenados localmente en un resultado global ordenado. Se presta especial atención a minimizar la latencia y el overhead de la comunicación entre nodos.
+
+Cada uno de estos modelos ofrece una perspectiva única para enfrentar y optimizar diferentes aspectos de los cálculos paralelos y distribuidos, desde la concurrencia y la jerarquía de memoria hasta la comunicación y la sincronización.
