@@ -12,6 +12,10 @@ class Matrix {
         int n = 0; // Number of rows
         int m = 0; // Number of columns
     public:
+        int get_n() const;
+        int get_m() const;
+        double get_element(int i, int j) const;
+
         Matrix(); // Empty constructor
         Matrix(int n); // Constructor, vector like [1xn]
         Matrix(int n, int m); // Constructor [nxm], n:rows, m: columns

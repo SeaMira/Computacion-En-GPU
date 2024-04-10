@@ -1,0 +1,3 @@
+[submodule "Tareas/Tarea1/extern/googletest"]
+	path = Tareas/Tarea1/extern/googletest
+	url = https://github.com/google/googletest.git

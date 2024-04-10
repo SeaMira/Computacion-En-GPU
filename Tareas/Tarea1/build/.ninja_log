@@ -1,0 +1,9 @@
+# ninja log v5
+55	855	7344743609149065	lib/libgtest.a	687f5e138198ebf3
+60	19611	7344739135332690	extern/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	f944ef6651c674de
+38	9222	7344739031521709	extern/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	74c11b926cbdc155
+50	6797	7344739007343509	extern/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj	774e73d445bdb42b
+72	5770	7344738997069380	extern/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	57d857732130d0bd
+92	398	7344746634882118	lib/libgtest_main.a	bb69e2a06dcce292
+76	473	7344746635762773	lib/libgmock.a	87d81064a7e31cbf
+474	807	7344746639126542	lib/libgmock_main.a	21de8f0a6b22ce13
