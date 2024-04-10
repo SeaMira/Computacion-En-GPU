@@ -144,16 +144,16 @@ Fixed-time speedup (Tiempo fijo): Consiste en ajustar el tamaño del problema de
 
 
 El "linear speedup" se refiere al ideal en la computación paralela donde duplicar el número de procesadores (o unidades de procesamiento) resulta en una reducción a la mitad del tiempo de ejecución del programa. Es decir, si un programa se ejecuta en un tiempo 
-�
+ 
 T usando 
-�
+ 
 N procesadores, el objetivo sería que se ejecute en un tiempo 
-�
+ 
 /
 2
 T/2 usando 
 2
-�
+ 
 2N procesadores, logrando así un speedup lineal.
 
 ¿Por qué se cree que es alcanzable?
@@ -275,12 +275,34 @@ Estos ejemplos ilustran cómo las distintas variantes del modelo PRAM pueden ser
 Descripción: El modelo PRAM asume un número ilimitado de procesadores con acceso instantáneo a una memoria compartida común. Se distingue por cómo maneja los accesos concurrentes a la misma ubicación de memoria, con variantes como EREW, CREW, ERCW y CRCW.
 
 Ejemplo de Problema: Algoritmo de Suma de Prefijos. Dado un arreglo de números, el objetivo es calcular un nuevo arreglo donde cada elemento en la posición 
-�
+ 
 i es la suma de todos los elementos desde la posición 
 0
 0 hasta 
-�
+ 
 i en el arreglo original. En el modelo CRCW PRAM, múltiples procesadores pueden simultáneamente leer de la misma ubicación de memoria y escribir en distintas ubicaciones, permitiendo que el cálculo de cada elemento del arreglo de salida se realice en paralelo.
+
+1. EREW (Exclusive Read Exclusive Write)
+En este modelo, ningún procesador puede leer o escribir simultáneamente en la misma ubicación de memoria.
+
+Ejemplo: Ordenamiento por Mezcla (Merge Sort). Cada procesador se encarga de ordenar una porción del arreglo de forma independiente. Las lecturas y escrituras son exclusivas para evitar conflictos, y luego se mezclan las subsecuencias ordenadas de manera jerárquica. La exclusividad garantiza que no habrá conflictos de acceso a la memoria durante la combinación.
+
+2. CREW (Concurrent Read Exclusive Write)
+Permite que varios procesadores lean de la misma ubicación de memoria simultáneamente, pero solo un procesador a la vez puede escribir en cualquier ubicación de memoria.
+
+Ejemplo: Búsqueda Binaria en un Arreglo Ordenado. Múltiples procesadores pueden leer el mismo elemento del arreglo para compararlo con el valor objetivo al mismo tiempo, pero solo un procesador escribirá el resultado de la búsqueda (por ejemplo, la posición del valor objetivo) en una ubicación de memoria dedicada.
+
+3. ERCW (Exclusive Read Concurrent Write)
+Los procesadores pueden leer de ubicaciones de memoria exclusivas, pero múltiples procesadores pueden escribir en la misma ubicación de memoria al mismo tiempo.
+
+Ejemplo: Conteo de Ocurrencias de Elementos. Cada procesador lee diferentes partes de un arreglo para buscar un elemento específico. Todos los procesadores pueden incrementar un contador global de forma concurrente cada vez que encuentran el elemento. Este modelo necesita mecanismos para resolver conflictos de escritura concurrente, como utilizar operaciones atómicas.
+
+4. CRCW (Concurrent Read Concurrent Write)
+Permite que múltiples procesadores lean y escriban en la misma ubicación de memoria al mismo tiempo.
+
+Ejemplo: Cálculo del Mínimo o Máximo en un Arreglo. Todos los procesadores leen simultáneamente todos los elementos del arreglo y compiten para escribir el valor mínimo (o máximo) encontrado en una ubicación de memoria compartida. Para manejar las escrituras concurrentes, se puede usar una política como "priority" donde el procesador con el identificador más bajo gana en caso de conflicto o "common" donde todos los procesadores intentan escribir el mismo valor.
+
+Cada una de estas variantes del modelo PRAM facilita diferentes tipos de paralelismo y sincronización, adaptándose a los requisitos específicos de accesibilidad y actualización de la memoria en algoritmos paralelos.
 
 2. PMH (Parallel Memory Hierarchy)
 Descripción: PMH considera la jerarquía de memoria en el diseño de algoritmos paralelos, reflejando la estructura real de computadoras modernas. Enfatiza en cómo la disposición de la memoria afecta el rendimiento del algoritmo paralelo.
@@ -298,3 +320,305 @@ Descripción: LogP se centra en la latencia (L), el overhead de procesamiento (o
 Ejemplo de Problema: Ordenamiento Paralelo. En un escenario de ordenamiento distribuido, donde diferentes segmentos de un gran arreglo se asignan a distintos nodos en una red, LogP puede guiar el diseño del algoritmo para minimizar el tiempo de comunicación y el overhead al coordinar la fusión de segmentos ordenados localmente en un resultado global ordenado. Se presta especial atención a minimizar la latencia y el overhead de la comunicación entre nodos.
 
 Cada uno de estos modelos ofrece una perspectiva única para enfrentar y optimizar diferentes aspectos de los cálculos paralelos y distribuidos, desde la concurrencia y la jerarquía de memoria hasta la comunicación y la sincronización.
+
+
+############# Memoria compartida ###################3
+Claro, vamos a profundizar en la sección 5.1, que se refiere al **modelo de programación de memoria compartida**.
+
+En el modelo de programación de **memoria compartida**, múltiples hilos (o procesos) ejecutan en paralelo y tienen acceso a una memoria común. Este modelo es típicamente utilizado en sistemas multiprocesador o multihilo donde los procesadores pueden ser núcleos dentro de un mismo chip. La comunicación entre hilos se realiza accediendo a variables compartidas almacenadas en esta memoria común.
+
+La principal ventaja de este modelo es su simplicidad conceptual para el programador: no es necesario manejar explícitamente el envío y recepción de mensajes entre procesos. Sin embargo, esto también introduce desafíos relacionados con la sincronización y la coherencia de datos, ya que los accesos concurrentes a la misma ubicación de memoria deben ser manejados cuidadosamente para evitar condiciones de carrera y asegurar la integridad de los datos.
+
+#### Ejemplo: Uso de OpenMP en Suma de Elementos de un Arreglo
+
+**OpenMP** (Open Multi-Processing) es una API de programación en C, C++ y Fortran que soporta el paralelismo de memoria compartida en plataformas incluyendo Unix y Windows. Proporciona una manera simple y flexible de escribir programas paralelos para plataformas con memoria compartida.
+
+Supongamos que queremos sumar los elementos de un arreglo grande. En un enfoque secuencial, simplemente iteraríamos sobre el arreglo y sumaríamos cada elemento a un acumulador. Sin embargo, este proceso se puede paralelizar eficientemente usando OpenMP.
+
+**Código Secuencial**:
+```c
+int sum = 0;
+for(int i = 0; i < N; ++i) {
+    sum += array[i];
+}
+```
+
+**Código Paralelizado con OpenMP**:
+```c
+int sum = 0;
+#pragma omp parallel for reduction(+:sum)
+for(int i = 0; i < N; ++i) {
+    sum += array[i];
+}
+```
+
+En el ejemplo paralelizado:
+
+- La directiva `#pragma omp parallel for` le indica al compilador que el bucle for debe ser ejecutado en paralelo por los hilos disponibles. 
+
+- La cláusula `reduction(+:sum)` es crucial: especifica que la variable `sum` se utilizará para recolectar un resultado final a partir de la suma parcial calculada por cada hilo. OpenMP se encarga de realizar la suma de estas sumas parciales de manera segura, evitando condiciones de carrera y asegurando que cada hilo tenga su propia copia temporal de la variable `sum` durante el bucle.
+
+Este ejemplo ilustra cómo el modelo de memoria compartida puede simplificar la paralelización de tareas que, de otro modo, requerirían una gestión explícita de la división del trabajo y la recolección de resultados entre múltiples hilos o procesos. La facilidad de uso de OpenMP lo hace especialmente atractivo para paralelizar rápidamente aplicaciones existentes con mínimas modificaciones en el código.
+
+#################### 5.2 Modelo de Paso de Mensajes ############
+
+Por supuesto, vamos a profundizar en las secciones 5.2, 5.3 y 5.4, que tratan sobre los modelos de programación de paso de mensajes, paralelismo implícito y esqueletos algorítmicos, respectivamente.
+
+
+En el **modelo de paso de mensajes**, los procesadores o nodos de computación tienen su propia memoria local y la comunicación entre ellos se realiza explícitamente mediante el envío y recepción de mensajes. Este modelo es ampliamente utilizado en sistemas distribuidos y computación en clústeres.
+
+**Ejemplo: Cálculo Distribuido de Pi usando MPI**
+
+**MPI** (Message Passing Interface) es una biblioteca estándar para el paso de mensajes en programación paralela que se utiliza ampliamente en sistemas de cómputo de alto rendimiento.
+
+Para ilustrar este modelo, consideremos el problema de calcular una aproximación de Pi usando el método de Monte Carlo. Este método implica generar puntos aleatorios dentro de un cuadrado que inscribe un cuarto de círculo y determinar qué fracción de esos puntos cae dentro del cuarto de círculo.
+
+**Código con MPI**:
+```c
+#include <mpi.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(int argc, char** argv) {
+    MPI_Init(&argc, &argv);
+    
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+    
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+    
+    int local_count = 0, total_count;
+    int num_local_trials = 10000;
+    
+    srand(time(NULL) + world_rank);
+    for(int i = 0; i < num_local_trials; ++i) {
+        double x = (double)rand() / RAND_MAX;
+        double y = (double)rand() / RAND_MAX;
+        if(x * x + y * y <= 1) local_count++;
+    }
+    
+    MPI_Reduce(&local_count, &total_count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    
+    if(world_rank == 0) {
+        printf("Pi Approximation: %f\n", 4 * total_count / (double)(num_local_trials * world_size));
+    }
+    
+    MPI_Finalize();
+    return 0;
+}
+```
+Cada proceso calcula una porción de los puntos y luego se utiliza `MPI_Reduce` para sumar los conteos de todos los procesos y calcular Pi en el proceso maestro.
+
+############## 5.3 Paralelismo Implícito #################
+
+El **paralelismo implícito** elimina la necesidad de que los programadores especifiquen cómo se debe paralelizar el programa. En su lugar, el compilador o el entorno de ejecución determinan cómo distribuir el trabajo entre los procesadores disponibles.
+
+**Ejemplo: Programación Funcional en Haskell**
+
+En Haskell, la evaluación perezosa y el modelo de ejecución funcional permiten que el compilador y el entorno de tiempo de ejecución identifiquen oportunidades de paralelismo sin intervención explícita del programador.
+
+```haskell
+import Control.Parallel.Strategies
+
+-- Definir una función que usa evaluación paralela
+parMapReduce :: (a -> b) -> ([b] -> c) -> [a] -> c
+parMapReduce mapFunc reduceFunc inputList =
+  reduceFunc (map mapFunc inputList `using` parList rseq)
+```
+Este fragmento de código demuestra cómo una combinación de `map` y `reduce` puede ejecutarse en paralelo utilizando estrategias de paralelismo implícitas.
+
+################# 5.4 Esqueletos Algorítmicos ####################3
+
+Los **esqueletos algorítmicos** (también conocidos como patrones de diseño paralelo) son abstracciones de alto nivel que encapsulan patrones comunes de paralelismo. Los programadores utilizan estos esqueletos para implementar algoritmos paralelos sin tener que lidiar con los detalles de bajo nivel de la paralelización.
+
+**Ejemplo: Paralelismo de Mapa utilizando SkeTo en C++**
+
+SkeTo es una biblioteca que proporciona esqueletos algorítmicos para C++. Un ejemplo clásico es el uso de un esqueleto de `map` para aplicar una función a cada elemento de una colección en paralelo.
+
+```c++
+#include <vector>
+#include <sketo/Map.h>
+
+int square(int x) { return x *
+
+Claro, exploraremos cuatro tipos de esqueletos algorítmicos comunes: **Map**, **Reduce**, **Pipeline**, y **Farm**. Para cada uno, proporcionaré un ejemplo conceptual y explicaré cómo se puede aplicar en un contexto de programación paralela.
+
+### 1. Map (Transformación)
+
+El esqueleto **Map** aplica una función a cada elemento de una colección de datos de manera independiente, produciendo una nueva colección con los resultados.
+
+**Ejemplo**: **Paralelización de la Transformación de una Imagen**
+
+Supongamos que queremos convertir una imagen a escala de grises. La operación se aplica de manera independiente a cada píxel de la imagen:
+
+```python
+# Función que convierte un píxel RGB a escala de grises
+def to_grayscale(pixel):
+    r, g, b = pixel
+    return 0.3 * r + 0.59 * g + 0.11 * b
+
+# Imagen representada como una lista de píxeles RGB
+image = [...]
+# Aplicar 'to_grayscale' a cada píxel de la imagen
+grayscale_image = map(to_grayscale, image)
+```
+
+### 2. Reduce (Reducción)
+
+El esqueleto **Reduce** combina todos los elementos de una colección utilizando una operación binaria para reducirlos a un único valor.
+
+**Ejemplo**: **Suma de Elementos de un Arreglo**
+
+Para calcular la suma de todos los elementos en un arreglo de manera paralela, se pueden sumar subconjuntos del arreglo en paralelo y luego sumar los resultados intermedios.
+
+```python
+from functools import reduce
+
+# Función para sumar dos elementos
+def add(x, y):
+    return x + y
+
+# Arreglo de números
+numbers = [1, 2, 3, 4, 5]
+# Calcular la suma total de los elementos del arreglo
+total_sum = reduce(add, numbers)
+```
+
+### 3. Pipeline (Tuberías)
+
+El esqueleto **Pipeline** organiza las tareas en una secuencia de etapas, donde la salida de una etapa es la entrada de la siguiente. Cada etapa puede procesar su entrada de manera concurrente.
+
+**Ejemplo**: **Procesamiento de Solicitudes Web**
+
+Una solicitud web puede procesarse en varias etapas: parseo, autenticación, procesamiento del negocio y generación de la respuesta.
+
+```python
+def parse_request(request):
+    # Parsear la solicitud
+    return parsed_request
+
+def authenticate(request):
+    # Autenticar la solicitud
+    return authenticated_request
+
+def process_request(request):
+    # Procesar la solicitud
+    return response
+
+# Cada función representa una etapa en el pipeline
+```
+
+### 4. Farm (Granja de Tareas)
+
+El esqueleto **Farm** distribuye un flujo de tareas independientes entre múltiples trabajadores para su procesamiento paralelo, a menudo utilizado para equilibrar la carga.
+
+**Ejemplo**: **Renderizado Paralelo de Imágenes 3D**
+
+En un sistema de renderizado, cada imagen a ser renderizada representa una tarea independiente que puede ser distribuida entre diferentes nodos de renderizado.
+
+```python
+# Lista de tareas de renderizado, donde cada tarea es una descripción de una imagen
+render_tasks = [...]
+
+# Función que renderiza una imagen
+def render(task):
+    # Renderizar la imagen
+    return image
+
+# Distribuir las tareas de renderizado entre diferentes trabajadores/nodos
+rendered_images = [render(task) for task in render_tasks]
+```
+
+Estos ejemplos ilustran cómo los esqueletos algorítmicos pueden abstraer y simplificar el diseño e implementación de algoritmos paralelos, permitiendo a los desarrolladores concentrarse en la lógica de alto nivel del problema sin preocuparse por los detalles específicos del paralelismo.
+
+Para realizar cada función del procesamiento de solicitudes web en paralelo usando un modelo de **pipeline** (tubería), es importante comprender que, aunque las etapas se procesan secuencialmente para una única solicitud, el modelo de pipeline permite que diferentes solicitudes o partes de solicitudes sean procesadas en paralelo en diferentes etapas del pipeline. Es decir, mientras una solicitud está siendo autenticada, otra puede estar siendo parseada, y una tercera puede estar en el proceso de generación de respuesta, todas al mismo tiempo. Aquí se muestra cómo se podría implementar esto en un entorno de programación paralela o concurrente:
+
+### Ejemplo Detallado: Procesamiento de Solicitudes Web en Paralelo
+
+Imagina que tienes un servidor web que necesita manejar tres etapas principales para cada solicitud: **parseo**, **autenticación** y **procesamiento**. En un modelo de pipeline paralelo, tan pronto como una solicitud completa una etapa, se mueve a la siguiente, mientras que otras solicitudes pueden estar pasando por etapas anteriores o posteriores.
+
+1. **Parseo de la Solicitud**: Convierte la solicitud cruda entrante en una estructura de datos manejable. Mientras una solicitud está siendo parseada, otras solicitudes pueden estar esperando en una cola o siendo procesadas en etapas posteriores si ya han sido parseadas.
+
+2. **Autenticación**: Verifica si la solicitud proviene de un usuario autenticado y tiene permisos para realizar la acción solicitada. Solicitudes diferentes pueden ser autenticadas simultáneamente por distintos hilos o procesos.
+
+3. **Procesamiento de la Solicitud**: Realiza la lógica de negocio requerida por la solicitud, como acceder a una base de datos o realizar cálculos. Al igual que en las etapas anteriores, múltiples solicitudes pueden estar siendo procesadas al mismo tiempo, cada una en distintos puntos de la tubería.
+
+Para implementar este pipeline en un entorno de software que soporte concurrencia o paralelismo, como Node.js (que usa un modelo de eventos no bloqueantes) o utilizando frameworks y bibliotecas en Python (como asyncio o concurrent.futures), se crearían tareas o procesos separados para cada etapa del pipeline. Aquí un pseudo-código usando Python con asyncio para ilustrar el concepto:
+
+```python
+import asyncio
+
+async def parse_request(request):
+    # Simula el parseo de la solicitud
+    await asyncio.sleep(1)
+    return "Parsed Request"
+
+async def authenticate(request):
+    # Simula la autenticación
+    await asyncio.sleep(1)
+    return "Authenticated Request"
+
+async def process_request(request):
+    # Simula el procesamiento
+    await asyncio.sleep(1)
+    return "Response"
+
+async def handle_request(request):
+    parsed = await parse_request(request)
+    authenticated = await authenticate(parsed)
+    response = await process_request(authenticated)
+    return response
+
+# Manejar múltiples solicitudes
+async def main():
+    requests = ["request1", "request2", "request3"]
+    tasks = [handle_request(request) for request in requests]
+    responses = await asyncio.gather(*tasks)
+    print(responses)
+
+asyncio.run(main())
+```
+
+En este ejemplo, cada función (`parse_request`, `authenticate`, `process_request`) puede ejecutarse en paralelo para diferentes solicitudes gracias al modelo de concurrencia de `asyncio`. Mientras una solicitud está en la etapa de autenticación, otra puede estar siendo parseada, y otra puede estar en procesamiento, maximizando así la utilización de los recursos y reduciendo el tiempo de respuesta total.
+
+
+############ arquitecturas de computadores #################3
+La parte 6 del documento trata sobre las **arquitecturas de computadoras** utilizadas en la computación paralela, profundizando en cómo el diseño de la arquitectura influye en el rendimiento de los algoritmos paralelos. Veamos cada sección con ejemplos, especialmente enfocándonos en las arquitecturas UMA y NUMA.
+
+### 6.1 Flynn's Taxonomy
+
+Flynn's Taxonomy clasifica las arquitecturas de computadoras en cuatro categorías basadas en el número de flujos de instrucciones y datos que pueden procesar simultáneamente:
+
+- **SISD (Single Instruction, Single Data)**: Tradicional CPU secuencial. Ejemplo: procesadores antiguos como el Intel 8086.
+- **SIMD (Single Instruction, Multiple Data)**: Un procesador ejecuta la misma instrucción en múltiples datos simultáneamente. Ejemplo: modernas GPUs utilizadas para procesamiento gráfico o computación científica.
+- **MISD (Multiple Instruction, Single Data)**: Múltiples instrucciones operan en el mismo conjunto de datos. Este es más teórico y raro en la práctica.
+- **MIMD (Multiple Instruction, Multiple Data)**: Múltiples procesadores ejecutan diferentes instrucciones en diferentes conjuntos de datos. Ejemplo: Sistemas multiprocesador modernos y clústeres de computadoras.
+
+### 6.2 Memory Architectures and Organizations
+
+Las arquitecturas de memoria se pueden clasificar en **UMA** y **NUMA**, que se refieren a cómo se organiza y accede a la memoria en sistemas con múltiples procesadores.
+
+#### UMA (Uniform Memory Access)
+
+En UMA, todos los procesadores comparten una memoria común con igual tiempo de acceso, independientemente del procesador que realice la solicitud. Es común en sistemas con pocos procesadores o en aquellos diseñados para minimizar las diferencias en el tiempo de acceso a la memoria.
+
+**Ejemplo UMA**: Considera una computadora con un procesador de cuatro núcleos donde cada núcleo puede acceder a la memoria RAM con la misma latencia. Aquí, un sistema de caché bien diseñado es crucial para mantener la eficiencia, ya que todos los núcleos comparten el mismo espacio de memoria.
+
+#### NUMA (Non-Uniform Memory Access)
+
+En NUMA, la memoria se divide en varias secciones, cada una asociada con uno o varios procesadores específicos. Aunque un procesador puede acceder a toda la memoria, el acceso a la memoria "local" es más rápido que el acceso a la memoria "remota".
+
+**Ejemplo NUMA**: Imagina un servidor de bases de datos con dos CPUs, cada una con su propia memoria RAM local. Si el Procesador A necesita acceder a datos en la memoria local del Procesador B, experimentará mayores latencias en comparación con el acceso a su propia memoria local. Este diseño permite escalar eficazmente sistemas con muchos procesadores, optimizando el rendimiento para aplicaciones específicas que pueden aprovechar la localidad de memoria.
+
+### 6.3 Technical Details of Modern CPU and GPU Architectures
+
+Las CPUs están diseñadas para maximizar el rendimiento por hilo de ejecución, con un énfasis en la velocidad de reloj y la eficiencia de las operaciones de un solo hilo. Las GPUs, por otro lado, se centran en el paralelismo masivo a costa de la frecuencia de reloj, lo que las hace ideales para computación científica y gráficos, donde se pueden realizar muchas operaciones en paralelo.
+
+**Ejemplo de Arquitectura de CPU**: Los procesadores Intel Core i9 cuentan con tecnologías como Hyper-Threading y Turbo Boost para mejorar el rendimiento en tareas secuenciales y paralelas ligeras.
+
+**Ejemplo de Arquitectura de GPU**: Las GPUs Nvidia RTX utilizan miles de núcleos CUDA organizados en SM (Streaming Multiprocessors) para ejecutar operaciones de flotantes y enteros en paralelo, lo que es ideal para el renderizado de gráficos y cálculos de aprendizaje profundo.
+
+### Conclusión
+
+Las secciones de la Parte 6 proporcionan una visión detallada de cómo el diseño arquitectónico de las computadoras afecta la programación y el rendimiento de los algoritmos paralelos, destacando la importancia de la selección de hardware adecuada para aplicaciones específicas en función de sus requisitos computacionales y patrones de acceso a memoria
