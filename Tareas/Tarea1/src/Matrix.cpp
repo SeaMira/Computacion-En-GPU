@@ -71,9 +71,9 @@ Matrix::Matrix(const Matrix & matrix) {
     this->n = N;
     this->m = M;
     this->mat = std::make_unique<double[]>(N*M);
-    for (int i = 0; i < N*M; i+=M) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < M; j++) {
-            this->mat[i + j] = matrix.get_element(i, j);
+            this->mat[i*M + j] = matrix.get_element(i, j);
         } 
     }
 }
@@ -129,7 +129,7 @@ double Matrix::min() const { // Maximum value of the matrix
 
 std::ostream& operator<<(std::ostream &os, const Matrix &mat) {
     int N = mat.get_n(), M = mat.get_m();
-    for (int i = 0; i < N*M; i+=M) {
+    for (int i = 0; i < N; i++) {
         for (int j = 0; j < M; j++) {
             os << mat.get_element(i, j) << " ";
         } 
@@ -151,9 +151,9 @@ void Matrix::save_to_file(const std::string &filename) const {
 
 bool Matrix::operator==(const Matrix &matrix) const {
     if (this->n != matrix.get_n() || this->m != matrix.get_m()) return false;
-    for (int i = 0; i < n*m; i+=m) {
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (this->mat[i+j] != matrix.get_element(i, j)) return false;
+            if (this->mat[i*m+j] != matrix.get_element(i, j)) return false;
         } 
     }
     return true;
@@ -161,9 +161,9 @@ bool Matrix::operator==(const Matrix &matrix) const {
 
 bool Matrix::operator!=(const Matrix &matrix) const {
     if (this->n != matrix.get_n() || this->m != matrix.get_m()) return true;
-    for (int i = 0; i < n*m; i+=m) {
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (this->mat[i+j] != matrix.get_element(i, j)) return true;
+            if (this->mat[i*m+j] != matrix.get_element(i, j)) return true;
         } 
     }
     return false;
@@ -172,27 +172,31 @@ bool Matrix::operator!=(const Matrix &matrix) const {
 Matrix& Matrix::operator=(const Matrix &matrix) {
     this->n = matrix.get_n();
     this->m = matrix.get_m();
-    this->mat = std::unique_ptr<double[]>(new double(n*m));
-    for (int i = 0; i < n*m; i+=m) {
+    this->mat = std::make_unique<double[]>(n*m);
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            this->mat[i+j] = matrix.get_element(i, j);
+            this->mat[i*m+j] = matrix.get_element(i, j);
         } 
     }
     return *this;
 }
 
 Matrix& Matrix::transpose() {
-    for (int i = 0; i < n*m; i++) {
+    std::unique_ptr<double[]> new_mat = std::make_unique<double[]>(n*m);
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            double temp = this->mat[j*n+i];
-            this->mat[j*n+i] = this->mat[i*m+j];
-            this->mat[i*m+j] = temp;
+            new_mat[j*n+i] = this->mat[i*m+j];            
         } 
     }
     int k = this->m;
     this->m = this->n;
     this->n = k;
 
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            this->mat[i*m+j] = new_mat[i*m+j];         
+        } 
+    }
     return *this;
 }
 
@@ -221,7 +225,10 @@ Matrix& Matrix::operator*=(double a){ // Multiply by a constant
     return *this;
 }
 Matrix& Matrix::operator+=(const Matrix &matrix) { // Add
-    for (int i = 0; i < n*m; i++) {
+    if (this->n != matrix.get_n() || this->m != matrix.get_m()) {
+        // throw exception
+    }
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             this->mat[i*m+j] += matrix.get_element(i,j);
         } 
@@ -229,7 +236,10 @@ Matrix& Matrix::operator+=(const Matrix &matrix) { // Add
     return *this;
 }
 Matrix& Matrix::operator-=(const Matrix &matrix) { // Substract
-    for (int i = 0; i < n*m; i++) {
+    if (this->n != matrix.get_n() || this->m != matrix.get_m()) {
+        // throw exception
+    }
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             this->mat[i*m+j] -= matrix.get_element(i,j);
         } 

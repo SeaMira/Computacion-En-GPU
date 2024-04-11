@@ -115,3 +115,153 @@ TEST(MATRiXLib, MatrixMin) {
   ASSERT_EQ(m1.min(), -3.0);
   ASSERT_EQ(m2.min(), -3.0);
 }
+
+
+TEST(MATRiXLib, MatrixOutOperator) {
+  Matrix m1(5);
+  Matrix m2(5, 5);
+
+  for (int i = 0; i < 5; i++) {
+    m1[0, i] = i;
+    for (int j = 0; j < 5; j++) {
+      m2[i, j] = i*5 + j;
+    }
+  }
+
+  // std::cout << m1 << "\n";
+  // std::cout << m2 << "\n";  
+  std::stringstream ss, ss2;
+  ss << m1;
+  EXPECT_EQ(ss.str(), "0 1 2 3 4 \n");
+  ss2 << m2;
+  EXPECT_EQ(ss2.str(), "0 1 2 3 4 \n5 6 7 8 9 \n10 11 12 13 14 \n15 16 17 18 19 \n20 21 22 23 24 \n");
+}
+
+TEST(MATRiXLib, MatrixEquivalenceOperator) {
+  Matrix m1(5, 5);
+  Matrix m2(5, 5);
+  Matrix m3(5, 5);
+
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      m3[i, j] = 25 - (i*5 + j);
+      m1[i, j] = i*5 + j;
+      m2[i, j] = i*5 + j;
+    }
+  }
+  ASSERT_TRUE(m1 == m2);
+  ASSERT_TRUE(m3 != m2);
+}
+
+TEST(MATRiXLib, MatrixAsignOperator) {
+  Matrix m1(5, 5);
+  Matrix m2(5, 5);
+  Matrix m3(5, 5);
+
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 5; j++) {
+      m3[i, j] = 25 - (i*5 + j);
+      m1[i, j] = i*5 + j;
+      m2[i, j] = i*5 + j;
+    }
+  }
+  ASSERT_TRUE(m3 != m2);
+  m3 = m2;
+  ASSERT_TRUE(m1 == m2);
+}
+
+TEST(MATRiXLib, MatrixTranspose) {
+  Matrix m1(3, 5);
+  
+  for (int i = 0; i < 3; i++) {
+    for (int j = 0; j < 5; j++) {
+      m1[i, j] = i*5 + j;      
+    }
+  }
+  std::cout << m1 << std::endl;
+  m1.transpose();
+  std::cout << m1 << std::endl;
+
+  for (int i = 0; i < 5; i++) {
+    for (int j = 0; j < 3; j++) {
+        double t = m1[i, j]; 
+        ASSERT_EQ(t, i+j*5);
+    }
+  }
+}
+
+TEST(MATRiXLib, MatrixMultiplication) {
+  Matrix m1(2, 4);
+  Matrix m2(4, 4);
+  
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      m1[i, j] = i*4 + j;      
+    }
+  }
+  Matrix m3(m1);
+
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      if (i == j) {
+        m2[i, j] = 1;      
+      }
+    }
+  }
+  m1 *= m2;
+
+  ASSERT_TRUE(m1 == m3);
+}
+
+
+TEST(MATRiXLib, MatrixScalarMultiplication) {
+  Matrix m1(2, 4);
+  
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      m1[i, j] = 1;      
+    }
+  }
+  m1 *= 2;
+
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      ASSERT_EQ(m1.get_element(i, j),2);
+    }
+  }
+}
+
+TEST(MATRiXLib, MatrixAddition) {
+  Matrix m1(2, 4);
+  
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      m1[i, j] = 1;      
+    }
+  }
+  m1 += m1;
+
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      ASSERT_EQ(m1.get_element(i, j), 2);
+    }
+  }
+}
+
+
+TEST(MATRiXLib, MatrixSubtraction) {
+  Matrix m1(2, 4);
+  
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      m1[i, j] = 1;      
+    }
+  }
+  m1 -= m1;
+
+  for (int i = 0; i < 2; i++) {
+    for (int j = 0; j < 4; j++) {
+      ASSERT_EQ(m1.get_element(i, j), 0);
+    }
+  }
+}
