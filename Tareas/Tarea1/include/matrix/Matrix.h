@@ -22,8 +22,7 @@ class Matrix {
         Matrix(const std::string &filename); // Constructor that reads from a file,
         // any format is valid
         Matrix(const Matrix &
-        matrix); // Copy constructor,
-        // https::/www.geeksforgeeks.org/copy-constructor-in-cpp/
+        matrix); // Copy constructor  https://www.geeksforgeeks.org/copy-constructor-in-cpp/
         ~Matrix(); // Destructor
 
         // Setters and getters
@@ -34,7 +33,7 @@ class Matrix {
         void fill(double value); // Fill all the matrix with a value
 
         // Dimensions
-        std::tuple<int, int> &size() const; // Returns a list of the size of the matrix, e.g. [2,4], 2 rows, 4 columns
+        std::tuple<int, int> size() const; // Returns a list of the size of the matrix, e.g. [2,4], 2 rows, 4 columns
 
         int length() const; // Return max dimension, usefull for vectors, e.g. [2,4] :> 4
 

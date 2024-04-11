@@ -1,0 +1,13 @@
+MATRiXLib.MatrixCreate 1 0
+MATRiXLib.MatrixGetN 18 0.000522428
+MATRiXLib.MatrixGetM 21 0.000425857
+MATRiXLib.MatrixGetElement 13 0.000669731
+MATRiXLib.MatrixNewMatrixByReference 7 0.00121529
+MATRiXLib.MatrixSetElementWithOperator 9 0.000971078
+MATRiXLib.MatrixGetElementWithOperator 5 0.00173354
+MATRiXLib.MatrixFill 4 0.00212918
+MATRiXLib.MatrixGetSize 3 0.00301003
+MATRiXLib.MatrixLength 2 0.0051658
+MATRiXLib.MatrixMax 1 0.010574
+MATRiXLib.MatrixMin 1 0.0087853
+---

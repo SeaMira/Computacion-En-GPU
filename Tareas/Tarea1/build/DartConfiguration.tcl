@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea1
-BuildDirectory: C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea1/build
+SourceDirectory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1
+BuildDirectory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: SeaMP
+Site: DESKTOP-PJU3J13
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Win32-ninja
@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/msys64/ucrt64/bin/cmake.exe" "C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea1"
+ConfigureCommand: "C:/msys64/ucrt64/bin/cmake.exe" "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1"
 MakeCommand: C:\msys64\ucrt64\bin\cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 

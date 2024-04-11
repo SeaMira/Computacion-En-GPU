@@ -16,6 +16,8 @@ double Matrix::get_element(int i, int j) const {
     return mat[i*m+j];
 }
 
+Matrix::~Matrix() {}
+
 Matrix::Matrix() {
     // mat = std::unique_ptr<double[]>(new double(n*m));
     // for (int i = 0; i < n*m; i+=m) {
@@ -26,19 +28,20 @@ Matrix::Matrix() {
 }
 
 Matrix::Matrix(int N) {
-    mat = std::unique_ptr<double[]>(new double(n));
-    this->n = 1; this->m = N;
+    this->mat = std::make_unique<double[]>(N);
+    this->n = 1; 
+    this->m = N;
     for (int i = 0; i < N; i++) {
-        mat[i] = 0;
+        this->mat[i] = 0;
     }
 }
 
-Matrix::Matrix(int n, int m) {
-    mat = std::unique_ptr<double[]>(new double(n*m));
-    this->n = n; this->m = m;
-    for (int i = 0; i < n*m; i+=m) {
-        for (int j = 0; j < m; j++) {
-            mat[i + j] = 0;
+Matrix::Matrix(int N, int M) {
+    this->mat = std::make_unique<double[]>(N*M);
+    this->n = N; this->m = M;
+    for (int i = 0; i < N*M; i+=M) {
+        for (int j = 0; j < M; j++) {
+            this->mat[i + j] = 0;
         } 
     }
 }
@@ -52,7 +55,7 @@ Matrix::Matrix(const std::string &filename) {
     getline(newfile, strn);
     getline(newfile, strm);
     this->n = stoi(strn); this->m = stoi(strm);
-    mat = std::unique_ptr<double[]>(new double(n*m));
+    mat = std::make_unique<double[]>((this->n)*(this->m));
     std::string strvalue;
     for (int i = 0; i < n*m; i+=m) {
         for (int j = 0; j < m; j++) {
@@ -64,11 +67,12 @@ Matrix::Matrix(const std::string &filename) {
 }
 
 Matrix::Matrix(const Matrix & matrix) {
-    this->n = matrix.get_n();
-    this->m = matrix.get_m();
-    this->mat = std::unique_ptr<double[]>(new double(n*m));
-    for (int i = 0; i < n*m; i+=m) {
-        for (int j = 0; j < m; j++) {
+    int N = matrix.get_n(), M = matrix.get_m();
+    this->n = N;
+    this->m = M;
+    this->mat = std::make_unique<double[]>(N*M);
+    for (int i = 0; i < N*M; i+=M) {
+        for (int j = 0; j < M; j++) {
             this->mat[i + j] = matrix.get_element(i, j);
         } 
     }
@@ -90,8 +94,14 @@ void Matrix::fill(double value){
     }
 }
 
-std::tuple<int, int>& Matrix::size() const {
+std::tuple<int, int> Matrix::size() const {
     return std::tuple<int, int>(this->n, this->m);
+}
+
+int Matrix::length() const {
+    int N = this->n;
+    if (this->m < N) return N;
+    return this->m;
 }
 
 double Matrix::max() const { // Maximum value of the matrix
@@ -117,7 +127,7 @@ double Matrix::min() const { // Maximum value of the matrix
     return min;
 }
 
-std::ostream& Matrix::operator<<(std::ostream &os, const Matrix &mat) {
+std::ostream& operator<<(std::ostream &os, const Matrix &mat) {
     int N = mat.get_n(), M = mat.get_m();
     for (int i = 0; i < N*M; i+=M) {
         for (int j = 0; j < M; j++) {
@@ -168,7 +178,7 @@ Matrix& Matrix::operator=(const Matrix &matrix) {
             this->mat[i+j] = matrix.get_element(i, j);
         } 
     }
-    return this;
+    return *this;
 }
 
 Matrix& Matrix::transpose() {
@@ -182,6 +192,8 @@ Matrix& Matrix::transpose() {
     int k = this->m;
     this->m = this->n;
     this->n = k;
+
+    return *this;
 }
 
 Matrix& Matrix::operator*=(const Matrix &matrix) { // Multiplication
@@ -197,6 +209,7 @@ Matrix& Matrix::operator*=(const Matrix &matrix) { // Multiplication
             this->mat[i*this->m + j] = new_value;
         }
     }
+    return *this;
 }
 
 Matrix& Matrix::operator*=(double a){ // Multiply by a constant
@@ -205,6 +218,7 @@ Matrix& Matrix::operator*=(double a){ // Multiply by a constant
             this->mat[i*m+j] *= a;
         } 
     }
+    return *this;
 }
 Matrix& Matrix::operator+=(const Matrix &matrix) { // Add
     for (int i = 0; i < n*m; i++) {
@@ -212,6 +226,7 @@ Matrix& Matrix::operator+=(const Matrix &matrix) { // Add
             this->mat[i*m+j] += matrix.get_element(i,j);
         } 
     }
+    return *this;
 }
 Matrix& Matrix::operator-=(const Matrix &matrix) { // Substract
     for (int i = 0; i < n*m; i++) {
@@ -219,4 +234,5 @@ Matrix& Matrix::operator-=(const Matrix &matrix) { // Substract
             this->mat[i*m+j] -= matrix.get_element(i,j);
         } 
     }
+    return *this;
 }

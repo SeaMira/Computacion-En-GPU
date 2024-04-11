@@ -1,0 +1,300 @@
+Start testing: Apr 11 00:24 Hora est. Sudamérica Pacífico
+----------------------------------------------------------
+1/11 Testing: MATRiXLib.MatrixGetN
+1/11 Test: MATRiXLib.MatrixGetN
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixGetN" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixGetN" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixGetN
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixGetN
+[       OK ] MATRiXLib.MatrixGetN (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixGetN" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixGetN" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/11 Testing: MATRiXLib.MatrixGetM
+2/11 Test: MATRiXLib.MatrixGetM
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixGetM" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixGetM" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixGetM
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixGetM
+[       OK ] MATRiXLib.MatrixGetM (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixGetM" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixGetM" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/11 Testing: MATRiXLib.MatrixGetElement
+3/11 Test: MATRiXLib.MatrixGetElement
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixGetElement" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixGetElement" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixGetElement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixGetElement
+[       OK ] MATRiXLib.MatrixGetElement (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixGetElement" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixGetElement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/11 Testing: MATRiXLib.MatrixNewMatrixByReference
+4/11 Test: MATRiXLib.MatrixNewMatrixByReference
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixNewMatrixByReference" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixNewMatrixByReference" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixNewMatrixByReference
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixNewMatrixByReference
+[       OK ] MATRiXLib.MatrixNewMatrixByReference (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixNewMatrixByReference" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixNewMatrixByReference" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/11 Testing: MATRiXLib.MatrixSetElementWithOperator
+5/11 Test: MATRiXLib.MatrixSetElementWithOperator
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixSetElementWithOperator" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixSetElementWithOperator" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixSetElementWithOperator
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixSetElementWithOperator
+[       OK ] MATRiXLib.MatrixSetElementWithOperator (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixSetElementWithOperator" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixSetElementWithOperator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/11 Testing: MATRiXLib.MatrixGetElementWithOperator
+6/11 Test: MATRiXLib.MatrixGetElementWithOperator
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixGetElementWithOperator" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixGetElementWithOperator" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixGetElementWithOperator
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixGetElementWithOperator
+[       OK ] MATRiXLib.MatrixGetElementWithOperator (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixGetElementWithOperator" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixGetElementWithOperator" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/11 Testing: MATRiXLib.MatrixFill
+7/11 Test: MATRiXLib.MatrixFill
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixFill" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixFill" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixFill
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixFill
+[       OK ] MATRiXLib.MatrixFill (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixFill" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixFill" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/11 Testing: MATRiXLib.MatrixGetSize
+8/11 Test: MATRiXLib.MatrixGetSize
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixGetSize" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixGetSize" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixGetSize
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixGetSize
+[       OK ] MATRiXLib.MatrixGetSize (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixGetSize" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixGetSize" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/11 Testing: MATRiXLib.MatrixLength
+9/11 Test: MATRiXLib.MatrixLength
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixLength" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixLength" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixLength
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixLength
+[       OK ] MATRiXLib.MatrixLength (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixLength" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixLength" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/11 Testing: MATRiXLib.MatrixMax
+10/11 Test: MATRiXLib.MatrixMax
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixMax" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixMax" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixMax
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixMax
+[       OK ] MATRiXLib.MatrixMax (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixMax" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixMax" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/11 Testing: MATRiXLib.MatrixMin
+11/11 Test: MATRiXLib.MatrixMin
+Command: "D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test/MatrixLibTests.exe" "--gtest_filter=MATRiXLib.MatrixMin" "--gtest_also_run_disabled_tests"
+Directory: D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/build/test
+"MATRiXLib.MatrixMin" start time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+Output:
+----------------------------------------------------------
+Running main() from D:/Users/Escritorio/U/OtoÃ±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea1/extern/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MATRiXLib.MatrixMin
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MATRiXLib
+[ RUN      ] MATRiXLib.MatrixMin
+[       OK ] MATRiXLib.MatrixMin (0 ms)
+[----------] 1 test from MATRiXLib (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MATRiXLib.MatrixMin" end time: Apr 11 00:24 Hora est. Sudamérica Pacífico
+"MATRiXLib.MatrixMin" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 11 00:24 Hora est. Sudamérica Pacífico
