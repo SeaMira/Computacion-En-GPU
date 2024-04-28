@@ -1,11 +1,10 @@
 CPU: no son suficientemente rápidos, ni siquiera los multicore
-Necesidad de resolver grandes problemas, con mucha info en una cantidad razonable de tiempo, con un hardware moderado y de computación paralela dio paso a la
-GPU. 
+Necesidad de resolver grandes problemas, con mucha info en una cantidad razonable de tiempo, con un hardware moderado y de computación paralela dio paso a la GPU.
+ 
 Capaz de manejar miles de hilos en paralelo,  cada uno de ellos no de gran poder como los de un core en la CPU. Se consigue un gran speedup en GPU al compararla con la CPU.
 speedup:an increase in speed, especially in a person's or machine's rate of working
 
-Sin embargo, no todos los problemas son paralelizables, ej, los time
--dependent, que necesitan de resultados previamente calculados (recursión, el cálculo de sqrt(x) usando el método de newton rhapson). Este tipo de problemas es mejor resolverlos en CPU.
+Sin embargo, no todos los problemas son paralelizables, ej, los time-dependent, que necesitan de resultados previamente calculados (recursión, el cálculo de sqrt(x) usando el método de newton rhapson). Este tipo de problemas es mejor resolverlos en CPU.
 
 Problemas no paralelizables:
 --Algoritmos secuenciales: Un ejemplo concreto sería el algoritmo de cifrado RSA. En este algoritmo, cada paso de cifrado o descifrado depende del resultado del paso anterior, lo que lo hace intrínsecamente secuencial. Dado que cada operación depende de los resultados anteriores, no es posible paralelizar eficientemente este proceso.
@@ -32,12 +31,11 @@ Una relación cercana a la computación en paralelo es la que existe con el hard
 Concurrency is a property of a program (at design level) where two or
 more tasks can be in progress simultaneously. Se enfoca en la estructura de un programa como un conjunto de tareas que pueden ejecutarse en un orden no predeterminado, sin asumir nada sobre la ejecución simultánea.
 
-Parallelism is a run-time property where two or more tasks are being
-executed simultaneously. múltiples tareas o partes de una tarea en múltiples procesadores o núcleos dentro de un sistema de computación.
+Parallelism is a run-time property where two or more tasks are being executed simultaneously. múltiples tareas o partes de una tarea en múltiples procesadores o núcleos dentro de un sistema de computación.
 
 El paralelismo se considera incluido en concurrencia porque, para que múltiples tareas se ejecuten en paralelo, primero deben ser concurrentes; es decir, deben ser independientes o capaces de progresar simultáneamente. El paralelismo es un caso específico de concurrencia donde la ejecución simultánea es una realidad física, aprovechando los recursos de hardware disponibles.
 
-jemplo de problema resoluble de manera concurrente:
+Ejemplo de problema resoluble de manera concurrente:
 Problema eficiente para la concurrencia: Servidor web que maneja múltiples solicitudes de usuarios.
 
 Concurrencia: Un servidor web maneja solicitudes entrantes de diferentes usuarios. Cada solicitud puede ser atendida por un proceso o hilo separado, permitiendo que el servidor trabaje en múltiples solicitudes "al mismo tiempo" sin necesariamente procesarlas en paralelo. Este enfoque es eficiente porque mejora la capacidad de respuesta del servidor, permitiendo que maneje solicitudes de forma asincrónica.
@@ -89,11 +87,8 @@ Salida: Actualización de los balances de las cuentas y registros de las transac
 
 Data-parallel problems are ideal candidates for the GPU. The reason is because the
 GPU architecture works best when all threads execute the same instructions but on different data. On the other hand, task-parallel problems are best suited for the CPU. The reason is because the CPU architecture allows different tasks to be executed on each thread.
-This classification scheme is critical for achieving the best partition of the problem domain, which is in fact the first step when designing a parallel algorithm. It also provides
-useful information when choosing the best hardware for the implementation (CPU or
-GPU). Computational physics problems often classify as data-parallel, therefore they are
-good candidates for a massive parallelization on GPU. Since the aim of this work is to
-provide a survey on parallel computing for computational physics, most of the explanations will be in the context of data-parallel problems.
+This classification scheme is critical for achieving the best partition of the problem domain, which is in fact the first step when designing a parallel algorithm. It also provides useful information when choosing the best hardware for the implementation (CPU or GPU). Computational physics problems often classify as data-parallel, therefore they are good candidates for a massive parallelization on GPU. Since the aim of this work is to
+provide a survey on parallel computing for computational physics, most of the explanations will be in the context of data-parallel problems.
 
 ################### MEDIDAS DE RENDIMIENTO #####################
 Set de métricas para cuantificar la calidad de un algoritmo. Para algortmos secuenciales tiempo y espacio eran suficientes. En caso de algoritmos paralelos el speedup y la eficiencia también son necesarias para estudiar su calidad y la mejoría. En el lado experimental además se tienen medidas como el ancho de banda de memoria y los FLOPS (floating point operations per second).
@@ -145,16 +140,8 @@ Fixed-time speedup (Tiempo fijo): Consiste en ajustar el tamaño del problema de
 
 El "linear speedup" se refiere al ideal en la computación paralela donde duplicar el número de procesadores (o unidades de procesamiento) resulta en una reducción a la mitad del tiempo de ejecución del programa. Es decir, si un programa se ejecuta en un tiempo 
  
-T usando 
- 
-N procesadores, el objetivo sería que se ejecute en un tiempo 
- 
-/
-2
-T/2 usando 
-2
- 
-2N procesadores, logrando así un speedup lineal.
+T usando N procesadores, el objetivo sería que se ejecute en un tiempo 
+T/2 usando 2N procesadores, logrando así un speedup lineal.
 
 ¿Por qué se cree que es alcanzable?
 Independencia de tareas: En problemas donde las tareas son completamente independientes y no requieren comunicación entre ellas, teóricamente es posible asignar una tarea por procesador, resultando en un speedup lineal. Esto se aplica bien a problemas "embarazosamente paralelos".
