@@ -72,14 +72,17 @@ int main()
 	char const * VertexShaderSource = R"GLSL(
 		#version 150
 		in vec2 position;
+		out vec2 texCoord;
 		void main()
 		{
+			texCoord = position;
 			gl_Position = vec4(position, 0.0, 1.0);
 		}
 	)GLSL";
 
 	char const * FragmentShaderSource = R"GLSL(
 		#version 150
+		in vec2 texCoord;
 		out vec4 outColor;
 		void main()
 		{
@@ -89,8 +92,8 @@ int main()
 
 	GLfloat const Vertices [] = {
 		0.0f, 0.5f,
-		0.5f, -0.5f,
-		-0.5f, -0.5f
+		-0.5f, -0.5f,
+		0.5f, -0.5f
 	};
 
 	GLuint const Elements [] = {
