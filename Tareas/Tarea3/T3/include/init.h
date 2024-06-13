@@ -1,5 +1,8 @@
+#pragma once
+
 #include <CL/cl.hpp>
 #include <iostream>
+#include <CL/cl_gl.h>
 #include "auxilliary.h"
 #include <vector>
 #include <GL/glew.h>
@@ -10,7 +13,6 @@
 #include <Windows.h>
 #include <GL/wglew.h>
 #endif
-#include <CL/cl_gl.h>
 
 
 void initOpenCL(cl::Device* device, cl::Context* context, cl::Platform* platform);

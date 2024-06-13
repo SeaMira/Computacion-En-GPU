@@ -2,7 +2,9 @@
 #define _CAMERA_H_
 
 #include <glm/glm.hpp>
-
+#include "glm/common.hpp"
+#include "glm/ext/matrix_transform.hpp"
+#include "glm/geometric.hpp"
 class Camera {
 public:
 

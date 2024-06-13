@@ -1,8 +1,11 @@
+#include <GL/glew.h>
+#include"shader.h"
+#include <GLFW/glfw3.h>
+
+#include"init.h"
 #include<iostream>
 #include<terrain.h>
-#include"shader.h"
 #include"camera.h"
-#include"init.h"
 
 int height = 100, width = 100;
 

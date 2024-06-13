@@ -1,9 +1,15 @@
+#pragma once
+
 #ifndef _SHADER_H_
 #define _SHADER_H_
 
-#include "glm/fwd.hpp"
 #include <string>
 #include <glad/glad.h>
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/fwd.hpp"
+#include <fstream>
+#include <iostream>
+#include <sstream>
 class Shader {
 public:
   Shader(const std::string &vertexPath, const std::string &fragmentPath);

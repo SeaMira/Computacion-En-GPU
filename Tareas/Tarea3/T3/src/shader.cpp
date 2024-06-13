@@ -1,10 +1,4 @@
 #include <shader.h>
-#include "glm/gtc/type_ptr.hpp"
-
-
-#include <fstream>
-#include <iostream>
-#include <sstream>
 
 #define GL_CHECK_ERRORS(id, type, fun, log)                                    \
   ({                                                                           \

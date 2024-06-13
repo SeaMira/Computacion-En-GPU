@@ -1,6 +1,3 @@
-#include "glm/common.hpp"
-#include "glm/ext/matrix_transform.hpp"
-#include "glm/geometric.hpp"
 #include <camera.h>
 
 using glm::mat4;

@@ -1,9 +1,4 @@
-#include <cstdlib> 
-#include <stdio.h>
-#include <stdlib.h>
-#include <fstream>
-#include <sstream>
-#include <memory>
+#include "auxilliary.h"
 
 using namespace std;
 
