@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: playCircle
+# Project: surfaceLevelCurves
 # Configurations: 
 # =============================================================================
 # =============================================================================
@@ -14,7 +14,7 @@
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__playCircle_unscanned_
+rule CXX_COMPILER__surfaceLevelCurves_unscanned_
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -24,7 +24,7 @@ rule CXX_COMPILER__playCircle_unscanned_
 #############################################
 # Rule for linking CXX executable.
 
-rule CXX_EXECUTABLE_LINKER__playCircle_
+rule CXX_EXECUTABLE_LINKER__surfaceLevelCurves_
   command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\c++.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT
@@ -115,9 +115,28 @@ rule CXX_STATIC_LIBRARY_LINKER__gtest_main_
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__glad_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\cc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking C static library.
+
+rule C_STATIC_LIBRARY_LINKER__glad_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking C static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__circle_unscanned_
+rule CXX_COMPILER__glm_unscanned_
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -127,7 +146,7 @@ rule CXX_COMPILER__circle_unscanned_
 #############################################
 # Rule for linking CXX static library.
 
-rule CXX_STATIC_LIBRARY_LINKER__circle_
+rule CXX_STATIC_LIBRARY_LINKER__glm_
   command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
   description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
@@ -136,7 +155,7 @@ rule CXX_STATIC_LIBRARY_LINKER__circle_
 #############################################
 # Rule for compiling CXX files.
 
-rule CXX_COMPILER__CircleTests_unscanned_
+rule CXX_COMPILER__camera_unscanned_
   depfile = $DEP_FILE
   deps = gcc
   command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
@@ -144,11 +163,106 @@ rule CXX_COMPILER__CircleTests_unscanned_
 
 
 #############################################
-# Rule for linking CXX executable.
+# Rule for linking CXX static library.
 
-rule CXX_EXECUTABLE_LINKER__CircleTests_
-  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\c++.exe $FLAGS $LINK_FLAGS $in -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
-  description = Linking CXX executable $TARGET_FILE
+rule CXX_STATIC_LIBRARY_LINKER__camera_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__terrain_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__terrain_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__shader_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__shader_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__initcl_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__initcl_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__initgl_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__initgl_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__auxilliary_unscanned_
+  depfile = $DEP_FILE
+  deps = gcc
+  command = ${LAUNCHER}${CODE_CHECK}C:\msys64\ucrt64\bin\c++.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__auxilliary_
+  command = C:\Windows\system32\cmd.exe /C "$PRE_LINK && C:\msys64\ucrt64\bin\cmake.exe -E rm -f $TARGET_FILE && C:\msys64\ucrt64\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\msys64\ucrt64\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
 
@@ -156,7 +270,7 @@ rule CXX_EXECUTABLE_LINKER__CircleTests_
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build"
+  command = C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build"
   description = Re-running CMake...
   generator = 1
 

@@ -3,6 +3,7 @@
 
 #include "glm/fwd.hpp"
 #include <string>
+#include <glad/glad.h>
 class Shader {
 public:
   Shader(const std::string &vertexPath, const std::string &fragmentPath);
@@ -20,10 +21,10 @@ public:
   void set(const std::string &name, bool value);
   void set(const std::string &name, const glm::mat4 &value);
   void set(const std::string &name, const glm::vec3 &value);
+  int get(const std::string &name);
 
 private:
   unsigned int id_;
-  int get(const std::string &name);
 };
 
 #endif // _SHADER_H_

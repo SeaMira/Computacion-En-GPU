@@ -1,9 +1,9 @@
 #include <CL/cl.hpp>
-#include <CL/cl_gl.h>
 #include <iostream>
 #include "auxilliary.h"
 #include <vector>
 #include <GL/glew.h>
+#include <CL/cl_gl.h>
 #include <GLFW/glfw3.h>
 
 // Incluye los encabezados específicos de Windows

@@ -1,3 +1,10 @@
+# file(GLOB SOURCES *.cpp *.h)
+
+# add_library(surfaceLevelCurves ${SOURCES})
+# target_link_libraries(surfaceLevelCurves PUBLIC glfw glad glm)
+# target_include_directories(surfaceLevelCurves PUBLIC "${CMAKE_SOURCE_DIR}/include")
+# target_link_libraries(imgui PRIVATE glfw)
+
 set(CAMERA_H_LIST "${PROJECT_SOURCE_DIR}/include/camera.h" "${PROJECT_SOURCE_DIR}/include/terrain.h" "${PROJECT_SOURCE_DIR}/include/shader.h")
 set(TERRAIN_H_LIST "${PROJECT_SOURCE_DIR}/include/terrain.h")
 set(SHADER_H_LIST "${PROJECT_SOURCE_DIR}/include/shader.h")

@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <cmath>
 
 // Estructura para un vértice
 struct Vertex {

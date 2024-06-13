@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: playCircle
+# Project: surfaceLevelCurves
 # Configurations: 
 # =============================================================================
 
@@ -34,62 +34,48 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/
+cmake_ninja_workdir = D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/
 # =============================================================================
-# Object build statements for EXECUTABLE target playCircle
+# Object build statements for EXECUTABLE target surfaceLevelCurves
 
 
 #############################################
-# Order-only phony target for playCircle
+# Order-only phony target for surfaceLevelCurves
 
-build cmake_object_order_depends_target_playCircle: phony || cmake_object_order_depends_target_circle
+build cmake_object_order_depends_target_surfaceLevelCurves: phony || cmake_object_order_depends_target_auxilliary cmake_object_order_depends_target_camera cmake_object_order_depends_target_glad cmake_object_order_depends_target_glm cmake_object_order_depends_target_initcl cmake_object_order_depends_target_initgl cmake_object_order_depends_target_shader cmake_object_order_depends_target_terrain
 
-build CMakeFiles/playCircle.dir/main.cpp.obj: CXX_COMPILER__playCircle_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/main.cpp || cmake_object_order_depends_target_playCircle
-  DEP_FILE = CMakeFiles\playCircle.dir\main.cpp.obj.d
+build CMakeFiles/surfaceLevelCurves.dir/main.cpp.obj: CXX_COMPILER__surfaceLevelCurves_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/main.cpp || cmake_object_order_depends_target_surfaceLevelCurves
+  DEP_FILE = CMakeFiles\surfaceLevelCurves.dir\main.cpp.obj.d
   FLAGS = -std=gnu++17
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/../include"
-  OBJECT_DIR = CMakeFiles\playCircle.dir
-  OBJECT_FILE_DIR = CMakeFiles\playCircle.dir
-  TARGET_COMPILE_PDB = CMakeFiles\playCircle.dir\
-  TARGET_PDB = playCircle.pdb
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm"
+  OBJECT_DIR = CMakeFiles\surfaceLevelCurves.dir
+  OBJECT_FILE_DIR = CMakeFiles\surfaceLevelCurves.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target playCircle
+# Link build statements for EXECUTABLE target surfaceLevelCurves
 
 
 #############################################
-# Link the executable playCircle.exe
+# Link the executable surfaceLevelCurves.exe
 
-build playCircle.exe: CXX_EXECUTABLE_LINKER__playCircle_ CMakeFiles/playCircle.dir/main.cpp.obj | src/libcircle.a || src/libcircle.a
-  LINK_LIBRARIES = src/libcircle.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\playCircle.dir
+build surfaceLevelCurves.exe: CXX_EXECUTABLE_LINKER__surfaceLevelCurves_ CMakeFiles/surfaceLevelCurves.dir/main.cpp.obj | src/libcamera.a src/libterrain.a src/libshader.a src/libinitgl.a src/libinitcl.a src/libauxilliary.a extern/glad/libglad.a extern/glm/glm/libglm.a || extern/glad/libglad.a extern/glm/glm/libglm.a src/libauxilliary.a src/libcamera.a src/libinitcl.a src/libinitgl.a src/libshader.a src/libterrain.a
+  LINK_LIBRARIES = src/libcamera.a  src/libterrain.a  src/libshader.a  src/libinitgl.a  src/libinitcl.a  src/libauxilliary.a  -lglfw  extern/glad/libglad.a  extern/glm/glm/libglm.a  -lglew  -lopengl32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\surfaceLevelCurves.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\playCircle.dir\
-  TARGET_FILE = playCircle.exe
-  TARGET_IMPLIB = libplayCircle.dll.a
-  TARGET_PDB = playCircle.pdb
-
-
-#############################################
-# Utility command for test
-
-build CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build test: phony CMakeFiles/test.util
+  TARGET_FILE = surfaceLevelCurves.exe
+  TARGET_IMPLIB = libsurfaceLevelCurves.dll.a
+  TARGET_PDB = surfaceLevelCurves.exe.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build edit_cache: phony CMakeFiles/edit_cache.util
@@ -99,7 +85,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -117,7 +103,7 @@ build list_install_components: phony
 # Utility command for install
 
 build CMakeFiles/install.util: CUSTOM_COMMAND all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -129,7 +115,7 @@ build install: phony CMakeFiles/install.util
 # Utility command for install/local
 
 build CMakeFiles/install/local.util: CUSTOM_COMMAND all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -141,7 +127,7 @@ build install/local: phony CMakeFiles/install/local.util
 # Utility command for install/strip
 
 build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -150,28 +136,17 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/CMakeLists.txt
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/CMakeLists.txt
 # =============================================================================
-
-
-#############################################
-# Utility command for test
-
-build extern/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build extern/test: phony extern/CMakeFiles/test.util
 
 
 #############################################
 # Utility command for edit_cache
 
 build extern/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build extern/edit_cache: phony extern/CMakeFiles/edit_cache.util
@@ -181,7 +156,7 @@ build extern/edit_cache: phony extern/CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build extern/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -199,7 +174,7 @@ build extern/list_install_components: phony
 # Utility command for install
 
 build extern/CMakeFiles/install.util: CUSTOM_COMMAND extern/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -211,7 +186,7 @@ build extern/install: phony extern/CMakeFiles/install.util
 # Utility command for install/local
 
 build extern/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -223,7 +198,7 @@ build extern/install/local: phony extern/CMakeFiles/install/local.util
 # Utility command for install/strip
 
 build extern/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -232,28 +207,17 @@ build extern/install/strip: phony extern/CMakeFiles/install/strip.util
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/CMakeLists.txt
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/CMakeLists.txt
 # =============================================================================
-
-
-#############################################
-# Utility command for test
-
-build extern/googletest/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build extern/googletest/test: phony extern/googletest/CMakeFiles/test.util
 
 
 #############################################
 # Utility command for edit_cache
 
 build extern/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build extern/googletest/edit_cache: phony extern/googletest/CMakeFiles/edit_cache.util
@@ -263,7 +227,7 @@ build extern/googletest/edit_cache: phony extern/googletest/CMakeFiles/edit_cach
 # Utility command for rebuild_cache
 
 build extern/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -281,7 +245,7 @@ build extern/googletest/list_install_components: phony
 # Utility command for install
 
 build extern/googletest/CMakeFiles/install.util: CUSTOM_COMMAND extern/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -293,7 +257,7 @@ build extern/googletest/install: phony extern/googletest/CMakeFiles/install.util
 # Utility command for install/local
 
 build extern/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -305,7 +269,7 @@ build extern/googletest/install/local: phony extern/googletest/CMakeFiles/instal
 # Utility command for install/strip
 
 build extern/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -314,7 +278,7 @@ build extern/googletest/install/strip: phony extern/googletest/CMakeFiles/instal
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/CMakeLists.txt
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -326,14 +290,12 @@ build extern/googletest/install/strip: phony extern/googletest/CMakeFiles/instal
 
 build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depends_target_gtest
 
-build extern/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
+build extern/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
   DEP_FILE = extern\googletest\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj.d
   FLAGS = -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/include" -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/include" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest"
   OBJECT_DIR = extern\googletest\googlemock\CMakeFiles\gmock.dir
   OBJECT_FILE_DIR = extern\googletest\googlemock\CMakeFiles\gmock.dir\src
-  TARGET_COMPILE_PDB = bin\libgmock.pdb
-  TARGET_PDB = bin\libgmock.pdb
 
 
 # =============================================================================
@@ -347,9 +309,8 @@ build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_ extern/googletest/google
   OBJECT_DIR = extern\googletest\googlemock\CMakeFiles\gmock.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = bin\libgmock.pdb
   TARGET_FILE = lib\libgmock.a
-  TARGET_PDB = bin\libgmock.pdb
+  TARGET_PDB = gmock.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gmock_main
@@ -360,14 +321,12 @@ build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_ extern/googletest/google
 
 build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest
 
-build extern/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
+build extern/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
   DEP_FILE = extern\googletest\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj.d
   FLAGS = -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
+  INCLUDES = -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/include" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/include" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest"
   OBJECT_DIR = extern\googletest\googlemock\CMakeFiles\gmock_main.dir
   OBJECT_FILE_DIR = extern\googletest\googlemock\CMakeFiles\gmock_main.dir\src
-  TARGET_COMPILE_PDB = bin\libgmock_main.pdb
-  TARGET_PDB = bin\libgmock_main.pdb
 
 
 # =============================================================================
@@ -381,29 +340,17 @@ build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_ extern/googlet
   OBJECT_DIR = extern\googletest\googlemock\CMakeFiles\gmock_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = bin\libgmock_main.pdb
   TARGET_FILE = lib\libgmock_main.a
-  TARGET_PDB = bin\libgmock_main.pdb
-
-
-#############################################
-# Utility command for test
-
-build extern/googletest/googlemock/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build extern/googletest/googlemock/test: phony extern/googletest/googlemock/CMakeFiles/test.util
+  TARGET_PDB = gmock_main.a.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build extern/googletest/googlemock/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build extern/googletest/googlemock/edit_cache: phony extern/googletest/googlemock/CMakeFiles/edit_cache.util
@@ -413,7 +360,7 @@ build extern/googletest/googlemock/edit_cache: phony extern/googletest/googlemoc
 # Utility command for rebuild_cache
 
 build extern/googletest/googlemock/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -431,7 +378,7 @@ build extern/googletest/googlemock/list_install_components: phony
 # Utility command for install
 
 build extern/googletest/googlemock/CMakeFiles/install.util: CUSTOM_COMMAND extern/googletest/googlemock/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -443,7 +390,7 @@ build extern/googletest/googlemock/install: phony extern/googletest/googlemock/C
 # Utility command for install/local
 
 build extern/googletest/googlemock/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/googletest/googlemock/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -455,7 +402,7 @@ build extern/googletest/googlemock/install/local: phony extern/googletest/google
 # Utility command for install/strip
 
 build extern/googletest/googlemock/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/googletest/googlemock/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googlemock" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -464,7 +411,7 @@ build extern/googletest/googlemock/install/strip: phony extern/googletest/google
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/CMakeLists.txt
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
@@ -476,14 +423,12 @@ build extern/googletest/googlemock/install/strip: phony extern/googletest/google
 
 build cmake_object_order_depends_target_gtest: phony || extern/googletest/googletest/CMakeFiles/gtest.dir
 
-build extern/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
+build extern/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
   DEP_FILE = extern\googletest\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj.d
   FLAGS = -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest"
   OBJECT_DIR = extern\googletest\googletest\CMakeFiles\gtest.dir
   OBJECT_FILE_DIR = extern\googletest\googletest\CMakeFiles\gtest.dir\src
-  TARGET_COMPILE_PDB = bin\libgtest.pdb
-  TARGET_PDB = bin\libgtest.pdb
 
 
 # =============================================================================
@@ -497,9 +442,8 @@ build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_ extern/googletest/google
   OBJECT_DIR = extern\googletest\googletest\CMakeFiles\gtest.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = bin\libgtest.pdb
   TARGET_FILE = lib\libgtest.a
-  TARGET_PDB = bin\libgtest.pdb
+  TARGET_PDB = gtest.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gtest_main
@@ -510,14 +454,12 @@ build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_ extern/googletest/google
 
 build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_depends_target_gtest
 
-build extern/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
+build extern/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
   DEP_FILE = extern\googletest\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d
   FLAGS = -std=c++17 -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-  INCLUDES = -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
+  INCLUDES = -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/include" -isystem "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest"
   OBJECT_DIR = extern\googletest\googletest\CMakeFiles\gtest_main.dir
   OBJECT_FILE_DIR = extern\googletest\googletest\CMakeFiles\gtest_main.dir\src
-  TARGET_COMPILE_PDB = bin\libgtest_main.pdb
-  TARGET_PDB = bin\libgtest_main.pdb
 
 
 # =============================================================================
@@ -531,29 +473,17 @@ build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_ extern/googlet
   OBJECT_DIR = extern\googletest\googletest\CMakeFiles\gtest_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = bin\libgtest_main.pdb
   TARGET_FILE = lib\libgtest_main.a
-  TARGET_PDB = bin\libgtest_main.pdb
-
-
-#############################################
-# Utility command for test
-
-build extern/googletest/googletest/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build extern/googletest/googletest/test: phony extern/googletest/googletest/CMakeFiles/test.util
+  TARGET_PDB = gtest_main.a.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build extern/googletest/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build extern/googletest/googletest/edit_cache: phony extern/googletest/googletest/CMakeFiles/edit_cache.util
@@ -563,7 +493,7 @@ build extern/googletest/googletest/edit_cache: phony extern/googletest/googletes
 # Utility command for rebuild_cache
 
 build extern/googletest/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -581,7 +511,7 @@ build extern/googletest/googletest/list_install_components: phony
 # Utility command for install
 
 build extern/googletest/googletest/CMakeFiles/install.util: CUSTOM_COMMAND extern/googletest/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -593,7 +523,7 @@ build extern/googletest/googletest/install: phony extern/googletest/googletest/C
 # Utility command for install/local
 
 build extern/googletest/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/googletest/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -605,7 +535,7 @@ build extern/googletest/googletest/install/local: phony extern/googletest/google
 # Utility command for install/strip
 
 build extern/googletest/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/googletest/googletest/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\googletest\googletest" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -614,62 +544,477 @@ build extern/googletest/googletest/install/strip: phony extern/googletest/google
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/CMakeLists.txt
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/CMakeLists.txt
 # =============================================================================
 
 # =============================================================================
-# Object build statements for STATIC_LIBRARY target circle
+# Object build statements for STATIC_LIBRARY target glad
 
 
 #############################################
-# Order-only phony target for circle
+# Order-only phony target for glad
 
-build cmake_object_order_depends_target_circle: phony || src/CMakeFiles/circle.dir
+build cmake_object_order_depends_target_glad: phony || extern/glad/CMakeFiles/glad.dir
 
-build src/CMakeFiles/circle.dir/circle.cpp.obj: CXX_COMPILER__circle_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/circle.cpp || cmake_object_order_depends_target_circle
-  DEP_FILE = src\CMakeFiles\circle.dir\circle.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/../include"
-  OBJECT_DIR = src\CMakeFiles\circle.dir
-  OBJECT_FILE_DIR = src\CMakeFiles\circle.dir
-  TARGET_COMPILE_PDB = src\CMakeFiles\circle.dir\circle.pdb
-  TARGET_PDB = src\libcircle.pdb
+build extern/glad/CMakeFiles/glad.dir/src/glad.c.obj: C_COMPILER__glad_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/src/glad.c || cmake_object_order_depends_target_glad
+  DEP_FILE = extern\glad\CMakeFiles\glad.dir\src\glad.c.obj.d
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/include"
+  OBJECT_DIR = extern\glad\CMakeFiles\glad.dir
+  OBJECT_FILE_DIR = extern\glad\CMakeFiles\glad.dir\src
 
 
 # =============================================================================
-# Link build statements for STATIC_LIBRARY target circle
+# Link build statements for STATIC_LIBRARY target glad
 
 
 #############################################
-# Link the static library src\libcircle.a
+# Link the static library extern\glad\libglad.a
 
-build src/libcircle.a: CXX_STATIC_LIBRARY_LINKER__circle_ src/CMakeFiles/circle.dir/circle.cpp.obj
-  OBJECT_DIR = src\CMakeFiles\circle.dir
+build extern/glad/libglad.a: C_STATIC_LIBRARY_LINKER__glad_ extern/glad/CMakeFiles/glad.dir/src/glad.c.obj
+  OBJECT_DIR = extern\glad\CMakeFiles\glad.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = src\CMakeFiles\circle.dir\circle.pdb
-  TARGET_FILE = src\libcircle.a
-  TARGET_PDB = src\libcircle.pdb
+  TARGET_FILE = extern\glad\libglad.a
+  TARGET_PDB = glad.a.dbg
 
 
 #############################################
-# Utility command for test
+# Utility command for edit_cache
 
-build src/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
+build extern/glad/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glad" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
   pool = console
   restat = 1
 
-build src/test: phony src/CMakeFiles/test.util
+build extern/glad/edit_cache: phony extern/glad/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build extern/glad/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glad" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build extern/glad/rebuild_cache: phony extern/glad/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build extern/glad/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build extern/glad/CMakeFiles/install.util: CUSTOM_COMMAND extern/glad/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glad" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build extern/glad/install: phony extern/glad/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build extern/glad/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/glad/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glad" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build extern/glad/install/local: phony extern/glad/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build extern/glad/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/glad/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glad" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build extern/glad/install/strip: phony extern/glad/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build extern/glm/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build extern/glm/edit_cache: phony extern/glm/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build extern/glm/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build extern/glm/rebuild_cache: phony extern/glm/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build extern/glm/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build extern/glm/CMakeFiles/install.util: CUSTOM_COMMAND extern/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build extern/glm/install: phony extern/glm/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build extern/glm/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build extern/glm/install/local: phony extern/glm/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build extern/glm/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build extern/glm/install/strip: phony extern/glm/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target glm
+
+
+#############################################
+# Order-only phony target for glm
+
+build cmake_object_order_depends_target_glm: phony || extern/glm/glm/CMakeFiles/glm.dir
+
+build extern/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.obj: CXX_COMPILER__glm_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/glm/detail/glm.cpp || cmake_object_order_depends_target_glm
+  DEP_FILE = extern\glm\glm\CMakeFiles\glm.dir\detail\glm.cpp.obj.d
+  FLAGS = -std=c++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm"
+  OBJECT_DIR = extern\glm\glm\CMakeFiles\glm.dir
+  OBJECT_FILE_DIR = extern\glm\glm\CMakeFiles\glm.dir\detail
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target glm
+
+
+#############################################
+# Link the static library extern\glm\glm\libglm.a
+
+build extern/glm/glm/libglm.a: CXX_STATIC_LIBRARY_LINKER__glm_ extern/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.obj
+  OBJECT_DIR = extern\glm\glm\CMakeFiles\glm.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = extern\glm\glm\libglm.a
+  TARGET_PDB = glm.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build extern/glm/glm/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm\glm" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build extern/glm/glm/edit_cache: phony extern/glm/glm/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build extern/glm/glm/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm\glm" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build extern/glm/glm/rebuild_cache: phony extern/glm/glm/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build extern/glm/glm/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build extern/glm/glm/CMakeFiles/install.util: CUSTOM_COMMAND extern/glm/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm\glm" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build extern/glm/glm/install: phony extern/glm/glm/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build extern/glm/glm/CMakeFiles/install/local.util: CUSTOM_COMMAND extern/glm/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm\glm" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build extern/glm/glm/install/local: phony extern/glm/glm/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build extern/glm/glm/CMakeFiles/install/strip.util: CUSTOM_COMMAND extern/glm/glm/all
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\extern\glm\glm" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build extern/glm/glm/install/strip: phony extern/glm/glm/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target camera
+
+
+#############################################
+# Order-only phony target for camera
+
+build cmake_object_order_depends_target_camera: phony || src/CMakeFiles/camera.dir
+
+build src/CMakeFiles/camera.dir/camera.cpp.obj: CXX_COMPILER__camera_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/camera.cpp || cmake_object_order_depends_target_camera
+  DEP_FILE = src\CMakeFiles\camera.dir\camera.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\camera.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\camera.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target camera
+
+
+#############################################
+# Link the static library src\libcamera.a
+
+build src/libcamera.a: CXX_STATIC_LIBRARY_LINKER__camera_ src/CMakeFiles/camera.dir/camera.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\camera.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libcamera.a
+  TARGET_PDB = camera.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target terrain
+
+
+#############################################
+# Order-only phony target for terrain
+
+build cmake_object_order_depends_target_terrain: phony || src/CMakeFiles/terrain.dir
+
+build src/CMakeFiles/terrain.dir/terrain.cpp.obj: CXX_COMPILER__terrain_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/terrain.cpp || cmake_object_order_depends_target_terrain
+  DEP_FILE = src\CMakeFiles\terrain.dir\terrain.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\terrain.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\terrain.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target terrain
+
+
+#############################################
+# Link the static library src\libterrain.a
+
+build src/libterrain.a: CXX_STATIC_LIBRARY_LINKER__terrain_ src/CMakeFiles/terrain.dir/terrain.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\terrain.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libterrain.a
+  TARGET_PDB = terrain.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target shader
+
+
+#############################################
+# Order-only phony target for shader
+
+build cmake_object_order_depends_target_shader: phony || src/CMakeFiles/shader.dir
+
+build src/CMakeFiles/shader.dir/shader.cpp.obj: CXX_COMPILER__shader_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/shader.cpp || cmake_object_order_depends_target_shader
+  DEP_FILE = src\CMakeFiles\shader.dir\shader.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\shader.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\shader.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target shader
+
+
+#############################################
+# Link the static library src\libshader.a
+
+build src/libshader.a: CXX_STATIC_LIBRARY_LINKER__shader_ src/CMakeFiles/shader.dir/shader.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\shader.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libshader.a
+  TARGET_PDB = shader.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target initcl
+
+
+#############################################
+# Order-only phony target for initcl
+
+build cmake_object_order_depends_target_initcl: phony || src/CMakeFiles/initcl.dir
+
+build src/CMakeFiles/initcl.dir/initCl.cpp.obj: CXX_COMPILER__initcl_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/initCl.cpp || cmake_object_order_depends_target_initcl
+  DEP_FILE = src\CMakeFiles\initcl.dir\initCl.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\initcl.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\initcl.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target initcl
+
+
+#############################################
+# Link the static library src\libinitcl.a
+
+build src/libinitcl.a: CXX_STATIC_LIBRARY_LINKER__initcl_ src/CMakeFiles/initcl.dir/initCl.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\initcl.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libinitcl.a
+  TARGET_PDB = initcl.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target initgl
+
+
+#############################################
+# Order-only phony target for initgl
+
+build cmake_object_order_depends_target_initgl: phony || src/CMakeFiles/initgl.dir
+
+build src/CMakeFiles/initgl.dir/initGL.cpp.obj: CXX_COMPILER__initgl_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/initGL.cpp || cmake_object_order_depends_target_initgl
+  DEP_FILE = src\CMakeFiles\initgl.dir\initGL.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\initgl.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\initgl.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target initgl
+
+
+#############################################
+# Link the static library src\libinitgl.a
+
+build src/libinitgl.a: CXX_STATIC_LIBRARY_LINKER__initgl_ src/CMakeFiles/initgl.dir/initGL.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\initgl.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libinitgl.a
+  TARGET_PDB = initgl.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target auxilliary
+
+
+#############################################
+# Order-only phony target for auxilliary
+
+build cmake_object_order_depends_target_auxilliary: phony || src/CMakeFiles/auxilliary.dir
+
+build src/CMakeFiles/auxilliary.dir/auxilliary.cpp.obj: CXX_COMPILER__auxilliary_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/auxilliary.cpp || cmake_object_order_depends_target_auxilliary
+  DEP_FILE = src\CMakeFiles\auxilliary.dir\auxilliary.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"
+  OBJECT_DIR = src\CMakeFiles\auxilliary.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\auxilliary.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target auxilliary
+
+
+#############################################
+# Link the static library src\libauxilliary.a
+
+build src/libauxilliary.a: CXX_STATIC_LIBRARY_LINKER__auxilliary_ src/CMakeFiles/auxilliary.dir/auxilliary.cpp.obj
+  OBJECT_DIR = src\CMakeFiles\auxilliary.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = src\libauxilliary.a
+  TARGET_PDB = auxilliary.a.dbg
 
 
 #############################################
 # Utility command for edit_cache
 
 build src/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\src" && C:\msys64\ucrt64\bin\cmake-gui.exe -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
+  DESC = Running CMake cache editor...
+  pool = console
   restat = 1
 
 build src/edit_cache: phony src/CMakeFiles/edit_cache.util
@@ -679,7 +1024,7 @@ build src/edit_cache: phony src/CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build src/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\src" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3" -B"D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -697,7 +1042,7 @@ build src/list_install_components: phony
 # Utility command for install
 
 build src/CMakeFiles/install.util: CUSTOM_COMMAND src/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\src" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
   DESC = Install the project...
   pool = console
   restat = 1
@@ -709,7 +1054,7 @@ build src/install: phony src/CMakeFiles/install.util
 # Utility command for install/local
 
 build src/CMakeFiles/install/local.util: CUSTOM_COMMAND src/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\src" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
   DESC = Installing only the local directory...
   pool = console
   restat = 1
@@ -721,7 +1066,7 @@ build src/install/local: phony src/CMakeFiles/install/local.util
 # Utility command for install/strip
 
 build src/CMakeFiles/install/strip.util: CUSTOM_COMMAND src/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\src" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "D:\Users\Escritorio\U\Otoño 2024 - 9no semestre\Computacion-En-GPU\Computacion-En-GPU\Tareas\Tarea3\T3\build\src" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
   DESC = Installing the project stripped...
   pool = console
   restat = 1
@@ -729,141 +1074,15 @@ build src/CMakeFiles/install/strip.util: CUSTOM_COMMAND src/all
 build src/install/strip: phony src/CMakeFiles/install/strip.util
 
 # =============================================================================
-# Write statements declared in CMakeLists.txt:
-# C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for EXECUTABLE target CircleTests
-
-
-#############################################
-# Order-only phony target for CircleTests
-
-build cmake_object_order_depends_target_CircleTests: phony || cmake_object_order_depends_target_circle cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
-
-build test/CMakeFiles/CircleTests.dir/testCircleClass.cpp.obj: CXX_COMPILER__CircleTests_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/test/testCircleClass.cpp || cmake_object_order_depends_target_CircleTests
-  DEP_FILE = test\CMakeFiles\CircleTests.dir\testCircleClass.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/../include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
-  OBJECT_DIR = test\CMakeFiles\CircleTests.dir
-  OBJECT_FILE_DIR = test\CMakeFiles\CircleTests.dir
-  TARGET_COMPILE_PDB = test\CMakeFiles\CircleTests.dir\
-  TARGET_PDB = test\CircleTests.pdb
-
-build test/CMakeFiles/CircleTests.dir/testCircleClassFixtures.cpp.obj: CXX_COMPILER__CircleTests_unscanned_ C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/test/testCircleClassFixtures.cpp || cmake_object_order_depends_target_CircleTests
-  DEP_FILE = test\CMakeFiles\CircleTests.dir\testCircleClassFixtures.cpp.obj.d
-  FLAGS = -std=gnu++17
-  INCLUDES = -I"C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/../include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/include" -isystem "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest"
-  OBJECT_DIR = test\CMakeFiles\CircleTests.dir
-  OBJECT_FILE_DIR = test\CMakeFiles\CircleTests.dir
-  TARGET_COMPILE_PDB = test\CMakeFiles\CircleTests.dir\
-  TARGET_PDB = test\CircleTests.pdb
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target CircleTests
-
-
-#############################################
-# Link the executable test\CircleTests.exe
-
-build test/CircleTests.exe test/CircleTests[1]_tests.cmake | ${cmake_ninja_workdir}test/CircleTests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__CircleTests_ test/CMakeFiles/CircleTests.dir/testCircleClass.cpp.obj test/CMakeFiles/CircleTests.dir/testCircleClassFixtures.cpp.obj | lib/libgtest_main.a src/libcircle.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a src/libcircle.a
-  LINK_LIBRARIES = lib/libgtest_main.a  src/libcircle.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = test\CMakeFiles\CircleTests.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe -D TEST_TARGET=CircleTests -D "TEST_EXECUTABLE=C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test/CircleTests.exe" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test" -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=CircleTests_TESTS -D "CTEST_FILE=C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test/CircleTests[1]_tests.cmake" -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P C:/msys64/ucrt64/share/cmake/Modules/GoogleTestAddTests.cmake"
-  PRE_LINK = cd .
-  RESTAT = 1
-  TARGET_COMPILE_PDB = test\CMakeFiles\CircleTests.dir\
-  TARGET_FILE = test\CircleTests.exe
-  TARGET_IMPLIB = test\libCircleTests.dll.a
-  TARGET_PDB = test\CircleTests.pdb
-
-
-#############################################
-# Utility command for test
-
-build test/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\ctest.exe --force-new-ctest-process "
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build test/test: phony test/CMakeFiles/test.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build test/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build test/edit_cache: phony test/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build test/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe --regenerate-during-build -S"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase" -B"C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build""
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build test/rebuild_cache: phony test/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build test/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build test/CMakeFiles/install.util: CUSTOM_COMMAND test/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe -P cmake_install.cmake"
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build test/install: phony test/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build test/CMakeFiles/install/local.util: CUSTOM_COMMAND test/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build test/install/local: phony test/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build test/CMakeFiles/install/strip.util: CUSTOM_COMMAND test/all
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\Public\Documents\U\9no Semestre Primavera\Geometria-Computacional\cmake_ejemplo\ProyectoBase\build\test" && C:\msys64\ucrt64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake"
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build test/install/strip: phony test/CMakeFiles/install/strip.util
-
-# =============================================================================
 # Target aliases.
 
-build CircleTests: phony test/CircleTests.exe
+build auxilliary: phony src/libauxilliary.a
 
-build CircleTests.exe: phony test/CircleTests.exe
+build camera: phony src/libcamera.a
 
-build circle: phony src/libcircle.a
+build glad: phony extern/glad/libglad.a
+
+build glm: phony extern/glm/glm/libglm.a
 
 build gmock: phony lib/libgmock.a
 
@@ -873,7 +1092,17 @@ build gtest: phony lib/libgtest.a
 
 build gtest_main: phony lib/libgtest_main.a
 
-build libcircle.a: phony src/libcircle.a
+build initcl: phony src/libinitcl.a
+
+build initgl: phony src/libinitgl.a
+
+build libauxilliary.a: phony src/libauxilliary.a
+
+build libcamera.a: phony src/libcamera.a
+
+build libglad.a: phony extern/glad/libglad.a
+
+build libglm.a: phony extern/glm/glm/libglm.a
 
 build libgmock.a: phony lib/libgmock.a
 
@@ -883,7 +1112,19 @@ build libgtest.a: phony lib/libgtest.a
 
 build libgtest_main.a: phony lib/libgtest_main.a
 
-build playCircle: phony playCircle.exe
+build libinitcl.a: phony src/libinitcl.a
+
+build libinitgl.a: phony src/libinitgl.a
+
+build libshader.a: phony src/libshader.a
+
+build libterrain.a: phony src/libterrain.a
+
+build shader: phony src/libshader.a
+
+build surfaceLevelCurves: phony surfaceLevelCurves.exe
+
+build terrain: phony src/libterrain.a
 
 # =============================================================================
 # Folder targets.
@@ -891,51 +1132,65 @@ build playCircle: phony playCircle.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build
 
-build all: phony playCircle.exe extern/all src/all test/all
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/extern
-
-build extern/all: phony extern/googletest/all
+build all: phony surfaceLevelCurves.exe extern/all src/all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/extern/googletest
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern
+
+build extern/all: phony extern/googletest/all extern/glad/all extern/glm/all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glad
+
+build extern/glad/all: phony extern/glad/libglad.a
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glm
+
+build extern/glm/all: phony extern/glm/glm/all
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glm/glm
+
+build extern/glm/glm/all: phony extern/glm/glm/libglm.a
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/googletest
 
 build extern/googletest/all: phony extern/googletest/googlemock/all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/extern/googletest/googlemock
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/googletest/googlemock
 
 build extern/googletest/googlemock/all: phony lib/libgmock.a lib/libgmock_main.a extern/googletest/googletest/all
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/extern/googletest/googletest
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/googletest/googletest
 
 build extern/googletest/googletest/all: phony lib/libgtest.a lib/libgtest_main.a
 
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/src
+# Folder: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/src
 
-build src/all: phony src/libcircle.a
-
-# =============================================================================
-
-#############################################
-# Folder: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test
-
-build test/all: phony test/CircleTests.exe
+build src/all: phony src/libcamera.a src/libterrain.a src/libshader.a src/libinitcl.a src/libinitgl.a src/libauxilliary.a
 
 # =============================================================================
 # Built-in targets
@@ -944,14 +1199,14 @@ build test/all: phony test/CircleTests.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/cmake/gmock.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/cmake/gmock_main.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/Config.cmake.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/gtest.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/gtest_main.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/internal_utils.cmake C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/test/CMakeLists.txt C$:/msys64/ucrt64/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/ucrt64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompileFeatures.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython/Support.cmake C$:/msys64/ucrt64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/ucrt64/share/cmake/Modules/GoogleTest.cmake C$:/msys64/ucrt64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/ucrt64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/msys64/ucrt64/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindOpenGL.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython/Support.cmake C$:/msys64/ucrt64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/ucrt64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/glm/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/cmake/gmock.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/cmake/gmock_main.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/Config.cmake.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/gtest.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/gtest_main.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/internal_utils.cmake D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/CMakeLists.txt
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/cmake/gmock.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googlemock/cmake/gmock_main.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/Config.cmake.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/gtest.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/gtest_main.pc.in C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest/cmake/internal_utils.cmake C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src/CMakeLists.txt C$:/Users/Public/Documents/U/9no$ Semestre$ Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/test/CMakeLists.txt C$:/msys64/ucrt64/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCCompilerABI.c C$:/msys64/ucrt64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXCompilerABI.cpp C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCompilerIdDetection.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompileFeatures.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineCompilerId.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineRCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDetermineSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeFindBinUtils.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeNinjaFindMake.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCCompiler.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystem.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCXXCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestCompilerCommon.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeTestRCCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-FindBinUtils.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython/Support.cmake C$:/msys64/ucrt64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/ucrt64/share/cmake/Modules/GoogleTest.cmake C$:/msys64/ucrt64/share/cmake/Modules/Internal/FeatureTesting.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Determine-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/ucrt64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake: phony
+build C$:/msys64/ucrt64/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in C$:/msys64/ucrt64/share/cmake/Modules/CMakeCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCXXInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeCommonLanguageInclude.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeDependentOption.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeGenericSystem.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeInitializeConfigs.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeLanguageInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakePackageConfigHelpers.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeRCInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInformation.cmake C$:/msys64/ucrt64/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Compiler/GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindOpenGL.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageHandleStandardArgs.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPackageMessage.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython.cmake C$:/msys64/ucrt64/share/cmake/Modules/FindPython/Support.cmake C$:/msys64/ucrt64/share/cmake/Modules/GNUInstallDirs.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-C.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU-CXX.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-GNU.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-Initialize.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows-windres.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/Windows.cmake C$:/msys64/ucrt64/share/cmake/Modules/Platform/WindowsPaths.cmake C$:/msys64/ucrt64/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.28.1/CMakeCCompiler.cmake CMakeFiles/3.28.1/CMakeCXXCompiler.cmake CMakeFiles/3.28.1/CMakeRCCompiler.cmake CMakeFiles/3.28.1/CMakeSystem.cmake D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm/glm/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/cmake/gmock.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googlemock/cmake/gmock_main.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/CMakeLists.txt D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/Config.cmake.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/gtest.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/gtest_main.pc.in D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest/cmake/internal_utils.cmake D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/CMakeLists.txt: phony
 
 
 #############################################

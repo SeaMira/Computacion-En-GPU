@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/extern/googletest/googletest
-# Build directory: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/extern/googletest/googletest
+# Source directory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/googletest/googletest
+# Build directory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/googletest/googletest
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

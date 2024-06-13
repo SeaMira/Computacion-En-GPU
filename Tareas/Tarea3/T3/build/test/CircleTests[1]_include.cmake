@@ -1,5 +1,0 @@
-if(EXISTS "C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test/CircleTests[1]_tests.cmake")
-  include("C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test/CircleTests[1]_tests.cmake")
-else()
-  add_test(CircleTests_NOT_BUILT CircleTests_NOT_BUILT)
-endif()

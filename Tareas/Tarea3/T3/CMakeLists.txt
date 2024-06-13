@@ -3,13 +3,13 @@ project(surfaceLevelCurves)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME} main.cpp)
-include(CTest)
+# include(CTest)
 
 add_subdirectory(extern)
 add_subdirectory(src)
-add_subdirectory(test)
+# add_subdirectory(test)
 
 #quitar para evitar test
-enable_testing()
+# enable_testing()
 
-target_link_libraries(${PROJECT_NAME} camera terrain shader initgl initcl auxilliary)
+target_link_libraries(${PROJECT_NAME} camera terrain shader initgl initcl auxilliary glfw glad glm)

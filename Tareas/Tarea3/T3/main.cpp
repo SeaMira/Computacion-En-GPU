@@ -1,8 +1,10 @@
 #include<iostream>
-#include"terrain.h"
+#include<terrain.h>
 #include"shader.h"
 #include"camera.h"
 #include"init.h"
+
+int height = 100, width = 100;
 
 glm::vec3 pos(0.0, 0.0, 100.0);
 
@@ -13,15 +15,16 @@ cl::Context context;
 cl::Program program;
 cl::Kernel kernel;
 
-int height 100, width = 100, LOCAL_SIZE, GROUP_SIZE;
-const std::string vertex_shader_path = "vertexShader.txt"
-const std::string fragment_shader_path = "fragmentShader.txt"
-const std::string terrain_path = "terrain.txt"
+const std::string vertex_shader_path = "vertexShader.txt";
+const std::string fragment_shader_path = "fragmentShader.txt";
+const std::string terrain_path = "terrain.txt";
 
 class TerrainSetup {
     private:
         Terrain* terrain;
         Camera* camera;
+        GLuint gWVPLocation;
+
         GLuint terrainVao = -1;
         GLuint terrainVbo = -1;
         GLuint terrainIbo = -1;
@@ -29,6 +32,7 @@ class TerrainSetup {
         cl::BufferGL vertexBuff;
         cl::BufferGL texBuff;
 
+        int LOCAL_SIZE, GROUP_SIZE;
 
     public:
         TerrainSetup(Terrain* terrain, Camera* camera) {
@@ -54,31 +58,18 @@ class TerrainSetup {
             }
         }
 
-        CreateTerrainVAO() {
+        void CreateTerrainVAO() {
             glGenVertexArrays(1, &terrainVao);
             glBindVertexArray(terrainVao);
 
             glGenBuffers(1, &terrainVbo);
             glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
-            glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)* terrain->verticesSize(), terrain->getVerticesData(), GL_STATIC_DRAW);
-
-            // position
-            glEnableVertexAttribArray(0);
-            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-
-            // tex coords
-            glEnableVertexAttribArray(1);
-            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float)));
+            glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*(terrain->verticesSize()), terrain->getVerticesData(), GL_STATIC_DRAW);
 
             glGenBuffers(1, &terrainIbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Triangle)* terrain->trianglesSize(), terrain->getTrianglesData(), GL_STATIC_DRAW);
-
-            glBindVertexArray(0);
-            glDisableVertexAttribArray(0);
-            glDisableVertexAttribArray(1);
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Triangle)* (terrain->trianglesSize()), terrain->getTrianglesData(), GL_STATIC_DRAW);
+            
 
             cl_int err;
             vertexBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainVbo, &err);
@@ -95,39 +86,78 @@ class TerrainSetup {
             
         }
 
-    void updatePos(float dt) {
-        cl::Event ev;
-        glFinish();
-        // Acquiring OpenGL objects in OpenCL
-        std::vector<cl::Memory> glObjects = {vertexBuff, texBuff};
-        cl_int res = queue.enqueueAcquireGLObjects(&glObjects, NULL, &ev);
-        ev.wait();
-        // std::cout<<5<<std::endl;
-        if (res!=CL_SUCCESS) {
-            std::cout<<"Failed acquiring GL object: "<<res<<std::endl;
-            exit(248);
+        void camLoc(Shader* shader) {
+            const std::string camLoc = "gWVP";
+            gWVPLocation = shader->get(camLoc);
+            if (gWVPLocation == -1) {
+                printf("Error getting uniform location of 'gWVP'\n");
+                exit(1);
+            }
         }
 
-        // float step = 0.0001f;
-        // Set the kernel arguments
-        kernel.setArg(0, vertexBuff);
-        kernel.setArg(1, texBuff);
-        kernel.setArg(2, dt);
-        // kernel.setArg(2, NUM_PARTICLES);
-        cl::NDRange GlobalWorkSize(GROUP_SIZE, 1, 1);
-        cl::NDRange LocalWorkSize(LOCAL_SIZE, 1, 1);
+        void RenderTerrain(GLFWwindow* window) {
 
-        queue.enqueueNDRangeKernel(kernel, cl::NullRange, GlobalWorkSize, LocalWorkSize);
-        
-        res = queue.enqueueReleaseGLObjects(&glObjects);
-        if (res!=CL_SUCCESS) {
-            std::cout<<"Failed releasing GL object: "<<res<<std::endl;
-            exit(247);
+            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (GLfloat*)&(camera->view()[0][0]));
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glBindVertexArray(terrainVao);
+            glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
+
+            // position
+            glEnableVertexAttribArray(0);
+            glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+
+            // tex coords
+            glEnableVertexAttribArray(1);
+            glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float)));
+
+            glDrawElements(GL_TRIANGLES, (terrain->trianglesSize())*3, GL_UNSIGNED_INT, 0);
+
+            glBindVertexArray(0);
+            glDisableVertexAttribArray(0);
+            glDisableVertexAttribArray(1);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+            glfwSwapBuffers(window);
+            glfwPollEvents();
         }
 
-        queue.finish();
-    }
-}
+        void updatePos(float dt) {
+            cl::Event ev;
+            glFinish();
+            // Acquiring OpenGL objects in OpenCL
+            std::vector<cl::Memory> glObjects = {vertexBuff, texBuff};
+            cl_int res = queue.enqueueAcquireGLObjects(&glObjects, NULL, &ev);
+            ev.wait();
+            // std::cout<<5<<std::endl;
+            if (res!=CL_SUCCESS) {
+                std::cout<<"Failed acquiring GL object: "<<res<<std::endl;
+                exit(248);
+            }
+
+            // float step = 0.0001f;
+            // Set the kernel arguments
+            kernel.setArg(0, vertexBuff);
+            kernel.setArg(1, texBuff);
+            kernel.setArg(2, dt);
+            // kernel.setArg(2, NUM_PARTICLES);
+            cl::NDRange GlobalWorkSize(GROUP_SIZE, 1, 1);
+            cl::NDRange LocalWorkSize(LOCAL_SIZE, 1, 1);
+
+            queue.enqueueNDRangeKernel(kernel, cl::NullRange, GlobalWorkSize, LocalWorkSize);
+            
+            res = queue.enqueueReleaseGLObjects(&glObjects);
+            if (res!=CL_SUCCESS) {
+                std::cout<<"Failed releasing GL object: "<<res<<std::endl;
+                exit(247);
+            }
+
+            queue.finish();
+        }
+};
 
 
 
@@ -140,22 +170,22 @@ int main(int argc, char const *argv[]) {
     terrain.generateRandomTerrain(terrain_path);
     terrain.loadFromFile(terrain_path);
 
-    Camara camera(pos, 100.0, 100.0, 100.0, glm::vec3(0.0, 0.0, 1.0));
+    Camera camera(pos, 100.0, 100.0, 100.0, glm::vec3(0.0, 0.0, 1.0));
 
     TerrainSetup GLTerrain(&terrain, &camera);
-
-
-
-
-
-
+    GLTerrain.camLoc(&shaderObj);
 
     GLFWwindow* window;
     initOpenGL(&window);
 
     initOpenCL(&device, &context, &platform);
     std::string src_code = load_from_file("kernel.cl");
-    initProgram(&program, &kernel, src_code, &device, &queue, &context, src_code);
+    std::string kernel_name = "updatePoints";
+    initProgram(&program, &kernel, src_code, &device, &queue, &context, kernel_name);
+
+    glEnable(GL_CULL_FACE);
+    glFrontFace(GL_CW);
+    glCullFace(GL_BACK);
 
     GLTerrain.CreateTerrainVAO();
     glClearColor(1.0, 1.0, 1.0, 1.0);
@@ -168,10 +198,9 @@ int main(int argc, char const *argv[]) {
         currentFrameTime = glfwGetTime();
         deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
-        updatePos(deltaTime/10);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glUseProgram(ShaderProgram);
-        animate(window);
+        // updatePos(deltaTime/10);
+        shaderObj.use();
+        GLTerrain.RenderTerrain(window);
     }
 
     glfwDestroyWindow(window);

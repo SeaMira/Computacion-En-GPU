@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/src
+# Install script for directory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/playCircle")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/surfaceLevelCurves")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
