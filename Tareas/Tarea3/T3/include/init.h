@@ -3,7 +3,6 @@
 #include "auxilliary.h"
 #include <vector>
 #include <GL/glew.h>
-#include <CL/cl_gl.h>
 #include <GLFW/glfw3.h>
 
 // Incluye los encabezados específicos de Windows
@@ -11,6 +10,7 @@
 #include <Windows.h>
 #include <GL/wglew.h>
 #endif
+#include <CL/cl_gl.h>
 
 
 void initOpenCL(cl::Device* device, cl::Context* context, cl::Platform* platform);

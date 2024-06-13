@@ -11,5 +11,8 @@ add_subdirectory(src)
 
 #quitar para evitar test
 # enable_testing()
+find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(GLFW3 REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} camera terrain shader initgl initcl auxilliary glfw glad glm)
+target_link_libraries(${PROJECT_NAME} surfaceLeveldependencies)
