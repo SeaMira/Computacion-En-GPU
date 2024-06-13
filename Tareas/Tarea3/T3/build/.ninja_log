@@ -1,0 +1,18 @@
+# ninja log v5
+60	2181	7332768899397526	src/CMakeFiles/circle.dir/circle.cpp.obj	c7fac18dd76f2a2b
+12	2230	7332768899797410	CMakeFiles/playCircle.dir/main.cpp.obj	a80fb5d856b95978
+2187	2824	7332768905647308	src/libcircle.a	53983f631684b5c0
+2824	3318	7332768910614004	playCircle.exe	1944eeeeead4c94b
+49	4270	7332768920302734	extern/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	4156b2cd723a7b3d
+90	4652	7332768924066736	test/CMakeFiles/CircleTests.dir/testCircleClass.cpp.obj	f2fcea53de58e811
+107	4667	7332768924227001	test/CMakeFiles/CircleTests.dir/testCircleClassFixtures.cpp.obj	94d084549a97ab42
+29	4885	7332768926470281	extern/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj	babaedd4e86813c8
+21	6877	7332768946350301	extern/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj	fd04c442e6d40e6e
+38	15037	7332769027855442	extern/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	fa675e57a0f8acab
+15040	15350	7332769031137725	lib/libgtest.a	687f5e138198ebf3
+15360	15567	7332769033298981	lib/libgtest_main.a	bb69e2a06dcce292
+15350	15590	7332769033538889	lib/libgmock.a	87d81064a7e31cbf
+15591	15791	7332769035546582	lib/libgmock_main.a	21de8f0a6b22ce13
+15567	16375	7332769041360697	test/CircleTests.exe	7beb2b4a95d527b9
+15567	16375	7332769041360697	test/CircleTests[1]_tests.cmake	7beb2b4a95d527b9
+15567	16375	7332769041360697	C:/Users/Public/Documents/U/9no Semestre Primavera/Geometria-Computacional/cmake_ejemplo/ProyectoBase/build/test/CircleTests[1]_tests.cmake	7beb2b4a95d527b9
