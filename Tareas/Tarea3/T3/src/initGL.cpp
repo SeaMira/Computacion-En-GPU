@@ -1,5 +1,6 @@
 #include "init.h"
 
+
 void error_callback(int error, const char* description) {
     std::cerr << "Error: " << description << std::endl;
 }
@@ -24,9 +25,8 @@ void initOpenGL(GLFWwindow** window) {
     }
     
     glfwMakeContextCurrent(*window);
-    glewExperimental = GL_TRUE;
-    if (glewInit() != GLEW_OK) {
-        std::cerr << "Failed to initialize GLEW" << std::endl;
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+        std::cerr << "Failed to initialize GLAD" << std::endl;
         exit(EXIT_FAILURE);
     }
 }

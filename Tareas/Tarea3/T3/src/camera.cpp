@@ -24,6 +24,14 @@ mat4 Camera::view() {
 
 void Camera::key_callback(float xoffset, float yoffset) {
   direction_ = xoffset * right_ + yoffset * front_;
+  update(xoffset+yoffset);
+}
+
+void Camera::rotating_key_callback(float yaw_dt, float ptch_dt) {
+  yaw += yaw_dt;
+  pitch += ptch_dt;
+  pitch = glm::clamp(pitch, -89.0f, 89.0f);
+  update(yaw_dt+ptch_dt);
 }
 
 void Camera::cursor_position_callback(float xoffset, float yoffset) {

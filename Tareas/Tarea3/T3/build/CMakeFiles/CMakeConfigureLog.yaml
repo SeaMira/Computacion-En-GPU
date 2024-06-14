@@ -570,3 +570,245 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_3_0"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_3_0"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_23dcb
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_23dcb.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_23dcb.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_23dcb.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-wuegxl/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_2_2"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_2_2"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_9d6e2
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_9d6e2.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_9d6e2.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_9d6e2.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-nwahjp/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_2_1"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_2_1"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_d6089
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_d6089.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_d6089.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_d6089.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-hnmn21/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_2_0"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_2_0"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_6a3ad
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_6a3ad.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_6a3ad.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_6a3ad.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-a2zy49/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_1_2"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_1_2"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_e6120
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_e6120.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_e6120.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_e6120.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-cgok9x/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_1_1"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_1_1"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_a7be5
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_a7be5.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_a7be5.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_a7be5.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-2uv1g7/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:140 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:59 (CHECK_SYMBOL_EXISTS)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindOpenCL.cmake:100 (_FIND_OPENCL_VERSION)"
+      - "CMakeLists.txt:20 (find_package)"
+    checks:
+      - "Looking for CL_VERSION_1_0"
+    directories:
+      source: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v"
+      binary: "D:/Users/Escritorio/U/Oto\u00f1o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "OPENCL_VERSION_1_0"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/ninja.exe -v cmTC_a336b
+        [1/2] C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_a336b.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v/CheckSymbolExists.c"
+        FAILED: CMakeFiles/cmTC_a336b.dir/CheckSymbolExists.c.obj 
+        C:\\msys64\\ucrt64\\bin\\cc.exe  -I"D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include"  -o CMakeFiles/cmTC_a336b.dir/CheckSymbolExists.c.obj -c "D:/Users/Escritorio/U/Oto±o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v/CheckSymbolExists.c"
+        D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/CMakeFiles/CMakeScratch/TryCompile-fiwr4v/CheckSymbolExists.c:2:10: fatal error: D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h: No such file or directory
+            2 | #include <D:/Users/Escritorio/U/Oto├▒o 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include/CL/cl.h>
+              |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        compilation terminated.\x0d
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+...

@@ -16,8 +16,8 @@ struct Vertex {
 
 // Estructura para un triángulo
 struct Triangle {
-    int v1, v2, v3;
-    Triangle(int v1, int v2, int v3) : v1(v1), v2(v2), v3(v3) {}
+    unsigned int v1, v2, v3;
+    Triangle(unsigned int v1, unsigned int v2, unsigned int v3) : v1(v1), v2(v2), v3(v3) {}
 };
 
 
@@ -34,5 +34,4 @@ class Terrain {
         int verticesSize();
         Triangle* getTrianglesData();
         int trianglesSize();
-        void draw();
 };

@@ -26,10 +26,10 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
     }
 
     // Generar triángulos
-    for (int x = 0; x < width - 1; ++x) {
-        for (int y = 0; y < height - 1; ++y) {
-            int currentIndex = x * height + y;
-            int nextRowIndex = (x + 1) * height + y;
+    for (unsigned int x = 0; x < width - 1; ++x) {
+        for (unsigned int y = 0; y < height - 1; ++y) {
+            unsigned int currentIndex = x * height + y;
+            unsigned int nextRowIndex = (x + 1) * height + y;
 
             // Triángulo 1
             indices.push_back(Triangle(currentIndex, nextRowIndex, currentIndex + 1));
@@ -70,7 +70,7 @@ void Terrain::loadFromFile(const std::string& filename)
 
         if (type == 'V') {
             float x, y, z, r, g, b;
-            iss >> x >> y >> z;
+            iss >> x >> y >> z >> r >> g >> b;
             vertices.push_back(Vertex(x, y, z, r, g, b));
         }
         else if (type == 'I') {

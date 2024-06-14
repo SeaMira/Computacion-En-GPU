@@ -27,6 +27,7 @@ public:
   glm::mat4 view();
 
   void key_callback(float xoffset, float yoffset);
+  void rotating_key_callback(float yaw_dt, float ptch_dt);
   void cursor_position_callback(float xoffset, float yoffset);
   void scroll_callback(float yoffset);
   

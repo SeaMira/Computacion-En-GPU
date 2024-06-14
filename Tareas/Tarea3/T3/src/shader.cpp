@@ -1,4 +1,5 @@
 #include <shader.h>
+#include <glad/glad.h>
 
 #define GL_CHECK_ERRORS(id, type, fun, log)                                    \
   ({                                                                           \
@@ -25,6 +26,7 @@ static inline void attachSource(unsigned int program, int type,
     shaderBuffer << shaderFile.rdbuf();
     shaderFile.close();
     shaderSource = shaderBuffer.str();
+    // std::cout << path << shaderSource << std::endl;
   } catch (std::fstream::failure e) {
     std::cerr << "File not succesfully read (" << path << ")" << std::endl;
   }
@@ -38,11 +40,13 @@ static inline void attachSource(unsigned int program, int type,
 }
 
 Shader::Shader(const string &vertexPath, const string &fragmentPath) {
+  std::cout << "create prog" << std::endl;
   id_ = glCreateProgram();
   attachSource(id_, GL_VERTEX_SHADER, vertexPath);
   attachSource(id_, GL_FRAGMENT_SHADER, fragmentPath);
   glLinkProgram(id_);
   GL_CHECK_ERRORS(id_, GL_LINK_STATUS, glGetProgramiv, glGetProgramInfoLog);
+  std::cout << "Shaders cargados" << std::endl;
 }
 
 Shader::Shader(const string &vertexPath, const string &geometryPath,
