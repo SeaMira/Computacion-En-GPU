@@ -1,7 +1,7 @@
 #include<terrain.h>
 
 float noise(float x, float y) {
-    return (std::sin(x * 0.1f) * std::cos(y * 0.1f)) * 20.0f + (std::rand() % 100);
+    return (std::sin(x * 0.1f) * std::cos(y * 0.1f)) * 2.0f + (std::rand() % 2);
 }
 
 // Función para generar un terreno aleatorio
@@ -16,9 +16,9 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
     for (int x = 0; x < width; ++x) {
         for (int y = 0; y < height; ++y) {
             float z = noise(static_cast<float>(x), static_cast<float>(y));
-            z = std::fmod(z, 6000.0f);
-            if (z < 0.0f) z += 6000.0f;
-            vertices.push_back(Vertex(x, y, z, std::rand() / static_cast<float>(RAND_MAX), 
+            // z = std::fmod(z, 6000.0f);
+            if (z < 0.0f) z = 0.0f;
+            vertices.push_back(Vertex((float)x*0.5, (float)y*0.5, z, std::rand() / static_cast<float>(RAND_MAX), 
                                 std::rand() / static_cast<float>(RAND_MAX), 
                                 std::rand() / static_cast<float>(RAND_MAX)));
 
@@ -84,7 +84,7 @@ void Terrain::loadFromFile(const std::string& filename)
 }
 
 Vertex* Terrain::getVerticesData() {
-    return vertices.data();
+    return &vertices[0];
 }
 
 int Terrain::verticesSize() {
@@ -92,7 +92,7 @@ int Terrain::verticesSize() {
 }
 
 Triangle* Terrain::getTrianglesData() {
-    return indices.data();
+    return &indices[0];
 }
 
 int Terrain::trianglesSize() {

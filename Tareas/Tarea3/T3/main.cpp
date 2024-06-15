@@ -8,9 +8,9 @@
 #include<terrain.h>
 #include"camera2.h"
 
+Camera* globCamera;
 
-
-int height = 100, width = 100;
+int height = 10, width = 10;
 
 cl::Device device;
 cl::Platform platform;
@@ -60,6 +60,27 @@ class TerrainSetup {
         }
 
         void updateMat() {
+            // std::cout << "Projection Matrix: " << std::endl;
+            // for (int i = 0; i < 4; i++) {
+            //     for (int j = 0; j < 4; j++) {
+            //         std::cout << projInfo->getProjectionMatrix()[i][j] << " ";
+            //     }
+            //     std::cout << std::endl;
+            // }
+            // std::cout << "View Matrix: " << std::endl;
+            // for (int i = 0; i < 4; i++) {
+            //     for (int j = 0; j < 4; j++) {
+            //         std::cout << camera->GetMatrix()[i][j] << " ";
+            //     }
+            //     std::cout << std::endl;
+            // }
+            // std::cout << "World Matrix: " << std::endl;
+            // for (int i = 0; i < 4; i++) {
+            //     for (int j = 0; j < 4; j++) {
+            //         std::cout << wrldTrans->GetMatrix()[i][j] << " ";
+            //     }
+            //     std::cout << std::endl;
+            // }
             mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
         }
 
@@ -86,22 +107,22 @@ class TerrainSetup {
                 glfwSetWindowShouldClose(window, true);
 
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                camera->OnKeyboard(2);
+                camera->OnKeyboard(2, dt);
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                camera->OnKeyboard(3);
+                camera->OnKeyboard(3, dt);
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                camera->OnKeyboard(0);
+                camera->OnKeyboard(0, dt);
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                camera->OnKeyboard(1);
+                camera->OnKeyboard(1, dt);
             if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-                camera->OnKeyboard(7);
+                camera->OnKeyboard(7, dt);
             if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-                camera->OnKeyboard(6);
+                camera->OnKeyboard(6, dt);
             if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-                camera->OnKeyboard(4);
+                camera->OnKeyboard(4, dt);
             if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-                camera->OnKeyboard(5);
-            updateMat();
+                camera->OnKeyboard(5, dt);
+            
         }
 
         void CreateTerrainVAO() {
@@ -110,6 +131,7 @@ class TerrainSetup {
             std::cout << "Size of Vertex: " << sizeof(Vertex) << std::endl;
             std::cout << "Indexes count: " << terrain->trianglesSize() << std::endl;
             std::cout << "Size of Triangle: " << sizeof(Triangle) << std::endl;
+            std::cout << "Size of unsigned int: " << sizeof(unsigned int) << std::endl;
             glGenVertexArrays(1, &terrainVao);
             glBindVertexArray(terrainVao);
 
@@ -119,31 +141,31 @@ class TerrainSetup {
 
             // Vertex* vertices = terrain->getVerticesData();
             // for (int i = 0; i < terrain->verticesSize(); i++) {
-            //     std::cout << vertices->x << std::endl;
+            //     std::cout << vertices->x << " " << vertices->y << " " << vertices->z << std::endl;
             //     vertices ++;
             // }
             glGenBuffers(1, &terrainIbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Triangle)*terrain->trianglesSize(), terrain->getTrianglesData(), GL_STATIC_DRAW);
-            Triangle* triangles = terrain->getTrianglesData();
-            for (int i = 0; i < terrain->trianglesSize(); i++) {
-                std::cout << triangles->v1 << std::endl;
-                triangles ++;
-            }
+            // Triangle* triangles = terrain->getTrianglesData();
+            // for (int i = 0; i < terrain->trianglesSize(); i++) {
+            //     std::cout << triangles->v1 << " " << triangles->v2 << " " << triangles->v3 << std::endl;
+            //     triangles ++;
+            // }
 
-            cl_int err;
-            vertexBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainVbo, &err);
-            if (err != CL_SUCCESS) {
-                std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
-                exit(EXIT_FAILURE);
-            }
+            // cl_int err;
+            // vertexBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainVbo, &err);
+            // if (err != CL_SUCCESS) {
+            //     std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
+            //     exit(EXIT_FAILURE);
+            // }
             
-            texBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainIbo, &err);
-            if (err != CL_SUCCESS) {
-                std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
-                exit(EXIT_FAILURE);
-            }
-            std::cout << "Buffers CL: " << err << std::endl;
+            // texBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainIbo, &err);
+            // if (err != CL_SUCCESS) {
+            //     std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
+            //     exit(EXIT_FAILURE);
+            // }
+            // std::cout << "Buffers CL: " << err << std::endl;
             
         }
 
@@ -156,32 +178,37 @@ class TerrainSetup {
             }
         }
 
-        void RenderTerrain(GLFWwindow* window) {
+        void RenderTerrain(GLFWwindow* window, float dt) {
             // for (int i = 0; i < 4; i++) {
             //     for (int j = 0; j < 4; j++) {
             //         std::cout << camera->view()[i][j] << std::endl;
             //     }
             // }            
+            // wrldTrans->Rotate(0.03f, 0.02f, 0.01f);
+            // camera->OnRender(dt);
+            std::cout << camera->m_pos[0] << " " << camera->m_pos[1] << " " << camera->m_pos[2] << std::endl;
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            updateMat();
 
-            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, (GLfloat*)(&(mat[0][0])));
             // std::cout << "Posicion camara asignada" << std::endl;
-
-
             glBindVertexArray(terrainVao);
+
+            // glBindVertexArray(terrainVao);
             glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
 
+            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, glm::value_ptr(mat));
             // position
             glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
             // std::cout << "Posicion vertices" << std::endl;
 
-            // tex coords
+            // color coords
             glEnableVertexAttribArray(1);
             glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float)));
             // std::cout << "Colores vertices" << std::endl;
-
+            glLineWidth(1); 
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             glDrawElements(GL_TRIANGLES, (terrain->trianglesSize())*3, GL_UNSIGNED_INT, 0);
             
             checkGLErrors("After RenderTerrain");
@@ -230,7 +257,11 @@ class TerrainSetup {
         }
 };
 
-
+void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
+    if (globCamera) {
+        globCamera->OnMouse(static_cast<int>(xpos), static_cast<int>(ypos));
+    }
+}
 
 int main(int argc, char const *argv[]) {
     GLFWwindow* window;
@@ -252,11 +283,17 @@ int main(int argc, char const *argv[]) {
     // float cameraYaw = -90.0f; // Yaw para mirar hacia el centro del terreno
     // float cameraPitch = -45.0f; // Pitch para mirar hacia abajo
     // Camera camera(pos, cameraDistance, cameraYaw, cameraPitch, glm::vec3(0.0, 0.0, 1.0));
-    Camera camera;
-    ProjectionTrans persProj(width, height);
+    Camera camera(640, 480);
+    globCamera = &camera;
+    // camera.SetPosition((float)width, (float)height, 10.0f); // Posición inicial de la cámara
+    // camera.SetOrientation(0.0f, 0.0f); // Orientación inicial de la cámara
+
+    ProjectionTrans persProj(640, 480);
+
     WorldTrans worldtr;
-    worldtr.SetPosition(50.0f, 50.0f, 0.0f);
-    worldtr.Rotate(0.0f, 10.0f, 0.0f);
+    // worldtr.SetPosition((float)width, (float)height, 0.0f); // El objeto está centrado en el origen
+    // worldtr.SetScale(1.0f); // Escala unitaria
+    
 
    std::cout << "camera" << std::endl;
 
@@ -271,25 +308,28 @@ int main(int argc, char const *argv[]) {
     std::string kernel_name = "terrainManipulation";
     initProgram(&program, &kernel, src_code, &device, &queue, &context, kernel_name);
 
-    glEnable(GL_CULL_FACE);
-    glFrontFace(GL_CW);
-    glCullFace(GL_BACK);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    // glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    // glfwSetCursorPosCallback(window, mouse_callback);
+    // glFrontFace(GL_CW);
+    // glCullFace(GL_BACK);
 
     GLTerrain.CreateTerrainVAO();
-    glClearColor(0.0, 0.0, 0.0, 0.0);
 
     float lastFrameTime = glfwGetTime();
     float currentFrameTime;
     float deltaTime;
 
     while (!glfwWindowShouldClose(window)) {
+        glClearColor(0.0, 0.0, 0.0, 0.0);
         currentFrameTime = glfwGetTime();
         deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
         // updatePos(deltaTime/10);
-        // shaderObj.use();
+        shaderObj.use();
         GLTerrain.processInput(window, deltaTime*10.0f);
-        GLTerrain.RenderTerrain(window);
+        GLTerrain.RenderTerrain(window, deltaTime*10.0f);
         
     }
 
