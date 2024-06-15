@@ -30,20 +30,20 @@ void WorldTrans::Rotate(float x, float y, float z) {
 
 glm::mat4 WorldTrans::GetMatrix() {
     // // Matriz de Escalado
-    // glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(m_scale, m_scale, m_scale));
+    glm::mat4 Scale = glm::scale(glm::mat4(1.0f), glm::vec3(m_scale, m_scale, m_scale));
 
     // // Matriz de Rotación
-    // glm::mat4 Rotation = glm::rotate(glm::mat4(1.0f), glm::radians(m_rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-    // Rotation = glm::rotate(Rotation, glm::radians(m_rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-    // Rotation = glm::rotate(Rotation, glm::radians(m_rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    glm::mat4 Rotation = glm::rotate(glm::mat4(1.0f), glm::radians(m_rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    Rotation = glm::rotate(Rotation, glm::radians(m_rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    Rotation = glm::rotate(Rotation, glm::radians(m_rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 
     // // Matriz de Traslación
-    // glm::mat4 Translation = glm::translate(glm::mat4(1.0f), glm::vec3(m_pos.x, m_pos.y, m_pos.z));
+    glm::mat4 Translation = glm::translate(glm::mat4(1.0f), glm::vec3(m_pos.x, m_pos.y, m_pos.z));
 
-    // glm::mat4 WorldTransformation = Translation * Rotation * Scale;
+    glm::mat4 WorldTransformation = Translation * Rotation * Scale;
 
-    // return WorldTransformation;
-    return glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))*glm::scale(glm::mat4(1.0f), glm::vec3(1.0f));
+    return WorldTransformation;
+    // return glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))*Rotation*glm::scale(glm::mat4(1.0f), glm::vec3(1.0f));
 }
 
 
@@ -136,7 +136,7 @@ void Camera::SetPosition(float x, float y, float z) {
     m_pos.x = x;
     m_pos.y = y;
     m_pos.z = z;
-    Update();
+    // Update();
 }
 
 void Camera::SetOrientation(float AngleH, float AngleV) {
@@ -327,33 +327,5 @@ void Camera::OnRender(float dt)
 
 
 glm::mat4 Camera::GetMatrix() {
-    // glm::mat4 CameraTranslation, CameraRotateTrans;
-    // CameraTranslation = glm::mat4(glm::vec4(1.0f, 0.0f, 0.0f, 0.0f),
-    //                         glm::vec4(0.0f, 1.0f, 0.0f, 0.0f),
-    //                         glm::vec4(0.0f, 0.0f, 1.0f, 0.0f),
-    //                         glm::vec4(-m_pos[0], -m_pos[1], -m_pos[2], 1.0f));
-
-    // glm::vec3 front;
-    // front.x = cos(glm::radians(m_AngleH)) * cos(glm::radians(m_AngleV));
-    // front.y = sin(glm::radians(m_AngleV));
-    // front.z = sin(glm::radians(m_AngleH)) * cos(glm::radians(m_AngleV));        
-    // m_front = glm::normalize(front);
-
-    // glm::vec3 N = m_front;
-    // N = glm::normalize(N);
-    // glm::vec3 upNorm = m_up;
-    // upNorm = glm::normalize(upNorm);
-
-    // glm::vec3 U = glm::normalize(glm::cross(upNorm, N));
-
-    // glm::vec3 V = glm::normalize(glm::cross(N, U));
-
-    // CameraRotateTrans = glm::mat4(glm::vec4(U[0], V[0], N[0], 0.0f),
-    //                         glm::vec4(U[1], V[1], N[1], 0.0f),
-    //                         glm::vec4(U[2], V[2], N[2], 0.0f),
-    //                         glm::vec4(0.0f, 0.0f, 0.0f, 1.0f));
-
-    // return CameraRotateTrans * CameraTranslation;
     return glm::lookAt(m_pos, m_pos + m_front, m_up);
-    // return glm::lookAt(glm::vec3(1.0, 1.0, 2.5), glm::vec3(1.0, 1.0,0), glm::vec3(0,1,0));
 }

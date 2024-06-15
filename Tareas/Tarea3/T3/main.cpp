@@ -12,12 +12,12 @@ Camera* globCamera;
 
 int height = 10, width = 10;
 
-cl::Device device;
-cl::Platform platform;
-cl::CommandQueue queue;
-cl::Context context;
-cl::Program program;
-cl::Kernel kernel;
+// cl::Device device;
+// cl::Platform platform;
+// cl::CommandQueue queue;
+// cl::Context context;
+// cl::Program program;
+// cl::Kernel kernel;
 
 const std::string vertex_shader_path = "vertexShader.txt";
 const std::string fragment_shader_path = "fragmentShader.txt";
@@ -60,27 +60,27 @@ class TerrainSetup {
         }
 
         void updateMat() {
-            // std::cout << "Projection Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << projInfo->getProjectionMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-            // std::cout << "View Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << camera->GetMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-            // std::cout << "World Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << wrldTrans->GetMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
+            std::cout << "Projection Matrix: " << std::endl;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    std::cout << projInfo->getProjectionMatrix()[i][j] << " ";
+                }
+                std::cout << std::endl;
+            }
+            std::cout << "View Matrix: " << std::endl;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    std::cout << camera->GetMatrix()[i][j] << " ";
+                }
+                std::cout << std::endl;
+            }
+            std::cout << "World Matrix: " << std::endl;
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    std::cout << wrldTrans->GetMatrix()[i][j] << " ";
+                }
+                std::cout << std::endl;
+            }
             mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
         }
 
@@ -186,10 +186,11 @@ class TerrainSetup {
             // }            
             // wrldTrans->Rotate(0.03f, 0.02f, 0.01f);
             // camera->OnRender(dt);
-            std::cout << camera->m_pos[0] << " " << camera->m_pos[1] << " " << camera->m_pos[2] << std::endl;
+            // std::cout << camera->m_pos[0] << " " << camera->m_pos[1] << " " << camera->m_pos[2] << std::endl;
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             updateMat();
 
+            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, glm::value_ptr(mat));
             // std::cout << "Posicion camara asignada" << std::endl;
             glBindVertexArray(terrainVao);
 
@@ -197,7 +198,6 @@ class TerrainSetup {
             glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
 
-            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, glm::value_ptr(mat));
             // position
             glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
@@ -215,46 +215,46 @@ class TerrainSetup {
             // glBindVertexArray(0);
             glDisableVertexAttribArray(0);
             glDisableVertexAttribArray(1);
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+            // glBindBuffer(GL_ARRAY_BUFFER, 0);
+            // glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             // std::cout << "Rendered frame." << std::endl;
             glfwSwapBuffers(window);
             glfwPollEvents();
             checkGLErrors("After PollEvents");
         }
 
-        void updatePos(float dt) {
-            cl::Event ev;
-            glFinish();
-            // Acquiring OpenGL objects in OpenCL
-            std::vector<cl::Memory> glObjects = {vertexBuff, texBuff};
-            cl_int res = queue.enqueueAcquireGLObjects(&glObjects, NULL, &ev);
-            ev.wait();
-            // std::cout<<5<<std::endl;
-            if (res!=CL_SUCCESS) {
-                std::cout<<"Failed acquiring GL object: "<<res<<std::endl;
-                exit(248);
-            }
+        // void updatePos(float dt) {
+        //     cl::Event ev;
+        //     glFinish();
+        //     // Acquiring OpenGL objects in OpenCL
+        //     std::vector<cl::Memory> glObjects = {vertexBuff, texBuff};
+        //     cl_int res = queue.enqueueAcquireGLObjects(&glObjects, NULL, &ev);
+        //     ev.wait();
+        //     // std::cout<<5<<std::endl;
+        //     if (res!=CL_SUCCESS) {
+        //         std::cout<<"Failed acquiring GL object: "<<res<<std::endl;
+        //         exit(248);
+        //     }
 
-            // float step = 0.0001f;
-            // Set the kernel arguments
-            kernel.setArg(0, vertexBuff);
-            kernel.setArg(1, texBuff);
-            kernel.setArg(2, dt);
-            // kernel.setArg(2, NUM_PARTICLES);
-            cl::NDRange GlobalWorkSize(GROUP_SIZE, 1, 1);
-            cl::NDRange LocalWorkSize(LOCAL_SIZE, 1, 1);
+        //     // float step = 0.0001f;
+        //     // Set the kernel arguments
+        //     kernel.setArg(0, vertexBuff);
+        //     kernel.setArg(1, texBuff);
+        //     kernel.setArg(2, dt);
+        //     // kernel.setArg(2, NUM_PARTICLES);
+        //     cl::NDRange GlobalWorkSize(GROUP_SIZE, 1, 1);
+        //     cl::NDRange LocalWorkSize(LOCAL_SIZE, 1, 1);
 
-            queue.enqueueNDRangeKernel(kernel, cl::NullRange, GlobalWorkSize, LocalWorkSize);
+        //     queue.enqueueNDRangeKernel(kernel, cl::NullRange, GlobalWorkSize, LocalWorkSize);
             
-            res = queue.enqueueReleaseGLObjects(&glObjects);
-            if (res!=CL_SUCCESS) {
-                std::cout<<"Failed releasing GL object: "<<res<<std::endl;
-                exit(247);
-            }
+        //     res = queue.enqueueReleaseGLObjects(&glObjects);
+        //     if (res!=CL_SUCCESS) {
+        //         std::cout<<"Failed releasing GL object: "<<res<<std::endl;
+        //         exit(247);
+        //     }
 
-            queue.finish();
-        }
+        //     queue.finish();
+        // }
 };
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
@@ -267,8 +267,6 @@ int main(int argc, char const *argv[]) {
     GLFWwindow* window;
     initOpenGL(&window);
 
-    Shader shaderObj(vertex_shader_path, fragment_shader_path);
-    shaderObj.use();
    
    std::cout << "shaderObj" << std::endl;
     Terrain terrain(width, height);
@@ -285,7 +283,7 @@ int main(int argc, char const *argv[]) {
     // Camera camera(pos, cameraDistance, cameraYaw, cameraPitch, glm::vec3(0.0, 0.0, 1.0));
     Camera camera(640, 480);
     globCamera = &camera;
-    // camera.SetPosition((float)width, (float)height, 10.0f); // Posición inicial de la cámara
+    camera.SetPosition((float)width, (float)height, 10.0f); // Posición inicial de la cámara
     // camera.SetOrientation(0.0f, 0.0f); // Orientación inicial de la cámara
 
     ProjectionTrans persProj(640, 480);
@@ -299,14 +297,13 @@ int main(int argc, char const *argv[]) {
 
     TerrainSetup GLTerrain(&terrain, &camera, &worldtr, &persProj);
    std::cout << "terrain setup" << std::endl;
-    GLTerrain.camLoc(&shaderObj);
    std::cout << "camera location" << std::endl;
 
-    initOpenCL(&device, &context, &platform);
+    // initOpenCL(&device, &context, &platform);
 
-    std::string src_code = load_from_file("kernel.cl");
-    std::string kernel_name = "terrainManipulation";
-    initProgram(&program, &kernel, src_code, &device, &queue, &context, kernel_name);
+    // std::string src_code = load_from_file("kernel.cl");
+    // std::string kernel_name = "terrainManipulation";
+    // initProgram(&program, &kernel, src_code, &device, &queue, &context, kernel_name);
 
     // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     // glEnable(GL_CULL_FACE);
@@ -316,6 +313,9 @@ int main(int argc, char const *argv[]) {
     // glCullFace(GL_BACK);
 
     GLTerrain.CreateTerrainVAO();
+    Shader shaderObj(vertex_shader_path, fragment_shader_path);
+    shaderObj.use();
+    GLTerrain.camLoc(&shaderObj);
 
     float lastFrameTime = glfwGetTime();
     float currentFrameTime;
