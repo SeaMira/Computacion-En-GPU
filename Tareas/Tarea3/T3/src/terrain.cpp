@@ -18,7 +18,7 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
             float z = noise(static_cast<float>(x), static_cast<float>(y));
             // z = std::fmod(z, 6000.0f);
             if (z < 0.0f) z = 0.0f;
-            vertices.push_back(Vertex((float)x*0.5, (float)y*0.5, z, std::rand() / static_cast<float>(RAND_MAX), 
+            vertices.push_back(Vertex((float)x*0.5, (float)y*0.5, 0.0, std::rand() / static_cast<float>(RAND_MAX), 
                                 std::rand() / static_cast<float>(RAND_MAX), 
                                 std::rand() / static_cast<float>(RAND_MAX)));
 
