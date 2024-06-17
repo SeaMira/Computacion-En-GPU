@@ -1,96 +1,77 @@
-// #include <GL/glew.h>
-// #include <glad/glad.h>
-// #include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
-#include"init.h"
-#include"shader.h"
-#include<iostream>
-#include<terrain.h>
-#include"camera2.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-Camera* globCamera;
+#include <shader_m.h>
+#include <terrain.h>
+#include <iostream>
 
-int height = 10, width = 10;
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void processInput(GLFWwindow *window);
 
-cl::Device device;
-cl::Platform platform;
-cl::CommandQueue queue;
-cl::Context context;
-cl::Program program;
-cl::Kernel kernel;
+// settings
+const unsigned int SCR_WIDTH = 640;
+const unsigned int SCR_HEIGHT = 480;
+int GRID_WIDTH = 50;
+int GRID_HEIGHT = 50;
 
-const std::string vertex_shader_path = "vertexShader.txt";
-const std::string fragment_shader_path = "fragmentShader.txt";
-const std::string terrain_path = "terrain.txt";
+// camera
+glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  20.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
 
-void checkGLErrors(const std::string& location) {
-    GLenum error;
-    while ((error = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "OpenGL error at " << location << ": " << error << std::endl;
-    }
-}
+bool firstMouse = true;
+float yaw   = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+float pitch =  0.0f;
+float lastX =  640.0f / 2.0;
+float lastY =  480.0 / 2.0;
+float fov   =  45.0f;
+
+// timing
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
+
 
 class TerrainSetup {
     private:
         Terrain* terrain;
-        Camera* camera;
-        WorldTrans* wrldTrans;
-        ProjectionTrans* projInfo;
-        glm::mat4 mat;
+        // Camera* camera;
+        // WorldTrans* wrldTrans;
+        // ProjectionTrans* projInfo;
+        // glm::mat4 mat;
 
-        GLuint gWVPLocation;
+        // GLuint gWVPLocation;
 
         GLuint terrainVao = -1;
         GLuint terrainVbo = -1;
         GLuint terrainIbo = -1;
 
-        cl::BufferGL vertexBuff;
-        cl::BufferGL texBuff;
-
         int LOCAL_SIZE, GROUP_SIZE;
 
     public:
-        TerrainSetup(Terrain* terrain, Camera* camera, WorldTrans* wrldTrans, ProjectionTrans* projInfo) {
+        TerrainSetup(Terrain* terrain) {
             this->terrain = terrain;
-            this->camera = camera;
-            this->wrldTrans = wrldTrans;
-            this->projInfo = projInfo;
+            // this->camera = camera;
+            // this->wrldTrans = wrldTrans;
+            // this->projInfo = projInfo;
 
-            mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
+            // mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
         }
 
-        void updateMat() {
-            // std::cout << "Projection Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << projInfo->getProjectionMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-            // std::cout << "View Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << camera->GetMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-            // std::cout << "World Matrix: " << std::endl;
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << wrldTrans->GetMatrix()[i][j] << " ";
-            //     }
-            //     std::cout << std::endl;
-            // }
-            mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
-        }
+        
 
         ~TerrainSetup() {
             if (terrain) {
                 delete terrain;
             }
-            if (camera) {
-                delete camera;
-            }
+            // if (camera) {
+            //     delete camera;
+            // }
             if (terrainVao != -1) {
                 glDeleteBuffers(1, &terrainVao);
             }
@@ -102,28 +83,6 @@ class TerrainSetup {
             }
         }
 
-        void processInput(GLFWwindow* window, float dt) {
-            if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-                glfwSetWindowShouldClose(window, true);
-
-            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                camera->OnKeyboard(2, dt);
-            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                camera->OnKeyboard(3, dt);
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                camera->OnKeyboard(0, dt);
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                camera->OnKeyboard(1, dt);
-            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-                camera->OnKeyboard(7, dt);
-            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-                camera->OnKeyboard(6, dt);
-            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-                camera->OnKeyboard(4, dt);
-            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-                camera->OnKeyboard(5, dt);
-            
-        }
 
         void CreateTerrainVAO() {
             std::cout << "Creating VAO" << std::endl;
@@ -139,202 +98,372 @@ class TerrainSetup {
             glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
             glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*terrain->verticesSize(), terrain->getVerticesData(), GL_STATIC_DRAW);
 
-            // Vertex* vertices = terrain->getVerticesData();
-            // for (int i = 0; i < terrain->verticesSize(); i++) {
-            //     std::cout << vertices->x << " " << vertices->y << " " << vertices->z << std::endl;
-            //     vertices ++;
-            // }
+            
             glGenBuffers(1, &terrainIbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
             glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Triangle)*terrain->trianglesSize(), terrain->getTrianglesData(), GL_STATIC_DRAW);
-            // Triangle* triangles = terrain->getTrianglesData();
-            // for (int i = 0; i < terrain->trianglesSize(); i++) {
-            //     std::cout << triangles->v1 << " " << triangles->v2 << " " << triangles->v3 << std::endl;
-            //     triangles ++;
-            // }
-
-            // cl_int err;
-            // vertexBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainVbo, &err);
-            // if (err != CL_SUCCESS) {
-            //     std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
-            //     exit(EXIT_FAILURE);
-            // }
-            
-            // texBuff = cl::BufferGL(context, CL_MEM_READ_WRITE, terrainIbo, &err);
-            // if (err != CL_SUCCESS) {
-            //     std::cerr << "Failed to create OpenCL buffer from OpenGL buffer" << std::endl;
-            //     exit(EXIT_FAILURE);
-            // }
-            // std::cout << "Buffers CL: " << err << std::endl;
+           
             
         }
 
-        void camLoc(Shader* shader) {
-            const std::string camLoc = "gWVP";
-            gWVPLocation = shader->get(camLoc);
-            if (gWVPLocation == -1) {
-                printf("Error getting uniform location of 'gWVP'\n");
-                exit(1);
-            }
-        }
-
-        void RenderTerrain(GLFWwindow* window, float dt) {
-            // for (int i = 0; i < 4; i++) {
-            //     for (int j = 0; j < 4; j++) {
-            //         std::cout << camera->view()[i][j] << std::endl;
-            //     }
-            // }            
-            // wrldTrans->Rotate(0.03f, 0.02f, 0.01f);
-            // camera->OnRender(dt);
-            std::cout << camera->m_pos[0] << " " << camera->m_pos[1] << " " << camera->m_pos[2] << std::endl;
+        void RenderTerrain(float dt) {
+            
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            updateMat();
-
-            // std::cout << "Posicion camara asignada" << std::endl;
+            
             glBindVertexArray(terrainVao);
 
-            // glBindVertexArray(terrainVao);
             glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
 
-            glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, glm::value_ptr(mat));
-            // position
             glEnableVertexAttribArray(0);
             glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-            // std::cout << "Posicion vertices" << std::endl;
 
-            // color coords
             glEnableVertexAttribArray(1);
             glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float)));
-            // std::cout << "Colores vertices" << std::endl;
-            glLineWidth(1); 
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             glDrawElements(GL_TRIANGLES, (terrain->trianglesSize())*3, GL_UNSIGNED_INT, 0);
             
-            checkGLErrors("After RenderTerrain");
             // glBindVertexArray(0);
             glDisableVertexAttribArray(0);
             glDisableVertexAttribArray(1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             // std::cout << "Rendered frame." << std::endl;
-            glfwSwapBuffers(window);
-            glfwPollEvents();
-            checkGLErrors("After PollEvents");
-        }
-
-        void updatePos(float dt) {
-            cl::Event ev;
-            glFinish();
-            // Acquiring OpenGL objects in OpenCL
-            std::vector<cl::Memory> glObjects = {vertexBuff, texBuff};
-            cl_int res = queue.enqueueAcquireGLObjects(&glObjects, NULL, &ev);
-            ev.wait();
-            // std::cout<<5<<std::endl;
-            if (res!=CL_SUCCESS) {
-                std::cout<<"Failed acquiring GL object: "<<res<<std::endl;
-                exit(248);
-            }
-
-            // float step = 0.0001f;
-            // Set the kernel arguments
-            kernel.setArg(0, vertexBuff);
-            kernel.setArg(1, texBuff);
-            kernel.setArg(2, dt);
-            // kernel.setArg(2, NUM_PARTICLES);
-            cl::NDRange GlobalWorkSize(GROUP_SIZE, 1, 1);
-            cl::NDRange LocalWorkSize(LOCAL_SIZE, 1, 1);
-
-            queue.enqueueNDRangeKernel(kernel, cl::NullRange, GlobalWorkSize, LocalWorkSize);
             
-            res = queue.enqueueReleaseGLObjects(&glObjects);
-            if (res!=CL_SUCCESS) {
-                std::cout<<"Failed releasing GL object: "<<res<<std::endl;
-                exit(247);
-            }
-
-            queue.finish();
         }
+
 };
 
-void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
-    if (globCamera) {
-        globCamera->OnMouse(static_cast<int>(xpos), static_cast<int>(ypos));
+
+
+
+
+
+
+
+
+
+
+
+
+int main()
+{
+    // glfw: initialize and configure
+    // ------------------------------
+    glfwInit();
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef __APPLE__
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
+    // glfw window creation
+    // --------------------
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    if (window == NULL)
+    {
+        std::cout << "Failed to create GLFW window" << std::endl;
+        glfwTerminate();
+        return -1;
     }
-}
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
 
-int main(int argc, char const *argv[]) {
-    GLFWwindow* window;
-    initOpenGL(&window);
+    // glad: load all OpenGL function pointers
+    // ---------------------------------------
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
 
-    Shader shaderObj(vertex_shader_path, fragment_shader_path);
-    shaderObj.use();
-   
-   std::cout << "shaderObj" << std::endl;
-    Terrain terrain(width, height);
-   std::cout << "terrain" << std::endl;
-    terrain.generateRandomTerrain(terrain_path);
-   std::cout << "generate terrain" << std::endl;
-//     terrain.loadFromFile(terrain_path);
-//    std::cout << "load terrain" << std::endl;
-
-    // glm::vec3 pos(50.0f, 50.0f, 150.0f);
-    // float cameraDistance = 100.0f; // Distancia de la cámara al terreno
-    // float cameraYaw = -90.0f; // Yaw para mirar hacia el centro del terreno
-    // float cameraPitch = -45.0f; // Pitch para mirar hacia abajo
-    // Camera camera(pos, cameraDistance, cameraYaw, cameraPitch, glm::vec3(0.0, 0.0, 1.0));
-    Camera camera(640, 480);
-    globCamera = &camera;
-    // camera.SetPosition((float)width, (float)height, 10.0f); // Posición inicial de la cámara
-    // camera.SetOrientation(0.0f, 0.0f); // Orientación inicial de la cámara
-
-    ProjectionTrans persProj(640, 480);
-
-    WorldTrans worldtr;
-    // worldtr.SetPosition((float)width, (float)height, 0.0f); // El objeto está centrado en el origen
-    // worldtr.SetScale(1.0f); // Escala unitaria
-    
-
-   std::cout << "camera" << std::endl;
-
-    TerrainSetup GLTerrain(&terrain, &camera, &worldtr, &persProj);
-   std::cout << "terrain setup" << std::endl;
-    GLTerrain.camLoc(&shaderObj);
-   std::cout << "camera location" << std::endl;
-
-    initOpenCL(&device, &context, &platform);
-
-    std::string src_code = load_from_file("kernel.cl");
-    std::string kernel_name = "terrainManipulation";
-    initProgram(&program, &kernel, src_code, &device, &queue, &context, kernel_name);
-
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    // glEnable(GL_CULL_FACE);
+    // configure global opengl state
+    // -----------------------------
     glEnable(GL_DEPTH_TEST);
-    // glfwSetCursorPosCallback(window, mouse_callback);
-    // glFrontFace(GL_CW);
-    // glCullFace(GL_BACK);
 
+    // build and compile our shader zprogram
+    // ------------------------------------
+    Shader ourShader("vertexShader.txt", "fragmentShader.txt");
+
+
+    Terrain terrain(GRID_WIDTH, GRID_HEIGHT);
+    terrain.generateRandomTerrain("terrain.txt");
+    TerrainSetup GLTerrain(&terrain);
     GLTerrain.CreateTerrainVAO();
 
-    float lastFrameTime = glfwGetTime();
-    float currentFrameTime;
-    float deltaTime;
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+    // ------------------------------------------------------------------
+    float vertices[] = {
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 
+         0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 0.0f,
 
-    while (!glfwWindowShouldClose(window)) {
-        glClearColor(0.0, 0.0, 0.0, 0.0);
-        currentFrameTime = glfwGetTime();
-        deltaTime = currentFrameTime - lastFrameTime;
-        lastFrameTime = currentFrameTime;
-        // updatePos(deltaTime/10);
-        shaderObj.use();
-        GLTerrain.processInput(window, deltaTime*10.0f);
-        GLTerrain.RenderTerrain(window, deltaTime*10.0f);
-        
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 0.0f,
+
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.0f,
+
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,
+ 
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,  1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,  1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,  1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 0.0f
+    };
+    // world space positions of our cubes
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,  0.0f),
+        glm::vec3( 2.0f,  5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f, -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3( 2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f,  3.0f, -7.5f),
+        glm::vec3( 1.3f, -2.0f, -2.5f),
+        glm::vec3( 1.5f,  2.0f, -2.5f),
+        glm::vec3( 1.5f,  0.2f, -1.5f),
+        glm::vec3(-1.3f,  1.0f, -1.5f)
+    };
+
+    unsigned int indices[] = {
+        // Cara frontal
+        0, 1, 2,
+        2, 3, 0,
+
+        // Cara trasera
+        4, 5, 6,
+        6, 7, 4,
+
+        // Cara izquierda
+        8, 9, 10,
+        10, 11, 8,
+
+        // Cara derecha
+        12, 13, 14,
+        14, 15, 12,
+
+        // Cara inferior
+        16, 17, 18,
+        18, 19, 16,
+
+        // Cara superior
+        20, 21, 22,
+        22, 23, 20
+    };
+
+    unsigned int VBO, VAO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    // texture coord attribute
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glLineWidth(1); 
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glDrawElements(GL_TRIANGLES, 12*3, GL_UNSIGNED_INT, 0);
+
+
+    // -------------------------------------------------------------------------------------------
+    ourShader.use();
+    // ourShader.setInt("texture1", 0);
+    // ourShader.setInt("texture2", 1);
+
+    // pass projection matrix to shader (as projection matrix rarely changes there's no need to do this per frame)
+    // -----------------------------------------------------------------------------------------------------------
+    glm::mat4 projection = glm::perspective(glm::radians(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    ourShader.setMat4("projection", projection);
+
+
+    // render loop
+    // -----------
+    while (!glfwWindowShouldClose(window))
+    {
+        // per-frame time logic
+        // --------------------
+        float currentFrame = static_cast<float>(glfwGetTime());
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
+        // input
+        // -----
+        processInput(window);
+
+        // render
+        // ------
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+
+        // bind textures on corresponding texture units
+        // glActiveTexture(GL_TEXTURE0);
+        // glBindTexture(GL_TEXTURE_2D, texture1);
+        // glActiveTexture(GL_TEXTURE1);
+        // glBindTexture(GL_TEXTURE_2D, texture2);
+
+        // activate shader
+        ourShader.use();
+
+        // camera/view transformation
+        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+        ourShader.setMat4("view", view);
+
+        // render boxes
+        glBindVertexArray(VAO);
+        for (unsigned int i = 0; i < 10; i++)
+        {
+            // calculate the model matrix for each object and pass it to shader before drawing
+            glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+            model = glm::translate(model, cubePositions[i]);
+            float angle = 20.0f * i;
+            model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+            ourShader.setMat4("model", model);
+
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+        GLTerrain.RenderTerrain(deltaTime*10.0f);
+
+        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
+        // -------------------------------------------------------------------------------
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 
-    glfwDestroyWindow(window);
+    // optional: de-allocate all resources once they've outlived their purpose:
+    // ------------------------------------------------------------------------
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+
+    // glfw: terminate, clearing all previously allocated GLFW resources.
+    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }
 
+// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+// ---------------------------------------------------------------------------------------------------------
+void processInput(GLFWwindow *window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    float cameraSpeed = static_cast<float>(2.5 * deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        cameraPos +=  glm::vec3(0.0f,1.0f,0.0f)* cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+        cameraPos -=  glm::vec3(0.0f,1.0f,0.0f)* cameraSpeed;
+}
+
+// glfw: whenever the window size changed (by OS or user resize) this callback function executes
+// ---------------------------------------------------------------------------------------------
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // make sure the viewport matches the new window dimensions; note that width and 
+    // height will be significantly larger than specified on retina displays.
+    glViewport(0, 0, width, height);
+}
+
+
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+    float xpos = static_cast<float>(xposIn);
+    float ypos = static_cast<float>(yposIn);
+    std::cout << xpos << " " << ypos << std::endl;
+
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
+    lastX = xpos;
+    lastY = ypos;
+
+    float sensitivity = 0.1f; // change this value to your liking
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    yaw += xoffset;
+    pitch += yoffset;
+
+    // make sure that when pitch is out of bounds, screen doesn't get flipped
+    if (pitch > 89.0f)
+        pitch = 89.0f;
+    if (pitch < -89.0f)
+        pitch = -89.0f;
+
+    // float cameraSpeed = static_cast<float>(2.5 * deltaTime);
+    // float MARGIN = 30.0f;
+    // if (xpos  < MARGIN) {
+    //     yaw += cameraSpeed;
+    // } else if (xpos > (SCR_WIDTH - MARGIN)) {
+    //     yaw -= cameraSpeed;
+    // }
+
+    glm::vec3 front;
+    front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(pitch));
+    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    cameraFront = glm::normalize(front);
+}
+
+// glfw: whenever the mouse scroll wheel scrolls, this callback is called
+// ----------------------------------------------------------------------
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    fov -= (float)yoffset;
+    if (fov < 1.0f)
+        fov = 1.0f;
+    if (fov > 45.0f)
+        fov = 45.0f;
+}

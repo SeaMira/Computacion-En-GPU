@@ -1,7 +1,7 @@
 #include<terrain.h>
 
 float noise(float x, float y) {
-    return (std::sin(x * 0.1f) * std::cos(y * 0.1f)) * 2.0f + (std::rand() % 2);
+    return (std::sin(x * 0.1f) * std::cos(y * 0.1f)) * 10.0f + (std::rand() % 10);
 }
 
 // Función para generar un terreno aleatorio
@@ -12,17 +12,23 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
         return;
     }
 
-    // Generar vértices
+    float minHeight = 20.0f;
+    float maxHeight = 0.0f;
+
+    // Generar vértices y determinar los valores mínimo y máximo de z
     for (int x = 0; x < width; ++x) {
         for (int y = 0; y < height; ++y) {
             float z = noise(static_cast<float>(x), static_cast<float>(y));
-            // z = std::fmod(z, 6000.0f);
-            if (z < 0.0f) z = 0.0f;
-            vertices.push_back(Vertex((float)x*0.5, (float)y*0.5, 0.0, std::rand() / static_cast<float>(RAND_MAX), 
-                                std::rand() / static_cast<float>(RAND_MAX), 
-                                std::rand() / static_cast<float>(RAND_MAX)));
-
+            if (z < minHeight) minHeight = z;
+            if (z > maxHeight) maxHeight = z;
+            vertices.push_back(Vertex((float)x, (float)y, z, 0.0f, 0.0f, 0.0f)); // Colores inicializados en 0
         }
+    }
+
+    // Normalizar los colores según la altura
+    for (auto& vertex : vertices) {
+        float normalizedZ = (vertex.z - minHeight) / (maxHeight - minHeight);
+        vertex.r = vertex.g = vertex.b = normalizedZ;
     }
 
     // Generar triángulos
