@@ -49,7 +49,7 @@ void Camera::SetEdgeStep(float newEdgeStep) {
 }
 
 void Camera::OnKeyboard(int key, float dt) {
-    float cameraSpeed = static_cast<float>(2.5 * dt);
+    float cameraSpeed = static_cast<float>(10.0f * dt);
     switch (key) {
         // W
         case 1:

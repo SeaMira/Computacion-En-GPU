@@ -6,6 +6,9 @@
 #include <ctime>
 #include <string>
 #include <cmath>
+#include <limits>
+
+
 
 // Estructura para un vértice
 struct Vertex {
@@ -23,11 +26,12 @@ struct Triangle {
 
 class Terrain {
     private:
-        int width, height;
+        int gridSize;
+        float roughness;
         std::vector<Vertex> vertices;
         std::vector<Triangle> indices;
     public:
-        Terrain(int width, int height) : width(width), height(height) {}
+        Terrain(int gridSize, float roughness) : gridSize(gridSize),  roughness(roughness) {}
         void generateRandomTerrain(const std::string& filename);
         void loadFromFile(const std::string& filename);
         Vertex* getVerticesData();
