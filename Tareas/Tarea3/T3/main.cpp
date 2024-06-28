@@ -16,6 +16,7 @@ void processInput(GLFWwindow *window, float deltaTime);
 unsigned int SCR_WIDTH;
 unsigned int SCR_HEIGHT;
 int GRID_SIZE;
+int curves = 1; // Inicializar el contador de curvas
 
 // camera
 Camera* globCamera;
@@ -96,7 +97,6 @@ class TerrainSetup {
 
         void RenderTerrain(float dt) {
             
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             
             glBindVertexArray(terrainVao);
 
@@ -112,6 +112,7 @@ class TerrainSetup {
             
             // glBindVertexArray(0);
             glDisableVertexAttribArray(0);
+            glBindVertexArray(0);
             glDisableVertexAttribArray(1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -171,9 +172,10 @@ int main(int argc, char const *argv[]) {
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
 
-    // build and compile our shader zprogram
+    // build and compile our shader program
     // ------------------------------------
     Shader ourShader("vertexShader.txt", "fragmentShader.txt");
+    Shader geomShader("vertexShaderGEOM.txt", "fragmentShaderGEOM.txt", "geometryShader.txt");
 
 
     Terrain terrain(GRID_SIZE, roughness);
@@ -181,7 +183,7 @@ int main(int argc, char const *argv[]) {
     TerrainSetup GLTerrain(&terrain);
     GLTerrain.CreateTerrainVAO();    
 
-    glLineWidth(1); 
+    glLineWidth(3); 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 
@@ -193,7 +195,8 @@ int main(int argc, char const *argv[]) {
 
     // pass projection matrix to shader (as projection matrix rarely changes there's no need to do this per frame)
     // -----------------------------------------------------------------------------------------------------------
-    ourShader.setMat4("projection", camera.getProjection() );
+    // float contourHeight = (terrain.maxHeight + terrain.minHeight)/2;
+    // std::cout << "contour height: " << contourHeight << std::endl;
 
 
     // render loop
@@ -225,8 +228,22 @@ int main(int argc, char const *argv[]) {
         ourShader.use();
 
         // camera/view transformation
+        ourShader.setMat4("projection", camera.getProjection() );
         ourShader.setMat4("view", camera.getView());
+        ourShader.setMat4("model", camera.getModel());
+        GLTerrain.RenderTerrain(deltaTime*10.0f);
 
+        
+        geomShader.use();
+
+        geomShader.setMat4("projection", camera.getProjection() );
+        geomShader.setMat4("view", camera.getView());
+        geomShader.setMat4("model", camera.getModel());
+        // geomShader.setFloat("height", contourHeight );
+        geomShader.setInt("curves", curves);
+        geomShader.setFloat("minHeight", terrain.minHeight);
+        geomShader.setFloat("maxHeight", terrain.maxHeight);
+        GLTerrain.RenderTerrain(deltaTime*10.0f);
         // render boxes
         // glBindVertexArray(VAO);
         // for (unsigned int i = 0; i < 10; i++)
@@ -240,8 +257,6 @@ int main(int argc, char const *argv[]) {
 
         //     glDrawArrays(GL_TRIANGLES, 0, 36);
         // }
-        ourShader.setMat4("model", camera.getModel());
-        GLTerrain.RenderTerrain(deltaTime*10.0f);
         camera.OnRender(deltaTime*10.0f);
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -278,6 +293,17 @@ void processInput(GLFWwindow *window, float deltaTime)
         globCamera->OnKeyboard(5, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
         globCamera->OnKeyboard(6, deltaTime);
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        curves++;
+        std::cout << "Curves increased to: " << curves << std::endl;
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        if (curves > 1) {
+            curves--;
+            std::cout << "Curves decreased to: " << curves << std::endl;
+        }
+    }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

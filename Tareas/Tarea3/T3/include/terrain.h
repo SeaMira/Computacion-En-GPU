@@ -38,4 +38,6 @@ class Terrain {
         int verticesSize();
         Triangle* getTrianglesData();
         int trianglesSize();
+        
+        float minHeight, maxHeight;
 };

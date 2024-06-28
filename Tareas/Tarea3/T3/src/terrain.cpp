@@ -86,8 +86,8 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
     generateFractalTerrain(grid, gridSize, roughness);
     std::cout << "generate fractal terrain" << std::endl;
 
-    float minHeight = 20.0f;
-    float maxHeight = 0.0f;
+    minHeight = 20.0f;
+    maxHeight = 0.0f;
 
     // Generar vértices y determinar los valores mínimo y máximo de z
     for (int x = 0; x < gridSize; ++x) {
