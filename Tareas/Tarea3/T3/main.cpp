@@ -85,6 +85,7 @@ int main(int argc, char const *argv[]) {
     ourShader.use();
     
     Camera camera(SCR_WIDTH, SCR_HEIGHT);
+    camera.SetPosition((float)GRID_SIZE/2, (float)GRID_SIZE/2, terrain.maxHeight);
     globCamera = &camera;
 
     // pass projection matrix to shader (as projection matrix rarely changes there's no need to do this per frame)

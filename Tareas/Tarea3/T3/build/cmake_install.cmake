@@ -1,4 +1,4 @@
-# Install script for directory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3
+# Install script for directory: C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,12 +39,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/cmake_install.cmake")
+  include("C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/src/cmake_install.cmake")
+  include("C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/build/src/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

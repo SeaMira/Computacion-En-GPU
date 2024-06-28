@@ -81,13 +81,13 @@ void Camera::OnKeyboard(int key, float dt) {
         // SPACE
         case 5:
         {
-            cameraPos +=  glm::vec3(0.0f,1.0f,0.0f)* cameraSpeed;
+            cameraPos +=  initCameraUp* cameraSpeed;
         }
         break;
         // LEFT_SHIFT
         case 6: 
         {
-            cameraPos -=  glm::vec3(0.0f,1.0f,0.0f)* cameraSpeed;
+            cameraPos -=  initCameraUp* cameraSpeed;
         }
         break;
     }
@@ -113,7 +113,7 @@ void Camera::OnMouse(float x, float y) {
     xoffset *= sensitivity;
     yoffset *= sensitivity;
 
-    yaw += xoffset;
+    yaw -= xoffset;
     pitch += yoffset;
 
     // make sure that when pitch is out of bounds, screen doesn't get flipped
@@ -150,8 +150,10 @@ void Camera::OnMouse(float x, float y) {
 
     glm::vec3 front;
     front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    front.y = sin(glm::radians(pitch));
-    front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.y = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    front.z = sin(glm::radians(pitch));
+    // front.y = sin(glm::radians(pitch));
+    // front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(front);
 }
 
@@ -159,11 +161,11 @@ void Camera::OnRender(float dt) {
     bool ShouldUpdate = false;
 
     if (OnLeftEdge) {
-        yaw -= EDGE_STEP*dt;
+        yaw += EDGE_STEP*dt;
         ShouldUpdate = true;
     }
     else if (OnRightEdge) {
-        yaw += EDGE_STEP*dt;
+        yaw -= EDGE_STEP*dt;
         ShouldUpdate = true;
     }
 
@@ -187,8 +189,11 @@ void Camera::OnRender(float dt) {
             pitch = -89.0f;
         glm::vec3 front;
         front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        front.y = sin(glm::radians(pitch));
-        front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        front.y = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        front.z = sin(glm::radians(pitch));
+        // front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+        // front.y = sin(glm::radians(pitch));
+        // front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
         cameraFront = glm::normalize(front);
     }
     

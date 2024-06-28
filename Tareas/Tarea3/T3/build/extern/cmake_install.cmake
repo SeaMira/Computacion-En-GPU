@@ -1,4 +1,4 @@
-# Install script for directory: D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern
+# Install script for directory: C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/extern
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glad/cmake_install.cmake")
+  include("C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glad/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glm/cmake_install.cmake")
+  include("C:/Users/Public/Documents/U/9no Semestre Primavera/Computacion-En-GPU/Tareas/Tarea3/T3/build/extern/glm/cmake_install.cmake")
 endif()
 
