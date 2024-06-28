@@ -1,6 +1,14 @@
 #include<terrain.h>
+#include <glm/glm.hpp>
 
 float noise = 50.0f;
+
+Normal calculateNormal(const Vertex& v1, const Vertex& v2, const Vertex& v3) {
+    glm::vec3 edge1 = glm::vec3(v2.x - v1.x, v2.y - v1.y, v2.z - v1.z);
+    glm::vec3 edge2 = glm::vec3(v3.x - v1.x, v3.y - v1.y, v3.z - v1.z);
+    glm::vec3 normal = glm::normalize(glm::cross(edge1, edge2));
+    return Normal(normal.x, normal.y, normal.z);
+}
 
 // Función para inicializar la cuadrícula con valores aleatorios en los vértices de las esquinas
 void initializeGrid(std::vector<std::vector<float>>& grid, int size, float roughness) {
@@ -96,6 +104,7 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
             if (z < minHeight) minHeight = z;
             if (z > maxHeight) maxHeight = z;
             vertices.push_back(Vertex((float)x, (float)y, z, 0.0f, 0.0f, 0.0f)); // Colores inicializados en 0
+            normales.push_back(Normal(0.0f, 0.0f, 0.0f));
         }
     }
 
@@ -105,7 +114,7 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
         vertex.r = vertex.g = vertex.b = normalizedZ;
     }
 
-    // Generar triángulos
+    // Generar triángulos y calcular normales
     for (unsigned int x = 0; x < gridSize - 1; ++x) {
         for (unsigned int y = 0; y < gridSize - 1; ++y) {
             unsigned int currentIndex = x * gridSize + y;
@@ -113,10 +122,23 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
 
             // Triángulo 1
             indices.push_back(Triangle(currentIndex, nextRowIndex, currentIndex + 1));
+            Normal normal1 = calculateNormal(vertices[currentIndex], vertices[nextRowIndex], vertices[currentIndex + 1]);
+            normales[currentIndex] += normal1;
+            normales[nextRowIndex] += normal1;
+            normales[currentIndex + 1] += normal1;
 
             // Triángulo 2
             indices.push_back(Triangle(nextRowIndex, nextRowIndex + 1, currentIndex + 1));
+            Normal normal2 = calculateNormal(vertices[nextRowIndex], vertices[nextRowIndex + 1], vertices[currentIndex + 1]);
+            normales[nextRowIndex] += normal2;
+            normales[nextRowIndex + 1] += normal2;
+            normales[currentIndex + 1] += normal2;
         }
+    }
+
+    // Normalizar las normales
+    for (auto& normal : normales) {
+        normal.normalize();
     }
 
     // Escribir vértices en el archivo
@@ -127,6 +149,11 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
     // Escribir triángulos en el archivo
     for (const auto& triangle : indices) {
         file << "I " << triangle.v1 << " " << triangle.v2 << " " << triangle.v3 << std::endl;
+    }
+
+    // Escribir normales en el archivo
+    for (auto& normal : normales) {
+        file << "N " << normal.getU() << " " << normal.getV() << " " << normal.getW() << std::endl;
     }
 
     file.close();
@@ -158,6 +185,11 @@ void Terrain::loadFromFile(const std::string& filename)
             iss >> v1 >> v2 >> v3;
             indices.push_back(Triangle(v1, v2, v3)) ;
         }
+        else if (type == 'N') {
+            float u, v, w;
+            iss >> u >> v >> w;
+            normales.push_back(Normal(u, v, w)) ;
+        }
     }
 
     file.close();
@@ -177,4 +209,12 @@ Triangle* Terrain::getTrianglesData() {
 
 int Terrain::trianglesSize() {
     return indices.size();
+}
+
+Normal* Terrain::getNormalesData() {
+    return &normales[0];
+}
+
+int Terrain::normalesSize() {
+    return normales.size();
 }

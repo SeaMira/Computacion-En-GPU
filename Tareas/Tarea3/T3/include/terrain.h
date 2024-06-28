@@ -23,6 +23,38 @@ struct Triangle {
     Triangle(unsigned int v1, unsigned int v2, unsigned int v3) : v1(v1), v2(v2), v3(v3) {}
 };
 
+class Normal {
+    private:
+        float u, v, w;
+    public:
+        Normal(float u, float v, float w) : u(u), v(v), w(w) {}
+        float getU() {return u;}
+        float getV() {return v;}
+        float getW() {return w;}
+
+        Normal operator+(Normal& n) {
+            return Normal(this->u + n.getU(),
+                this->v + n.getV(),
+                this->w + n.getW());
+        } 
+
+        void operator+=(Normal& n) {
+            this->u += n.getU();
+            this->v += n.getV();
+            this->w += n.getW();
+        } 
+
+        void normalize() {
+            float norm = sqrt(u*u+v*v+w*w);
+            if (norm != 0.0f) {
+                u /= norm;
+                v /= norm;
+                w /= norm;
+            }
+        }
+};
+
+
 
 class Terrain {
     private:
@@ -30,6 +62,7 @@ class Terrain {
         float roughness;
         std::vector<Vertex> vertices;
         std::vector<Triangle> indices;
+        std::vector<Normal> normales;
     public:
         Terrain(int gridSize, float roughness) : gridSize(gridSize),  roughness(roughness) {}
         void generateRandomTerrain(const std::string& filename);
@@ -38,6 +71,8 @@ class Terrain {
         int verticesSize();
         Triangle* getTrianglesData();
         int trianglesSize();
+        Normal* getNormalesData();
+        int normalesSize();
         
         float minHeight, maxHeight;
 };

@@ -18,6 +18,9 @@ Camera::Camera(int SCR_WIDTH, int SCR_HEIGHT, const glm::vec3 Pos, const glm::ve
     this->cameraUp = Up;
 }
 
+glm::vec3 Camera::getPosition() {
+    return cameraPos;
+}
 
 glm::mat4 Camera::getProjection() {
     return glm::perspective(glm::radians(fov), SCR_WIDTH/SCR_HEIGHT, 0.1f, 100.0f);
