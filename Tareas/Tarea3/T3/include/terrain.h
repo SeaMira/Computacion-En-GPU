@@ -60,12 +60,18 @@ class Terrain {
     private:
         int gridSize;
         float roughness;
+        
         std::vector<Vertex> vertices;
         std::vector<Triangle> indices;
         std::vector<Normal> normales;
+
+        std::string filename;
     public:
-        Terrain(int gridSize, float roughness) : gridSize(gridSize),  roughness(roughness) {}
+        Terrain(int gridSize, float roughness) : gridSize(gridSize),  roughness(roughness) {
+            std::srand(static_cast<unsigned int>(std::time(0)));
+        }
         void generateRandomTerrain(const std::string& filename);
+        void reGenerateRandomTerrain();
         void loadFromFile(const std::string& filename);
         Vertex* getVerticesData();
         int verticesSize();

@@ -85,8 +85,9 @@ void Terrain::generateRandomTerrain(const std::string& filename) {
         std::cerr << "Error al abrir el archivo para escribir." << std::endl;
         return;
     }
+    this->filename = filename;
 
-    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    
     std::vector<std::vector<float>> grid(gridSize, std::vector<float>(gridSize));
     std::cout << "initialize vector grid" << std::endl;
     initializeGrid(grid, gridSize, roughness);
@@ -194,6 +195,15 @@ void Terrain::loadFromFile(const std::string& filename)
 
     file.close();
 }
+
+void Terrain::reGenerateRandomTerrain() {
+    noise = 50.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/1.000f));
+    vertices.clear();
+    indices.clear();
+    normales.clear();
+    generateRandomTerrain(filename);
+}
+
 
 Vertex* Terrain::getVerticesData() {
     return &vertices[0];

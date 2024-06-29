@@ -14,11 +14,25 @@ int curves = 1; // Inicializar el contador de curvas
 // camera
 Camera* globCamera;
 
+// terrain
+Terrain* globTerrain;
+
+// setup
+TerrainSetup* setup;
+
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
 
+float d0 = 0.0f;
 
+
+void CameraInfo() {
+    ImGui::Begin("Camera Info");   
+    ImGui::Text("Position (%.2f, %.2f, %.2f)", globCamera->getPosition().x, globCamera->getPosition().y, globCamera->getPosition().z);
+    ImGui::InputFloat("input double", &d0, 0.01f, 1.0f, "%.3f");
+    ImGui::End();
+}
 
 
 int main(int argc, char const *argv[]) {
@@ -50,10 +64,7 @@ int main(int argc, char const *argv[]) {
         return -1;
     }
     glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    glfwSetCursorPosCallback(window, mouse_callback);
-    // glfwSetScrollCallback(window, scroll_callback);
-
+    
     // glad: load all OpenGL function pointers
     // ---------------------------------------
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -61,6 +72,15 @@ int main(int argc, char const *argv[]) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    Interface gui(window);
+    gui.initContext();
+
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    // glfwSetScrollCallback(window, scroll_callback);
+
+    gui.initWithOpenGL();
 
     // configure global opengl state
     // -----------------------------
@@ -73,8 +93,10 @@ int main(int argc, char const *argv[]) {
 
 
     Terrain terrain(GRID_SIZE, roughness);
+    globTerrain = &terrain;
     terrain.generateRandomTerrain("terrain.txt");
     TerrainSetup GLTerrain(&terrain);
+    setup = &GLTerrain;
     GLTerrain.CreateTerrainVAO();    
 
     glLineWidth(3); 
@@ -113,11 +135,8 @@ int main(int argc, char const *argv[]) {
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
-        // bind textures on corresponding texture units
-        // glActiveTexture(GL_TEXTURE0);
-        // glBindTexture(GL_TEXTURE_2D, texture1);
-        // glActiveTexture(GL_TEXTURE1);
-        // glBindTexture(GL_TEXTURE_2D, texture2);
+        gui.newFrame();
+
 
         // activate shader
         ourShader.use();
@@ -147,19 +166,12 @@ int main(int argc, char const *argv[]) {
         geomShader.setFloat("minHeight", terrain.minHeight);
         geomShader.setFloat("maxHeight", terrain.maxHeight);
         GLTerrain.RenderTerrain(deltaTime*10.0f);
-        // render boxes
-        // glBindVertexArray(VAO);
-        // for (unsigned int i = 0; i < 10; i++)
-        // {
-        //     // calculate the model matrix for each object and pass it to shader before drawing
-        //     glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        //     model = glm::translate(model, cubePositions[i]);
-        //     float angle = 20.0f * i;
-        //     model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-        //     ourShader.setMat4("model", model);
 
-        //     glDrawArrays(GL_TRIANGLES, 0, 36);
-        // }
+
+        CameraInfo();
+        gui.drawData();
+
+        
         camera.OnRender(deltaTime*10.0f);
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -196,6 +208,8 @@ void processInput(GLFWwindow *window, float deltaTime)
         globCamera->OnKeyboard(5, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
         globCamera->OnKeyboard(6, deltaTime);
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+        setup->reGenerateRandomTerrain();
 
     if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
         curves++;

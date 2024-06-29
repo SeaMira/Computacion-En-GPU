@@ -1,7 +1,5 @@
 #include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-
+#include <interface.h>
 #include <camera3.h>
 #include <shader_m.h>
 #include <terrain.h>
@@ -82,6 +80,22 @@ class TerrainSetup {
             
         }
 
+        void reCreateTerrainArraysBuffers() {
+            glBindVertexArray(terrainVao);
+
+            glBindBuffer(GL_ARRAY_BUFFER, terrainVbo);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)*terrain->verticesSize(), terrain->getVerticesData(), GL_STATIC_DRAW);
+
+            
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terrainIbo);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Triangle)*terrain->trianglesSize(), terrain->getTrianglesData(), GL_STATIC_DRAW);
+
+            glBindBuffer(GL_ARRAY_BUFFER, terrainNbo);
+            glBufferData(GL_ARRAY_BUFFER, sizeof(Normal)*terrain->normalesSize(), terrain->getNormalesData(), GL_STATIC_DRAW);
+           
+            
+        }
+
         void RenderTerrain(float dt) {
             
             
@@ -110,6 +124,11 @@ class TerrainSetup {
             glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             // std::cout << "Rendered frame." << std::endl;
             
+        }
+
+        void reGenerateRandomTerrain() {
+            terrain->reGenerateRandomTerrain();
+            reCreateTerrainArraysBuffers();
         }
 
 };

@@ -1,7 +1,8 @@
 file(GLOB SOURCES *.cpp *.h)
 
 add_library(surfaceLeveldependencies ${SOURCES})
-target_link_libraries(surfaceLeveldependencies PUBLIC glfw3 glad glm)
+target_link_libraries(surfaceLeveldependencies PUBLIC glfw3 glad glm imgui)
+target_link_libraries(imgui PRIVATE glfw3)
 target_include_directories(surfaceLeveldependencies PUBLIC "${CMAKE_SOURCE_DIR}/include" ${OPENGL_INCLUDE_DIRS} ${GLFW3_INCLUDE_DIRS})
 
 # target_link_libraries(imgui PRIVATE glfw)
