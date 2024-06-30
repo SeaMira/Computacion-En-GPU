@@ -17,18 +17,24 @@ public:
 
     void SetPosition(float x, float y, float z);
     void SetPosition(glm::vec3 newPos);
+    void SetFront(float x, float y, float z);
+    void SetFront(glm::vec3 newPos);
+    void SetUp(float x, float y, float z);
+    void SetUp(glm::vec3 newPos);
     void SetMargin(float newMargin);
     void SetEdgeStep(float newEdgeStep);
+    void SetScrSize(int width, int height);
     
     // void updateCameraVectors();
     void OnKeyboard(int key, float dt);
     void OnMouse(float x, float y);
-
     void OnRender(float dt);
+    void OnScroll(float yoffset);
 
     glm::vec3 getPosition();
 
     glm::mat4 getProjection();
+    glm::mat4 getOrthographic(float left, float right, float bottom, float top, float near, float far);
     glm::mat4 getView();
     glm::mat4 getModel();
 

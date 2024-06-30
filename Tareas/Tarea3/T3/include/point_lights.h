@@ -4,12 +4,16 @@
 #include "shader_m.h"
 #include <vector>
 
+#define NR_POINT_LIGHTS 80
+
+
 class PointLight {
     public: 
         PointLight(glm::vec3 position, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular,float constant, float linear, float quadratic) : 
             position(position), ambient(ambient), diffuse(diffuse), specular(specular), constant(constant), linear(linear), quadratic(quadratic) {}
 
         void setPointLight(Shader* sh, int i);
+        void setPointLight(Shader* sh, const std::string& uniName);
 
         void setPosition(glm::vec3 position);
         void setAmbient(glm::vec3 ambient);
@@ -53,6 +57,7 @@ class PointLights {
         void addPointLight(PointLight pointLight);
         void removePointLight();
         void setPointLights();
+        void clearPointLights();
 
         int nr_lights = 0;
     private:

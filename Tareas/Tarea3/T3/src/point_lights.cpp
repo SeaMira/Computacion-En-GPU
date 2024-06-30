@@ -1,7 +1,6 @@
 #include <point_lights.h>
 
 
-
 void PointLight::setPointLight(Shader* sh, int i) {
     std::stringstream pos, am, diff, spec, cons, lin, quad;
     pos << "pointLights[" << i << "].position";
@@ -26,6 +25,32 @@ void PointLight::setPointLight(Shader* sh, int i) {
     sh->setFloat(quad.str().c_str(), quadratic);
 
 }
+
+void PointLight::setPointLight(Shader* sh, const std::string& uniName) {
+    std::stringstream pos, am, diff, spec, cons, lin, quad;
+    pos << uniName << ".position";
+    sh->setVec3(pos.str().c_str(), position.x, position.y, position.z);
+
+    am << uniName << ".ambient";
+    sh->setVec3(am.str().c_str(), ambient.x, ambient.y, ambient.z);
+
+    diff << uniName << ".diffuse";
+    sh->setVec3(diff.str().c_str(), diffuse.x, diffuse.y, diffuse.z);
+
+    spec << uniName << ".specular";
+    sh->setVec3(spec.str().c_str(), specular.x, specular.y, specular.z);
+
+    cons << uniName << ".constant";
+    sh->setFloat(cons.str().c_str(), constant);
+
+    lin << uniName << ".linear";
+    sh->setFloat(lin.str().c_str(), linear);
+
+    quad << uniName << ".quadratic";
+    sh->setFloat(quad.str().c_str(), quadratic);
+
+}
+
 void PointLight::setPosition(glm::vec3 position) {
     this->position = position;
 }
@@ -77,7 +102,7 @@ float PointLight::getQuadratic() {
 
 void PointLights::addPointLight(PointLight pointLight) {
     std::cout << "addPointLight " << nr_lights << std::endl;
-    if (nr_lights < 40) {
+    if (nr_lights < NR_POINT_LIGHTS) {
         lights.push_back(pointLight);
         nr_lights++;
     }
@@ -98,3 +123,8 @@ void PointLights::removePointLight() {
     }
 }
 
+
+void PointLights::clearPointLights() {
+    lights.clear();
+    nr_lights = 0;
+}

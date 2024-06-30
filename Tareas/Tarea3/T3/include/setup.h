@@ -10,39 +10,21 @@
 class TerrainSetup {
     private:
         Terrain* terrain;
-        // Camera* camera;
-        // WorldTrans* wrldTrans;
-        // ProjectionTrans* projInfo;
-        // glm::mat4 mat;
-
-        // GLuint gWVPLocation;
 
         GLuint terrainVao = -1;
         GLuint terrainVbo = -1;
         GLuint terrainNbo = -1;
         GLuint terrainIbo = -1;
 
-        int LOCAL_SIZE, GROUP_SIZE;
-
     public:
         TerrainSetup(Terrain* terrain) {
             this->terrain = terrain;
-            // this->camera = camera;
-            // this->wrldTrans = wrldTrans;
-            // this->projInfo = projInfo;
-
-            // mat = (projInfo->getProjectionMatrix()) *(camera->GetMatrix()) * (wrldTrans->GetMatrix());
         }
-
-        
 
         ~TerrainSetup() {
             if (terrain) {
                 delete terrain;
             }
-            // if (camera) {
-            //     delete camera;
-            // }
             if (terrainVao != -1) {
                 glDeleteBuffers(1, &terrainVao);
             }
@@ -53,7 +35,6 @@ class TerrainSetup {
                 glDeleteBuffers(1, &terrainIbo);
             }
         }
-
 
         void CreateTerrainVAO() {
             std::cout << "Creating VAO" << std::endl;

@@ -30,6 +30,10 @@ glm::mat4 Camera::getView() {
     return glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
+glm::mat4 Camera::getOrthographic(float left, float right, float bottom, float top, float near, float far) {
+    return glm::ortho(left, right, bottom, top, near, far);
+}
+
 // hasta que no se necesite ningún cambio solo retornará la identidad
 glm::mat4 Camera::getModel() {
     return glm::mat4(1.0f);
@@ -43,12 +47,32 @@ void Camera::SetPosition(glm::vec3 newPos) {
     cameraPos = newPos;
 }
 
+void Camera::SetFront(float x, float y, float z) {
+    cameraFront = glm::vec3(x,y,z);
+}
+
+void Camera::SetFront(glm::vec3 newFront) {
+    cameraFront = newFront;
+}
+
+void Camera::SetUp(float x, float y, float z) {
+    cameraUp = glm::vec3(x,y,z);
+}
+
+void Camera::SetUp(glm::vec3 newUp) {
+    cameraUp = newUp;
+}
+
 void Camera::SetMargin(float newMargin) {
     MARGIN = newMargin;
 }
 
 void Camera::SetEdgeStep(float newEdgeStep) {
     EDGE_STEP = newEdgeStep;
+}
+
+void Camera::SetScrSize(int width, int height) {
+    SCR_WIDTH = (float)width; SCR_HEIGHT = (float)height;
 }
 
 void Camera::OnKeyboard(int key, float dt) {
@@ -197,4 +221,12 @@ void Camera::OnRender(float dt) {
         cameraFront = glm::normalize(front);
     }
     
+}
+
+void Camera::OnScroll(float yoffset) {
+    fov -= yoffset;
+    if (fov < 1.0f)
+        fov = 1.0f;
+    if (fov > 45.0f)
+        fov = 45.0f;
 }
