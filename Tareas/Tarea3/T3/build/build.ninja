@@ -443,6 +443,15 @@ build src/CMakeFiles/surfaceLeveldependencies.dir/interface.cpp.obj: CXX_COMPILE
   TARGET_COMPILE_PDB = src\CMakeFiles\surfaceLeveldependencies.dir\surfaceLeveldependencies.pdb
   TARGET_PDB = src\libsurfaceLeveldependencies.pdb
 
+build src/CMakeFiles/surfaceLeveldependencies.dir/point_lights.cpp.obj: CXX_COMPILER__surfaceLeveldependencies_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/point_lights.cpp || cmake_object_order_depends_target_surfaceLeveldependencies
+  DEP_FILE = src\CMakeFiles\surfaceLeveldependencies.dir\point_lights.cpp.obj.d
+  FLAGS = -std=gnu++17
+  INCLUDES = -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glad/include" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/glm" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/imgui" -I"D:/Users/Escritorio/U/Otoño 2024 - 9no semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/extern/imgui/backends"
+  OBJECT_DIR = src\CMakeFiles\surfaceLeveldependencies.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\surfaceLeveldependencies.dir
+  TARGET_COMPILE_PDB = src\CMakeFiles\surfaceLeveldependencies.dir\surfaceLeveldependencies.pdb
+  TARGET_PDB = src\libsurfaceLeveldependencies.pdb
+
 build src/CMakeFiles/surfaceLeveldependencies.dir/shader.cpp.obj: CXX_COMPILER__surfaceLeveldependencies_unscanned_ D$:/Users/Escritorio/U/Otoño$ 2024$ -$ 9no$ semestre/Computacion-En-GPU/Computacion-En-GPU/Tareas/Tarea3/T3/src/shader.cpp || cmake_object_order_depends_target_surfaceLeveldependencies
   DEP_FILE = src\CMakeFiles\surfaceLeveldependencies.dir\shader.cpp.obj.d
   FLAGS = -std=gnu++17
@@ -469,7 +478,7 @@ build src/CMakeFiles/surfaceLeveldependencies.dir/terrain.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the static library src\libsurfaceLeveldependencies.a
 
-build src/libsurfaceLeveldependencies.a: CXX_STATIC_LIBRARY_LINKER__surfaceLeveldependencies_ src/CMakeFiles/surfaceLeveldependencies.dir/auxilliary.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera2.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera3.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/initCl.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/initGL.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/interface.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/shader.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/terrain.cpp.obj || extern/glad/libglad.a extern/glm/glm/libglm.a extern/libimgui.a
+build src/libsurfaceLeveldependencies.a: CXX_STATIC_LIBRARY_LINKER__surfaceLeveldependencies_ src/CMakeFiles/surfaceLeveldependencies.dir/auxilliary.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera2.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/camera3.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/initCl.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/initGL.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/interface.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/point_lights.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/shader.cpp.obj src/CMakeFiles/surfaceLeveldependencies.dir/terrain.cpp.obj || extern/glad/libglad.a extern/glm/glm/libglm.a extern/libimgui.a
   OBJECT_DIR = src\CMakeFiles\surfaceLeveldependencies.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

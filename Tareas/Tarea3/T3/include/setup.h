@@ -3,6 +3,7 @@
 #include <camera3.h>
 #include <shader_m.h>
 #include <terrain.h>
+#include <point_lights.h>
 #include <iostream>
 
 

@@ -2,12 +2,15 @@
 layout (triangles) in;
 layout (line_strip, max_vertices = 3) out;
 
+#define NR_MAX_CURVES 150
+
 out vec3 fragColor;
 
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
+uniform float curve_heights[NR_MAX_CURVES];
 uniform float minHeight;
 uniform float maxHeight;
 
@@ -15,28 +18,10 @@ uniform int curves;
 
 void main()
 {
-    //for (int i = 0; i < 3; ++i) {
-    //    int j = (i + 1) % 3;
-    //    vec3 p0 = gl_in[i].gl_Position.xyz;
-    //    vec3 p1 = gl_in[j].gl_Position.xyz;
-    //    
-    //    bool p0_above = p0.z > height;
-    //    bool p1_above = p1.z > height;
-    //    
-    //    if (p0_above != p1_above) {
-    //        float t = (height - p0.z) / (p1.z - p0.z);
-    //        vec3 intersection = mix(p0, p1, t);
-    //        gl_Position = projection * view * model * vec4(intersection, 1.0);
-    //        fragColor = vec3(0.0, 0.0, 0.0); // Color negro para las líneas
-    //        EmitVertex();
-    //    }
-    //}
-    //EndPrimitive();
 
     // Generar curvas de nivel
     for (int c = 0; c < curves; ++c) {
-        float dtH = maxHeight - minHeight;
-        float contourHeight = minHeight + dtH * float(c) / float(curves) ;
+        float contourHeight = curve_heights[c] ;
 
         // Emitir líneas de contorno
         for (int i = 0; i < 3; ++i) {
@@ -50,8 +35,8 @@ void main()
             if (p0_above != p1_above) {
                 float t = (contourHeight - p0.z) / (p1.z - p0.z);
                 vec3 intersection = mix(p0, p1, t);
-                float dtCol = (contourHeight-minHeight)/dtH;
-                vec3 curveColor = vec3(1.0-dtCol, dtCol, 1.0);
+                float dtCol = (contourHeight-minHeight)/(maxHeight-minHeight);
+                vec3 curveColor = vec3(1.0-dtCol, dtCol, 1.0-dtCol);
                 gl_Position = projection * view * model * vec4(intersection, 1.0);
                 fragColor = curveColor; // Color negro para las líneas
                 EmitVertex();
