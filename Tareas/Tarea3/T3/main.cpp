@@ -180,7 +180,7 @@ int main(int argc, char const *argv[]) {
     GRID_SIZE = std::stoi(argv[1]);
     SCR_WIDTH = std::stoi(argv[2]);
     SCR_HEIGHT = std::stoi(argv[3]);
-    float roughness = std::stof(argv[4]); 
+    float roughness = 1.0f - std::stof(argv[4]); 
     std::cout << "inputs <GRID_SIZE> <SCR_WIDTH> <SCR_HEIGHT> <roughness>" << std::endl;
 
     // glfw: initialize and configure
@@ -196,7 +196,7 @@ int main(int argc, char const *argv[]) {
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Curvas de Nivel", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;

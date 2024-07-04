@@ -3,7 +3,6 @@ project(surfaceLevelCurves)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME} main.cpp)
-# include(CTest)
 
 
 find_package(OpenGL REQUIRED)
@@ -11,11 +10,7 @@ find_package(GLFW3 REQUIRED)
 
 add_subdirectory(extern)
 add_subdirectory(src)
-# add_subdirectory(test)
 
-#quitar para evitar test
-# enable_testing()
-# find_package(GLEW REQUIRED)
 
 
 
