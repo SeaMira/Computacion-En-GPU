@@ -14,4 +14,4 @@ add_subdirectory(src)
 
 
 
-target_link_libraries(${PROJECT_NAME} surfaceLeveldependencies)
+target_link_libraries(${PROJECT_NAME} SkiFreeDependencies)
